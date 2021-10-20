@@ -20,7 +20,7 @@ const TopPage = () => {
     text = `REVIEWボタンを押して\nさっそくレビューを開始しよう！`;
     icon = AiOutlineThunderbolt;
   } else if (pageNumber === 2) {
-    text = `テンプレートを使って\nレビューしてみよう！`;
+    text = `テンプレートを使ってレビューしてみよう！`;
     icon = BiMessageAltDetail;
   } else {
     text = `極稀にみる確率だー！`;

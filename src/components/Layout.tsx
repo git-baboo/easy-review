@@ -12,8 +12,8 @@ const Layout = ({ text, icon, children }: Props) => {
   return (
     <>
       <Flex alignItems="center" pl={16} h={36} bg="teal.500">
-        <HStack>
-          <Icon mb={6} as={icon} color="teal.600" />
+        <HStack alignItems="start">
+          <Icon mt={1} as={icon} color="teal.600" />
           <Text color="white" whiteSpace="pre-line">
             {text}
           </Text>
