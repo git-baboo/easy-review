@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import TimelineItem from '@/components/detail/TimelineItem';
-import { dummyComment } from '@/components/detail/dummyComment';
+import { dummyComment } from '@/data/dummyComment';
 
 const DetailPage = () => {
   const { id } = useParams<{ id: string }>();
