@@ -1,8 +1,8 @@
-import { Comment } from '@/types/CommentType';
-
 export type PullRequest = {
   repoOwner: string;
   repoName: string;
   title: string;
-  commentList: Comment[];
+  userName: string;
+  avatarUrl: string;
+  comment: string;
 };
