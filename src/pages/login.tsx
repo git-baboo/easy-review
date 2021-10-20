@@ -1,14 +1,13 @@
-import { Button, Box } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import React from 'react';
-import { DiGithubBadge } from 'react-icons/di';
+
+import Buttons from '@/components/Button';
 
 const LoginPage = () => {
   return (
     <Box bgColor="teal.500" h="100vh">
       <h1>LoginPage</h1>
-      <Button leftIcon={<DiGithubBadge color="black" size="25" />} bgColor="white">
-        ログイン
-      </Button>
+      <Buttons label="ログイン" />
     </Box>
   );
 };
