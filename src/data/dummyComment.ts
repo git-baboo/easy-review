@@ -1,47 +1,59 @@
 // TODO: delete file
-export const dummyComment = `
-  ## ✨ Summary
-  <!-- 概要を記載する -->
+import { PullRequest } from '@/types/PullRequestType';
 
-  GitHub API から取得したデータをマークダウン形式で表示する部分の UI を実装する
-  GitHub API との通信は必要なく、ダミーデータを用意してやってみる
+export const pullRequest: PullRequest = {
+  repoOwner: 'git-baboo',
+  repoName: 'easy-review',
+  title: 'ToDoのstate管理方法の変更',
+  commentList: [
+    {
+      userName: 'kacha-122',
+      avatarUrl: 'https://avatars.githubusercontent.com/u/68210096?v=4',
+      body: `## ✨ Summary
+             <!-- 概要を記載する -->
 
-  ## 🔥 Requirements
-  <!-- 要件を記載する -->
-  <!-- 例) 〇〇ができる、xxなときに△△する -->
-  - マークダウン形式でデータが表示されること
+             GitHub API から取得したデータをマークダウン形式で表示する部分の UI を実装する
+             GitHub API との通信は必要なく、ダミーデータを用意してやってみる
 
-  ## 📷 Screenshot
-  <!-- 必要であればスクリーンショットを追加する -->
+             ## 🔥 Requirements
+             <!-- 要件を記載する -->
+             <!-- 例) 〇〇ができる、xxなときに△△する -->
+             - マークダウン形式でデータが表示されること
 
-  ![image](https://user-images.githubusercontent.com/44804976/138014969-6cb8aeca-bdc8-4554-980a-6b4de03629bd.png)
+             ## 📷 Screenshot
+             <!-- 必要であればスクリーンショットを追加する -->
 
-  ## 📄 References
-  <!-- 参考資料などを記載する -->
-  \`react-markdown\`使ったら簡単そう？
-  - https://github.com/remarkjs/react-markdown
+             ![image](https://user-images.githubusercontent.com/44804976/138014969-6cb8aeca-bdc8-4554-980a-6b4de03629bd.png)
 
-  ## ✅ Tasks
-  <!-- 必要な作業を記載する -->
-  - [ ] xxx
+             ## 📄 References
+             <!-- 参考資料などを記載する -->
+             \`react-markdown\`使ったら簡単そう？
+             - https://github.com/remarkjs/react-markdown
 
-  ## 複数行コードブロックの確認
-  \`\`\`ts
-  import { ChakraProvider } from '@chakra-ui/react';
-  import React from 'react';
-  import ReactDOM from 'react-dom';
+             ## ✅ Tasks
+             <!-- 必要な作業を記載する -->
+             - [ ] xxx
 
-  import Router from '@/components/Router';
+             ## 複数行コードブロックの確認
+             \`\`\`ts
+             import { ChakraProvider } from '@chakra-ui/react';
+             import React from 'react';
+             import ReactDOM from 'react-dom';
 
-  ReactDOM.render(
-    <ChakraProvider>
-      <React.StrictMode>
-        <Router />
-      </React.StrictMode>
-    </ChakraProvider>,
-    document.getElementById('root')
-  );
+             import Router from '@/components/Router';
 
-  \`\`\`
+             ReactDOM.render(
+               <ChakraProvider>
+                 <React.StrictMode>
+                   <Router />
+                 </React.StrictMode>
+               </ChakraProvider>,
+               document.getElementById('root')
+             );
 
-  `;
+             \`\`\`
+
+             `,
+    },
+  ],
+};
