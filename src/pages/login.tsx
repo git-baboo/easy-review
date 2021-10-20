@@ -7,7 +7,7 @@ const LoginPage = () => {
     <Box bgColor="teal.500" h="100vh">
       <h1>LoginPage</h1>
       <Button leftIcon={<DiGithubBadge color="black" size="25" />} bgColor="white">
-        <a style={{ color: 'black' }}>ログイン</a>
+        ログイン
       </Button>
     </Box>
   );
