@@ -29,7 +29,7 @@ const TopPage = () => {
 
   return (
     <Layout text={text} icon={icon}>
-      <div>TopPage</div>
+      <h1>TopPage</h1>
     </Layout>
   );
 };
