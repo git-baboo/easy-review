@@ -6,7 +6,6 @@ type Props = {
 };
 
 const TimelineItem = ({ comment }: Props) => {
-  // hello
   return <ReactMarkdown components={ChakraUIRenderer()}>{comment}</ReactMarkdown>;
 };
 
