@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <Flex alignItems="center" pl={16} height={36} bg="teal.500">
       <HStack>
-        <Icon mb={6} as={BsFillCheckCircleFill} color="gray.400"></Icon>
+        <Icon mb={6} as={BsFillCheckCircleFill} color="teal.600"></Icon>
         <Box textColor="white">
           <Text>あなた宛にレビュー依頼が届いているよ👀</Text>
           <Text>レビューするプルリクエストを選んでみよう！</Text>
