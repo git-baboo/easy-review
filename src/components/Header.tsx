@@ -1,11 +1,20 @@
-import { Box } from '@chakra-ui/react';
+import { Container, Text } from '@chakra-ui/react';
 import React from 'react';
 
 const Header = () => {
   return (
-    <Box pl={16} height={36} alignItems="center" textColor="white" bg="teal.500">
-      今日のご飯は何にしよう
-    </Box>
+    <Container
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      pl={16}
+      height={36}
+      textColor="white"
+      bg="teal.500"
+    >
+      <Text>今日のご飯何にしよう</Text>
+      <Text>焼肉食べたいなー</Text>
+    </Container>
   );
 };
 
