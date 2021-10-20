@@ -7,7 +7,7 @@ import { BsFillCheckCircleFill, BsLightningCharge } from 'react-icons/bs';
 import Layout from '@/components/Layout';
 
 const TopPage = () => {
-  // TODO: 12行目～28行目は動作確認用で後に削除する
+  // TODO: 11行目～27行目は動作確認用で後に削除する
   const pageNumber = Math.floor(Math.random() * 3);
   let text: string;
   let icon: IconType;
