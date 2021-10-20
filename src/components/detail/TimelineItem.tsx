@@ -1,3 +1,4 @@
+import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 import ReactMarkdown from 'react-markdown';
 
 type Props = {
@@ -5,7 +6,7 @@ type Props = {
 };
 
 const TimelineItem = ({ comment }: Props) => {
-  return <ReactMarkdown>{comment}</ReactMarkdown>;
+  return <ReactMarkdown components={ChakraUIRenderer()}>{comment}</ReactMarkdown>;
 };
 
 export default TimelineItem;
