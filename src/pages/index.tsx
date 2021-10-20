@@ -4,12 +4,12 @@ import { AiOutlineThunderbolt } from 'react-icons/ai';
 import { BiMessageAltDetail, BiAward } from 'react-icons/bi';
 import { BsFillCheckCircleFill } from 'react-icons/bs';
 
-// TODO: 後に削除  作業用にimportしているため
+// 6行目の空いてる1行はeslint が自動生成して、消せなかった
 import Layout from '@/components/Layout';
 
 const TopPage = () => {
+  // TODO: 12行目～28行目は動作確認用で後に削除する
   const pageNumber = Math.floor(Math.random() * 3);
-  console.log(pageNumber);
   let text: string;
   let icon: IconType;
 
