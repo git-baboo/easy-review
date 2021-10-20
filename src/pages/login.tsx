@@ -1,13 +1,13 @@
 import { Box } from '@chakra-ui/react';
 import React from 'react';
 
-import Buttons from '@/components/Button';
+import LoginButton from '@/components/LoginButton';
 
 const LoginPage = () => {
   return (
     <Box bgColor="teal.500" h="100vh">
       <h1>LoginPage</h1>
-      <Buttons label="ログイン" />
+      <LoginButton />
     </Box>
   );
 };
