@@ -8,9 +8,7 @@ import { dummyPullRequests, PullRequest } from '@/data/dummyPullRequests';
 const PullRequestList = () => {
   const history = useHistory();
   const handleClick = (pullRequest: PullRequest) => {
-    history.push(
-      '/' + pullRequest.ownerName + '/' + pullRequest.repoName + '/' + pullRequest.pullNumber
-    );
+    history.push(`/${pullRequest.ownerName}/${pullRequest.repoName}/${pullRequest.pullNumber}`);
   };
 
   return (
