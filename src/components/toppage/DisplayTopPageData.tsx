@@ -1,7 +1,7 @@
 import { Box, Text } from '@chakra-ui/react';
 import React from 'react';
 
-import { dummyPullRequests } from '@/data/dummyTopPageData';
+import { dummyPullRequests } from '@/data/dummyPullRequests';
 
 const DisplayTopPageItems = () => {
   return (
