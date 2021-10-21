@@ -13,7 +13,7 @@ const DetailPage = () => {
   const { id } = useParams<{ id: string }>();
 
   return (
-    <Container pt={9} maxW="container.sm">
+    <Container py={9} maxW="container.sm">
       <Text fontSize="xs" color="gray.600">
         {pullRequest.repoOwner}/{pullRequest.repoName}
       </Text>
