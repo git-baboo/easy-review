@@ -26,7 +26,7 @@ const DetailPage = () => {
       icon={AiOutlineThunderbolt}
     >
       <Container py={9} maxW="container.sm">
-        <Text fontSize="xs" color="gray.600">
+        <Text size="xs" color="gray.600">
           {owner}/{repo}
         </Text>
         <Heading size="md">{pullRequest.title}</Heading>
