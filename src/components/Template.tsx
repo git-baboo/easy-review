@@ -12,7 +12,7 @@ const Template = ({ title, description }: Props) => {
       <Text color="black" fontSize="lg" fontWeight="semibold">
         {title}
       </Text>
-      <Text color="black" fontSize="xs" fontWeight="medium">
+      <Text color="black" fontSize="xs" fontWeight="medium" whiteSpace="pre-line">
         {description}
       </Text>
     </Box>
