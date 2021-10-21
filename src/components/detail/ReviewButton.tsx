@@ -24,6 +24,7 @@ const ReviewButton = () => {
       color="white"
       fontWeight="bold"
       onClick={handleClick}
+      _hover={{ opacity: 0.9 }}
     >
       REVIEW
     </Button>
