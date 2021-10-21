@@ -4,7 +4,7 @@ import { DiGithubBadge } from 'react-icons/di';
 
 const LoginButton = () => {
   return (
-    <Button leftIcon={<DiGithubBadge color="black" size="25" />} bgColor="white" mt={2}>
+    <Button leftIcon={<DiGithubBadge color="black" size="25" />} bgColor="white" mt={8}>
       ログイン
     </Button>
   );
