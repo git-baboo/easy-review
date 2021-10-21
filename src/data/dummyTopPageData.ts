@@ -1,31 +1,23 @@
-const DummyTopPageData = () => {
-  type DummyDataTmp = {
-    pullRequestName: string;
-    repository: string;
-  };
-
-  const data1: DummyDataTmp = {
-    pullRequestName: 'ToDoのstate管理方法の変更',
-    repository: 'git-baboo/minihackathon-a',
-  };
-
-  const data2: DummyDataTmp = {
-    pullRequestName: 'Feature/7 change todo state',
-    repository: 'git-baboo/react-study-sugimizu',
-  };
-
-  const data3: DummyDataTmp = {
-    pullRequestName: '認証機能の実装',
-    repository: 'zemi-team2/sake',
-  };
-
-  const dataset = [];
-
-  dataset.push(data1);
-  dataset.push(data2);
-  dataset.push(data3);
-
-  return dataset;
+type PullRequest = {
+  ownerName: string;
+  repoName: string;
+  title: string;
 };
 
-export default DummyTopPageData;
+export const dummyPullRequests: PullRequest[] = [
+  {
+    ownerName: 'git-baboo',
+    repoName: 'minihackathon-a',
+    title: 'ToDoのstate管理方法の変更',
+  },
+  {
+    ownerName: 'git-baboo',
+    repoName: 'react-study-sugimizu',
+    title: 'Feature/7 change todo state',
+  },
+  {
+    ownerName: 'zemi-team2',
+    repoName: 'sake',
+    title: '認証機能の実装',
+  },
+];

@@ -1,24 +1,25 @@
 import { Box, Text } from '@chakra-ui/react';
 import React from 'react';
 
-import DummyTopPageData from '@/data/dummyTopPageData';
+import { dummyPullRequests } from '@/data/dummyTopPageData';
 
 const DisplayTopPageItems = () => {
-  const topPageDataset = DummyTopPageData();
-
   return (
     <>
-      {topPageDataset.map((canReviewData) => {
+      {dummyPullRequests.map((pullRequest) => {
         return (
-          <Box key={canReviewData.pullRequestName} mt={6} mb={6}>
+          <Box key={pullRequest.title} mt={6} mb={6}>
             <Text fontSize={20} fontWeight="bold">
-              {canReviewData.pullRequestName}
+              {pullRequest.title}
             </Text>
-            <Text fontSize="xs">{canReviewData.repository}</Text>
+            <Text fontSize="xs">
+              {pullRequest.ownerName}/{pullRequest.repoName}
+            </Text>
           </Box>
         );
       })}
     </>
   );
 };
+
 export default DisplayTopPageItems;
