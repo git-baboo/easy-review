@@ -1,8 +1,8 @@
-import { Button } from '@chakra-ui/button';
 import { Container, Heading, Text } from '@chakra-ui/layout';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
+import ReviewButton from '@/components/detail/ReviewButton';
 import Reviewee from '@/components/detail/Reviewee';
 import TimelineItem from '@/components/detail/TimelineItem';
 import { pullRequest } from '@/data/dummyPullRequest';
@@ -26,9 +26,7 @@ const DetailPage = () => {
       <Heading size="md">{pullRequest.title}</Heading>
       <Reviewee pullRequest={pullRequest} />
       <TimelineItem my={3} comment={pullRequest.comment} />
-      <Button size="lg" w="full" bgColor="teal.500" color="white">
-        REVIEW
-      </Button>
+      <ReviewButton />
     </Container>
   );
 };
