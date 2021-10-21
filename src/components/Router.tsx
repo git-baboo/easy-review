@@ -12,8 +12,8 @@ const Router = () => {
       <Switch>
         <Route exact path="/" component={TopPage} />
         <Route exact path="/login" component={LoginPage} />
-        <Route exact path="/pull-requests/:id" component={DetailPage} />
-        <Route exact path="/pull-requests/:id/review" component={ReviewPage} />
+        <Route exact path="/:owner/:repo/:pullNumber" component={DetailPage} />
+        <Route exact path="/:owner/:repo/:pullNumber/review" component={ReviewPage} />
       </Switch>
     </BrowserRouter>
   );
