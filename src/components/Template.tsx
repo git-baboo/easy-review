@@ -5,7 +5,7 @@ const Template = () => {
   return (
     <>
       <Stack spacing={5}>
-        <Box>
+        <Box width={235}>
           <Text color="black" size="semibold">
             ❓質問
           </Text>
@@ -13,7 +13,7 @@ const Template = () => {
             わからないコードや疑問に思った部分があれば積極的に質問してみましょう！
           </Text>
         </Box>
-        <Box>
+        <Box width={235}>
           <Text color="black" size="semibold">
             ✨素敵
           </Text>
@@ -22,7 +22,7 @@ const Template = () => {
             プルリクエストの作成者は嬉しいこと間違いなしです
           </Text>
         </Box>
-        <Box>
+        <Box width={235}>
           <Text color="black" size="semibold">
             🤔指摘
           </Text>
