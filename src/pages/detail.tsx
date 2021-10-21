@@ -31,7 +31,7 @@ const DetailPage = () => {
         </Text>
         <Heading size="md">{pullRequest.title}</Heading>
         <Reviewee pullRequest={pullRequest} />
-        <TimelineItem my={3} boxShadow="base" comment={pullRequest.comment} />
+        <TimelineItem my={3} px={8} py={7} boxShadow="base" comment={pullRequest.comment} />
         <ReviewButton />
       </Container>
     </Layout>
