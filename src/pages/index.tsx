@@ -11,7 +11,7 @@ const TopPage = () => {
       text={`あなた宛のレビューの依頼が届いているよ👀\nレビューするプルリクエストを選んでみよう！`}
       icon={BsCheckCircleFill}
     >
-      <Container maxW="container.sm" bg="blue.200">
+      <Container maxW="container.sm">
         <DisplayTopPageItems />
       </Container>
     </Layout>
