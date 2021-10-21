@@ -6,6 +6,7 @@ import { dummyPullRequests } from '@/data/dummyPullRequests';
 const DisplayTopPageItems = () => {
   return (
     <>
+      {/* TODO: API から取得したデータに置き換える */}
       {dummyPullRequests.map((pullRequest) => {
         return (
           <Box key={pullRequest.title} mt={6} mb={6}>
