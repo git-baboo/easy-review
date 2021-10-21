@@ -7,15 +7,20 @@ import { useParams } from 'react-router-dom';
 import TimelineItem from '@/components/detail/TimelineItem';
 import { pullRequest } from '@/data/dummyPullRequest';
 
+type Path = {
+  owner: string;
+  repo: string;
+  pullNumber: string;
+};
+
 const DetailPage = () => {
-  // TODO: eslint の例外設定を削除
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { id } = useParams<{ id: string }>();
+  const { owner, repo, pullNumber } = useParams<Path>();
 
   return (
     <Container py={9} maxW="container.sm">
       <Text fontSize="xs" color="gray.600">
-        {pullRequest.repoOwner}/{pullRequest.repoName}
+        {owner}/{repo}
       </Text>
       <Heading size="md">{pullRequest.title}</Heading>
       <Flex>
