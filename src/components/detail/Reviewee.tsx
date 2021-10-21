@@ -9,7 +9,7 @@ const Reviewee = ({ pullRequest }: Props) => {
   return (
     <Flex>
       <Avatar size="2xs" name={pullRequest.userName} src={pullRequest.avatarUrl} />
-      <Text size="xs" lineHeight={4}>
+      <Text fontSize="xs" lineHeight={4}>
         {pullRequest.userName}
       </Text>
     </Flex>
