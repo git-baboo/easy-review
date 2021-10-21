@@ -1,5 +1,5 @@
 import { Image } from '@chakra-ui/image';
-import { Heading } from '@chakra-ui/layout';
+import { Container, Flex, Heading } from '@chakra-ui/layout';
 import { Text } from '@chakra-ui/react';
 import React from 'react';
 import { useParams } from 'react-router-dom';
@@ -13,15 +13,24 @@ const DetailPage = () => {
   const { id } = useParams<{ id: string }>();
 
   return (
-    <>
-      <Text>
+    <Container maxW="container.sm">
+      <Text fontSize="xs" color="gray.600">
         {pullRequest.repoOwner}/{pullRequest.repoName}
       </Text>
-      <Heading>{pullRequest.title}</Heading>
-      <Image src={pullRequest.avatarUrl} />
-      <Text>{pullRequest.userName}</Text>
+      <Heading size="md">{pullRequest.title}</Heading>
+      <Flex>
+        <Image
+          borderRadius="full"
+          boxSize="16px"
+          src={pullRequest.avatarUrl}
+          alt={pullRequest.userName}
+        />
+        <Text fontSize="xs" lineHeight={4}>
+          {pullRequest.userName}
+        </Text>
+      </Flex>
       <TimelineItem comment={pullRequest.comment} />
-    </>
+    </Container>
   );
 };
 
