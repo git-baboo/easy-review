@@ -11,7 +11,7 @@ const LoginPage = () => {
           Easy Review
         </Heading>
         <Heading size="md" mt={2}>
-          より気軽なレビュー体験を
+          より気軽なコードレビュー体験を
         </Heading>
         <LoginButton />
       </Container>
