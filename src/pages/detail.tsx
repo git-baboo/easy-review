@@ -14,6 +14,7 @@ type Path = {
 };
 
 const DetailPage = () => {
+  // TODO: eslint の例外設定を削除
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { owner, repo, pullNumber } = useParams<Path>();
 
