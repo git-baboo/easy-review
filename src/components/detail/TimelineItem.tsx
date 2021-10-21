@@ -1,5 +1,6 @@
 import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 type Props = {
   comment: string;
@@ -7,7 +8,7 @@ type Props = {
 
 const TimelineItem = ({ comment }: Props) => {
   return (
-    <ReactMarkdown skipHtml={true} components={ChakraUIRenderer()}>
+    <ReactMarkdown skipHtml={true} components={ChakraUIRenderer()} remarkPlugins={[remarkGfm]}>
       {comment}
     </ReactMarkdown>
   );
