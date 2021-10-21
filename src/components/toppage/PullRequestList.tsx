@@ -1,17 +1,15 @@
 import { Box, VStack, Heading, Text, StackDivider } from '@chakra-ui/react';
 import React from 'react';
+import { useHistory } from 'react-router';
 
-import { dummyPullRequests } from '@/data/dummyPullRequests';
-
-type PullRequest = {
-  ownerName: string;
-  repoName: string;
-  title: string;
-};
+import { dummyPullRequests, PullRequest } from '@/data/dummyPullRequests';
 
 const PullRequestList = () => {
+  const history = useHistory();
   const handleClick = (pullRequest: PullRequest) => {
-    console.log(pullRequest);
+    history.push(
+      '/' + pullRequest.ownerName + '/' + pullRequest.repoName + '/' + pullRequest.pullNumber
+    );
   };
 
   return (
@@ -20,7 +18,7 @@ const PullRequestList = () => {
       {dummyPullRequests.map((pullRequest, index) => (
         <Box key={index} mx={8} onClick={() => handleClick(pullRequest)}>
           <Heading size="md">{pullRequest.title}</Heading>
-          <Text size="xs" color="gray.600" S>
+          <Text fontSize="xs" color="gray.600" S>
             {pullRequest.ownerName}/{pullRequest.repoName}
           </Text>
         </Box>
