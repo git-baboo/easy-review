@@ -6,7 +6,11 @@ type Props = {
 };
 
 const TimelineItem = ({ comment }: Props) => {
-  return <ReactMarkdown components={ChakraUIRenderer()}>{comment}</ReactMarkdown>;
+  return (
+    <ReactMarkdown skipHtml={true} components={ChakraUIRenderer()}>
+      {comment}
+    </ReactMarkdown>
+  );
 };
 
 export default TimelineItem;
