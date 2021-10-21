@@ -1,21 +1,21 @@
 const DummyTopPageData = () => {
   type DummyDataTmp = {
-    pullRequwstName: string;
+    pullRequestName: string;
     repository: string;
   };
 
   const data1: DummyDataTmp = {
-    pullRequwstName: 'ToDoのstate管理方法の変更',
+    pullRequestName: 'ToDoのstate管理方法の変更',
     repository: 'git-baboo/minihackathon-a',
   };
 
   const data2: DummyDataTmp = {
-    pullRequwstName: 'Feature/7 change todo state',
+    pullRequestName: 'Feature/7 change todo state',
     repository: 'git-baboo/react-study-sugimizu',
   };
 
   const data3: DummyDataTmp = {
-    pullRequwstName: '認証機能の実装',
+    pullRequestName: '認証機能の実装',
     repository: 'zemi-team2/sake',
   };
 

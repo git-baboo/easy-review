@@ -10,9 +10,9 @@ const DisplayTopPageItems = () => {
     <>
       {topPageDataset.map((canReviewData) => {
         return (
-          <Box key={canReviewData.pullRequwstName} mt={6} mb={6}>
+          <Box key={canReviewData.pullRequestName} mt={6} mb={6}>
             <Text fontSize={20} fontWeight="bold">
-              {canReviewData.pullRequwstName}
+              {canReviewData.pullRequestName}
             </Text>
             <Text fontSize="xs">{canReviewData.repository}</Text>
           </Box>
