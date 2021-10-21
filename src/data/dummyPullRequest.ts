@@ -2,8 +2,6 @@
 import { PullRequest } from '@/types/PullRequestType';
 
 export const pullRequest: PullRequest = {
-  repoOwner: 'git-baboo',
-  repoName: 'easy-review',
   title: 'ToDoのstate管理方法の変更',
   userName: 'kacha-122',
   avatarUrl: 'https://avatars.githubusercontent.com/u/68210096?v=4',
