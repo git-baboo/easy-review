@@ -3,7 +3,7 @@ import React from 'react';
 
 import { dummyPullRequests } from '@/data/dummyPullRequests';
 
-const DisplayTopPageItems = () => {
+const PullRequestList = () => {
   return (
     <>
       {/* TODO: API から取得したデータに置き換える */}
@@ -23,4 +23,4 @@ const DisplayTopPageItems = () => {
   );
 };
 
-export default DisplayTopPageItems;
+export default PullRequestList;

@@ -3,7 +3,7 @@ import React from 'react';
 import { BsCheckCircleFill } from 'react-icons/bs';
 
 import Layout from '@/components/Layout';
-import DisplayTopPageData from '@/components/toppage/DisplayTopPageData';
+import PullRequestList from '@/components/toppage/PullRequestList';
 
 const TopPage = () => {
   return (
@@ -12,7 +12,7 @@ const TopPage = () => {
       icon={BsCheckCircleFill}
     >
       <Container maxW="container.sm">
-        <DisplayTopPageData />
+        <PullRequestList />
       </Container>
     </Layout>
   );
