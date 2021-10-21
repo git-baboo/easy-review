@@ -13,7 +13,7 @@ const DetailPage = () => {
   const { id } = useParams<{ id: string }>();
 
   return (
-    <Container maxW="container.sm">
+    <Container pt={9} maxW="container.sm">
       <Text fontSize="xs" color="gray.600">
         {pullRequest.repoOwner}/{pullRequest.repoName}
       </Text>
@@ -29,7 +29,7 @@ const DetailPage = () => {
           {pullRequest.userName}
         </Text>
       </Flex>
-      <TimelineItem comment={pullRequest.comment} />
+      <TimelineItem my={3} comment={pullRequest.comment} />
     </Container>
   );
 };
