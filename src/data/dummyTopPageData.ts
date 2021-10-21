@@ -1,22 +1,22 @@
 const DummyTopPageData = () => {
   type DummyDataTmp = {
-    title: string;
-    directory: string;
+    pullRequwstName: string;
+    repository: string;
   };
 
   const data1: DummyDataTmp = {
-    title: 'ToDoのstate管理方法の変更',
-    directory: 'git-baboo/minihackathon-a',
+    pullRequwstName: 'ToDoのstate管理方法の変更',
+    repository: 'git-baboo/minihackathon-a',
   };
 
   const data2: DummyDataTmp = {
-    title: 'Feature/7 change todo state',
-    directory: 'git-baboo/react-study-sugimizu',
+    pullRequwstName: 'Feature/7 change todo state',
+    repository: 'git-baboo/react-study-sugimizu',
   };
 
   const data3: DummyDataTmp = {
-    title: '認証機能の実装',
-    directory: 'zemi-team2/sake',
+    pullRequwstName: '認証機能の実装',
+    repository: 'zemi-team2/sake',
   };
 
   const dataset = [];
