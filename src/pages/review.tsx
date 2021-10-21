@@ -1,12 +1,12 @@
 import React from 'react';
 
-import Template from '@/components/Template';
+import TemplateList from '@/components/TemplateList';
 
 const ReviewPage = () => {
   return (
     <>
       <h1>ReviewPage</h1>
-      <Template />
+      <TemplateList />
     </>
   );
 };
