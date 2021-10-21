@@ -10,7 +10,14 @@ const ReviewButton = () => {
   };
 
   return (
-    <Button size="lg" w="full" bgColor="teal.500" color="white" onClick={handleClick}>
+    <Button
+      size="lg"
+      w="full"
+      bgColor="teal.500"
+      color="white"
+      fontWeight="bold"
+      onClick={handleClick}
+    >
       REVIEW
     </Button>
   );
