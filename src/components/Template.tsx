@@ -3,17 +3,17 @@ import React from 'react';
 
 type Props = {
   title: string;
-  tmp: string;
+  description: string;
 };
 
-const Template = ({ title, tmp }: Props) => {
+const Template = ({ title, description }: Props) => {
   return (
     <Box width={235}>
       <Text color="black" fontSize="lg" fontWeight="semibold">
         {title}
       </Text>
       <Text color="black" fontSize="xs" fontWeight="medium">
-        {tmp}
+        {description}
       </Text>
     </Box>
   );
