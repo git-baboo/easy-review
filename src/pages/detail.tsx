@@ -1,3 +1,4 @@
+import { Button } from '@chakra-ui/button';
 import { Image } from '@chakra-ui/image';
 import { Container, Flex, Heading, Text } from '@chakra-ui/layout';
 import React from 'react';
@@ -29,6 +30,9 @@ const DetailPage = () => {
         </Text>
       </Flex>
       <TimelineItem my={3} comment={pullRequest.comment} />
+      <Button size="lg" w="full" bgColor="teal.500" color="white">
+        REVIEW
+      </Button>
     </Container>
   );
 };
