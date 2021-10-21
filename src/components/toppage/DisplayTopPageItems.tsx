@@ -4,17 +4,17 @@ import React from 'react';
 import DummyTopPageData from '@/data/dummyTopPageData';
 
 const DisplayTopPageItems = () => {
-  const dataset = DummyTopPageData();
+  const topPageDataset = DummyTopPageData();
 
   return (
     <>
-      {dataset.map((data) => {
+      {topPageDataset.map((canReviewData) => {
         return (
-          <Box key={data.pullRequwstName} mt={6} mb={6}>
+          <Box key={canReviewData.pullRequwstName} mt={6} mb={6}>
             <Text fontSize={20} fontWeight="bold">
-              {data.pullRequwstName}
+              {canReviewData.pullRequwstName}
             </Text>
-            <Text fontSize="xs">{data.repository}</Text>
+            <Text fontSize="xs">{canReviewData.repository}</Text>
           </Box>
         );
       })}
