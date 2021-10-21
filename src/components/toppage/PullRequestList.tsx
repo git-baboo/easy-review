@@ -16,7 +16,11 @@ const PullRequestList = () => {
       {/* TODO: API から取得したデータに置き換える */}
       {dummyPullRequests.map((pullRequest, index) => (
         <Box key={index} mx={8}>
-          <Box display="inline-block" onClick={() => handleClick(pullRequest)}>
+          <Box
+            display="inline-block"
+            _hover={{ cursor: 'pointer' }}
+            onClick={() => handleClick(pullRequest)}
+          >
             <Heading size="md">{pullRequest.title}</Heading>
             <Text fontSize="xs" color="gray.600">
               {pullRequest.ownerName}/{pullRequest.repoName}
