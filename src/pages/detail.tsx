@@ -1,9 +1,9 @@
 import { Button } from '@chakra-ui/button';
-import { Image } from '@chakra-ui/image';
-import { Container, Flex, Heading, Text } from '@chakra-ui/layout';
+import { Container, Heading, Text } from '@chakra-ui/layout';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
+import Reviewee from '@/components/detail/Reviewee';
 import TimelineItem from '@/components/detail/TimelineItem';
 import { pullRequest } from '@/data/dummyPullRequest';
 
@@ -24,17 +24,7 @@ const DetailPage = () => {
         {owner}/{repo}
       </Text>
       <Heading size="md">{pullRequest.title}</Heading>
-      <Flex>
-        <Image
-          borderRadius="full"
-          boxSize="16px"
-          src={pullRequest.avatarUrl}
-          alt={pullRequest.userName}
-        />
-        <Text fontSize="xs" lineHeight={4}>
-          {pullRequest.userName}
-        </Text>
-      </Flex>
+      <Reviewee pullRequest={pullRequest} />
       <TimelineItem my={3} comment={pullRequest.comment} />
       <Button size="lg" w="full" bgColor="teal.500" color="white">
         REVIEW
