@@ -2,6 +2,7 @@ import { Box, VStack, Heading, Text, StackDivider } from '@chakra-ui/react';
 import React from 'react';
 import { useHistory } from 'react-router';
 
+// TODO: ダミーデータのとこで作成した型を再利用しているため、後に変更が必要
 import { dummyPullRequests, PullRequest } from '@/data/dummyPullRequests';
 
 const PullRequestList = () => {
