@@ -1,7 +1,9 @@
 import { Container, Heading, Text } from '@chakra-ui/layout';
 import React from 'react';
+import { AiOutlineThunderbolt } from 'react-icons/ai';
 import { useParams } from 'react-router-dom';
 
+import Layout from '@/components/Layout';
 import ReviewButton from '@/components/detail/ReviewButton';
 import Reviewee from '@/components/detail/Reviewee';
 import TimelineItem from '@/components/detail/TimelineItem';
@@ -19,15 +21,20 @@ const DetailPage = () => {
   const { owner, repo, pullNumber } = useParams<Path>();
 
   return (
-    <Container py={9} maxW="container.sm">
-      <Text fontSize="xs" color="gray.600">
-        {owner}/{repo}
-      </Text>
-      <Heading size="md">{pullRequest.title}</Heading>
-      <Reviewee pullRequest={pullRequest} />
-      <TimelineItem my={3} comment={pullRequest.comment} />
-      <ReviewButton />
-    </Container>
+    <Layout
+      text={`REVIEWボタンを押して\nさっそくレビューを開始しよう！`}
+      icon={AiOutlineThunderbolt}
+    >
+      <Container py={9} maxW="container.sm">
+        <Text fontSize="xs" color="gray.600">
+          {owner}/{repo}
+        </Text>
+        <Heading size="md">{pullRequest.title}</Heading>
+        <Reviewee pullRequest={pullRequest} />
+        <TimelineItem my={3} comment={pullRequest.comment} />
+        <ReviewButton />
+      </Container>
+    </Layout>
   );
 };
 
