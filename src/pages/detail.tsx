@@ -1,6 +1,5 @@
 import { Image } from '@chakra-ui/image';
-import { Container, Flex, Heading } from '@chakra-ui/layout';
-import { Text } from '@chakra-ui/react';
+import { Container, Flex, Heading, Text } from '@chakra-ui/layout';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
