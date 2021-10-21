@@ -4,9 +4,14 @@ import { useParams } from 'react-router-dom';
 import TimelineItem from '@/components/detail/TimelineItem';
 import { dummyComment as comment } from '@/data/dummyComment';
 
+type Path = {
+  owner: string;
+  repo: string;
+  pullNumber: string;
+};
+
 const DetailPage = () => {
-  const { owner, repo, pullNumber } =
-    useParams<{ owner: string; repo: string; pullNumber: string }>();
+  const { owner, repo, pullNumber } = useParams<Path>();
   return (
     <>
       <p>
