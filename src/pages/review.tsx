@@ -27,7 +27,11 @@ const ReviewPage = () => {
               <Text color="black" fontSize="xs">
                 以下コード
               </Text>
-              <Button size="xs" colorScheme="blue">
+              <Button
+                size="xs"
+                colorScheme="blue"
+                onClick={() => console.log('クリックされました')}
+              >
                 <BiCommentAdd color="white" size="15" />
               </Button>
             </Box>
