@@ -20,7 +20,7 @@ const templates = [
 
 const TemplateList = () => {
   return (
-    <VStack spacing={5}>
+    <VStack spacing={5} left={888} top={180} position="fixed">
       {templates.map((template) => (
         <Template key={template.title} title={template.title} description={template.description} />
       ))}
