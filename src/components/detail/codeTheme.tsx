@@ -1,7 +1,7 @@
 import { Code, CodeProps } from '@chakra-ui/layout';
 import { ReactNode } from 'react';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { github } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 type CustomProps = {
   inline: boolean; // インラインかコードブロックか
@@ -25,7 +25,7 @@ export const codeTheme = ({ inline, className, children, ...props }: Props) => {
     </Code>
   ) : (
     // コードブロック
-    <SyntaxHighlighter style={dark} language={langage} PreTag="div" {...props}>
+    <SyntaxHighlighter style={github} language={langage} PreTag="div" {...props}>
       {String(children).replace(/\n$/, '')}
     </SyntaxHighlighter>
   );
