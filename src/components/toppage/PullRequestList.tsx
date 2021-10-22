@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
 
 import { useApi } from '@/hooks/useApi';
+import { useCurrentUser } from '@/hooks/useCurrentUser';
 
 type Pull = {
   pullNumber: number;
@@ -12,17 +13,19 @@ type Pull = {
 };
 
 const PullRequestList = () => {
+  const [usernameState, setUsernameState] = useState<string>('watagit');
   const [pulls, setPulls] = useState<Pull[]>([]);
   const history = useHistory();
   const { octokit } = useApi();
+  const { username } = useCurrentUser();
 
   // FIXME: データを配列として保持できない
   useEffect(() => {
     let isMounted = true;
+    setUsernameState(username);
     octokit
       .request('GET /search/issues', {
-        // TODO: ユーザ名をログイン中のユーザのものに変更する
-        q: 'is:pr+user-review-requested:watagit+state:open',
+        q: `is:pr+review-requested:${usernameState}+state:open`,
       })
       .then((response) => {
         const items = response.data.items;
