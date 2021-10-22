@@ -3,12 +3,12 @@ import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
-import codeTheme from '@/components/detail/codeTheme';
-import dividerTheme from '@/components/detail/dividerTheme';
-import headingTheme from '@/components/detail/headerTheme';
-import linkTheme from '@/components/detail/linkTheme';
-import quoteTheme from '@/components/detail/quoteTheme';
-import tableTheme, { tdTheme, thTheme } from '@/components/detail/tableTheme';
+import codeTheme from '@/components/detail/theme/codeTheme';
+import dividerTheme from '@/components/detail/theme/dividerTheme';
+import headingTheme from '@/components/detail/theme/headerTheme';
+import linkTheme from '@/components/detail/theme/linkTheme';
+import quoteTheme from '@/components/detail/theme/quoteTheme';
+import tableTheme, { tdTheme, thTheme } from '@/components/detail/theme/tableTheme';
 
 type CustomProps = {
   comment: string;
