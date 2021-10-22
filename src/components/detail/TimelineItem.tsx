@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 import codeTheme from '@/components/detail/codeTheme';
+import dividerTheme from '@/components/detail/dividerTheme';
 import headingTheme from '@/components/detail/headerTheme';
 import quoteTheme from '@/components/detail/quoteTheme';
 
@@ -23,6 +24,7 @@ const TimelineItem = ({ comment, ...boxProps }: Props) => {
     h6: headingTheme,
     code: codeTheme,
     blockquote: quoteTheme,
+    hr: dividerTheme,
   };
 
   return (
