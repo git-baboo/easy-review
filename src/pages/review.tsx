@@ -1,4 +1,4 @@
-import { Box, Text, Container, HStack, Divider, Center } from '@chakra-ui/layout';
+import { Box, Text, Container, HStack, VStack, Divider, Center } from '@chakra-ui/layout';
 import { Avatar, Button } from '@chakra-ui/react';
 import React from 'react';
 import { BiCommentAdd } from 'react-icons/bi';
@@ -13,28 +13,36 @@ const ReviewPage = () => {
       <Layout text={'テンプレートを使ってレビューをしてみよう！'} icon={BsFillChatDotsFill}>
         <Container maxW="container.lg" color="white">
           <HStack spacing={20} mt={9} align="top">
-            <Box width={700}>
-              <Text color="gray" fontSize="xs">
-                git-baboo/minihackathon-a
-              </Text>
-              <Text color="black" fontSize="md">
-                ToDoのstate管理方法の変更
-              </Text>
-              <Text color="black" fontSize="xs">
-                <Avatar name="Segun Adebayo" src="https://bit.ly/sage-adebayo" size="2xs" />
-                kacha-122
-              </Text>
-              <Text color="black" fontSize="xs">
-                以下コード
-              </Text>
+            <VStack align="end">
+              <Box width={700}>
+                <Text color="gray" fontSize="xs">
+                  git-baboo/minihackathon-a
+                </Text>
+                <Text color="black" fontSize="md">
+                  ToDoのstate管理方法の変更
+                </Text>
+                <Text color="black" fontSize="xs">
+                  <Avatar name="Segun Adebayo" src="https://bit.ly/sage-adebayo" size="2xs" />
+                  kacha-122
+                </Text>
+                <Box bg="green.100" width="707" height="147" color="white" mt={3}>
+                  コード
+                </Box>
+                <Box bg="blue.100" width="707" height="500" color="white" mt={6}>
+                  コード
+                </Box>
+              </Box>
               <Button
                 size="xs"
                 colorScheme="blue"
                 onClick={() => console.log('クリックされました')}
               >
-                <BiCommentAdd color="white" size="15" />
+                <BiCommentAdd color="white" size={15} />
               </Button>
-            </Box>
+              <Button colorScheme="teal" mt={9}>
+                完了
+              </Button>
+            </VStack>
             <Center height="lg">
               <Divider color="black" orientation="vertical" />
             </Center>
