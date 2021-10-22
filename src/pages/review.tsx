@@ -24,7 +24,7 @@ const ReviewPage = () => {
                   kacha-122
                 </Text>
               </Box>
-              <DiffFiles mt={3} />
+              <DiffFiles spacing={6} mt={3} align="start" />
               <Popover />
               <Button colorScheme="teal" mt={9} size="lg">
                 完了
