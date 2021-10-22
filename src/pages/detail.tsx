@@ -49,23 +49,6 @@ const DetailPage = () => {
       });
   }, []);
 
-  useEffect(() => {
-    octokit
-      .request('GET /repos/{owner}/{repo}/pulls/{pull_number}', {
-        owner: owner,
-        repo: repo,
-        pull_number: Number(pullNumber), // NOTE: useParams の型定義は string でなければならない
-      })
-      .then((res) => {
-        setPullRequest({
-          title: res.data.title,
-          userName: res.data.assignee?.login,
-          avatarUrl: res.data.assignee?.avatar_url,
-          comment: res.data.body,
-        });
-      });
-  }, []);
-
   return (
     <Layout
       text={`REVIEWボタンを押して\nさっそくレビューを開始しよう！`}
