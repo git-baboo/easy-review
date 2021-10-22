@@ -3,17 +3,21 @@ import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 import ReactMarkdown from 'react-markdown';
 
 type CustomProps = {
-  comment: string;
+  comment: string | null;
 };
 
 type Props = BoxProps & CustomProps;
 
 const TimelineItem = ({ comment, ...boxProps }: Props) => {
-  return (
-    <Box {...boxProps}>
-      <ReactMarkdown components={ChakraUIRenderer()}>{comment}</ReactMarkdown>
-    </Box>
-  );
+  if (comment) {
+    return (
+      <Box {...boxProps}>
+        <ReactMarkdown components={ChakraUIRenderer()}>{comment}</ReactMarkdown>
+      </Box>
+    );
+  } else {
+    return <></>;
+  }
 };
 
 export default TimelineItem;
