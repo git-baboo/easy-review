@@ -8,6 +8,7 @@ import dividerTheme from '@/components/detail/dividerTheme';
 import headingTheme from '@/components/detail/headerTheme';
 import linkTheme from '@/components/detail/linkTheme';
 import quoteTheme from '@/components/detail/quoteTheme';
+import tableTheme, { tdTheme, thTheme } from '@/components/detail/tableTheme';
 
 type CustomProps = {
   comment: string;
@@ -27,6 +28,9 @@ const TimelineItem = ({ comment, ...boxProps }: Props) => {
     blockquote: quoteTheme,
     hr: dividerTheme,
     a: linkTheme,
+    table: tableTheme,
+    th: thTheme,
+    td: tdTheme,
   };
 
   return (
