@@ -6,6 +6,7 @@ import remarkGfm from 'remark-gfm';
 import codeTheme from '@/components/detail/codeTheme';
 import dividerTheme from '@/components/detail/dividerTheme';
 import headingTheme from '@/components/detail/headerTheme';
+import linkTheme from '@/components/detail/linkTheme';
 import quoteTheme from '@/components/detail/quoteTheme';
 
 type CustomProps = {
@@ -25,6 +26,7 @@ const TimelineItem = ({ comment, ...boxProps }: Props) => {
     code: codeTheme,
     blockquote: quoteTheme,
     hr: dividerTheme,
+    a: linkTheme,
   };
 
   return (
