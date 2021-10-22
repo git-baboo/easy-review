@@ -10,6 +10,7 @@ const TopPage = () => (
     text={`あなた宛のレビューの依頼が届いているよ👀\nレビューするプルリクエストを選んでみよう！`}
     icon={BsCheckCircleFill}
   >
+    {console.log('焼肉が食べたい')}
     <Container maxW="container.sm">
       <PullRequestList />
     </Container>
