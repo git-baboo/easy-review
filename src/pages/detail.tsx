@@ -29,8 +29,8 @@ const initialPullRequest: PullRequest = {
 };
 
 const DetailPage = () => {
-  const { owner, repo, pullNumber } = useParams<Path>();
   const [pullRequest, setPullRequest] = useState<PullRequest>(initialPullRequest);
+  const { owner, repo, pullNumber } = useParams<Path>();
 
   useEffect(() => {
     octokit
