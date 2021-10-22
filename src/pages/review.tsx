@@ -6,6 +6,7 @@ import { BsFillChatDotsFill } from 'react-icons/bs';
 import Layout from '@/components/Layout';
 import TemplateList from '@/components/TemplateList';
 import Popover from '@/components/review/Popover';
+import ReviewTitle from '@/components/review/ReviewTitle';
 
 const ReviewPage = () => {
   return (
@@ -15,12 +16,8 @@ const ReviewPage = () => {
           <HStack spacing="50px" mt={9} align="top">
             <Box align="end">
               <Box width={700} align="start">
-                <Text color="gray" fontSize="xs">
-                  git-baboo/minihackathon-a
-                </Text>
-                <Text color="black" fontSize="md">
-                  ToDoのstate管理方法の変更
-                </Text>
+                <ReviewTitle color="gray" fontSize="xs" title="git-baboo/minihackathon-a" />
+                <ReviewTitle color="black" fontSize="md" title="ToDoのstate管理方法の変更" />
                 <Text color="black" fontSize="xs">
                   <Avatar name="Segun Adebayo" src="https://bit.ly/sage-adebayo" size="2xs" />
                   kacha-122
