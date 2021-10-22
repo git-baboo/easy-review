@@ -2,6 +2,7 @@ import React, { useEffect, useReducer } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import AuthContext from '@/components/AuthContext';
+import PrivateRoute from '@/components/PrivateRoute';
 import TopPage from '@/pages';
 import DetailPage from '@/pages/detail';
 import LoginPage from '@/pages/login';
@@ -20,10 +21,10 @@ const Router = () => {
     <BrowserRouter>
       <Switch>
         <AuthContext.Provider value={state}>
-          <Route exact path="/" component={TopPage} />
+          <PrivateRoute path="/" component={TopPage} />
           <Route exact path="/login" component={LoginPage} />
-          <Route exact path="/:owner/:repo/:pullNumber" component={DetailPage} />
-          <Route exact path="/:owner/:repo/:pullNumber/review" component={ReviewPage} />
+          <PrivateRoute path="/:owner/:repo/:pullNumber" component={DetailPage} />
+          <PrivateRoute path="/:owner/:repo/:pullNumber/review" component={ReviewPage} />
         </AuthContext.Provider>
       </Switch>
     </BrowserRouter>
