@@ -25,7 +25,12 @@ const DiffFile = ({ oldPath, newPath, type, hunks }: Props) => {
         {(hunks: any) =>
           hunks.map((hunk: any) => [
             <Decoration key={'deco-' + hunk.content}>
-              <div className="hunk-header">{hunk.content}</div>
+              <Box bg="blue.300" p={2}>
+                {'　'}
+              </Box>
+              <Box bg="blue.100" p={2}>
+                {hunk.content}
+              </Box>
             </Decoration>,
             <Hunk key={hunk.content} hunk={hunk} />,
           ])
