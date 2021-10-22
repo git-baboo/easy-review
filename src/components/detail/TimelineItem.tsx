@@ -3,6 +3,7 @@ import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
+import CheckboxTheme from '@/components/detail/theme/CheckboxTheme';
 import CodeTheme from '@/components/detail/theme/CodeTheme';
 import DividerTheme from '@/components/detail/theme/DividerTheme';
 import HeadingTheme from '@/components/detail/theme/HeaderTheme';
@@ -31,6 +32,7 @@ const TimelineItem = ({ comment, ...boxProps }: Props) => {
     table: TableTheme,
     th: ThTheme,
     td: TdTheme,
+    input: CheckboxTheme,
   };
 
   return (
