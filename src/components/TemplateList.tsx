@@ -19,43 +19,29 @@ const templates = [
 ];
 
 const TemplateList = () => {
-  const [scrollTop, setScrollTop] = useState(0);
+  const [scroll, setScroll] = useState<number>(0);
 
   window.onscroll = function () {
+    //スクロールの検知の部分
     const tmp =
       document.documentElement.scrollTop || // IE、Firefox、Opera
       document.body.scrollTop; // Chrome、Safari
-    setScrollTop(tmp);
-    console.log(scrollTop);
+    setScroll(tmp);
   };
 
-  return (
-    // {console.log(scrollTop)
-    <VStack spacing={5} left={862} top={190} position="sticky">
+  return scroll < 180 ? (
+    <VStack id="target" spacing={5} position="sticky">
+      {templates.map((template) => (
+        <Template key={template.title} title={template.title} description={template.description} />
+      ))}
+    </VStack>
+  ) : (
+    <VStack id="target" top={0} left={862} spacing={5} position="fixed">
       {templates.map((template) => (
         <Template key={template.title} title={template.title} description={template.description} />
       ))}
     </VStack>
   );
-  //   {(scrollTop > 180) ? (
-  //     <VStack spacing={5} left={862} top={0} position="fixed">
-  //     {templates.map((template) => (
-  //       <Template
-  //         key={template.title}
-  //         title={template.title}
-  //         description={template.description}
-  //       />
-  //     ))}
-  //   </VStack>
-  //   ): (      <VStack spacing={5} left={862} top={0} position="fixed">
-  //   {templates.map((template) => (
-  //     <Template
-  //       key={template.title}
-  //       title={template.title}
-  //       description={template.description}
-  //     />
-  //   ))}
-  // </VStack>)}
 };
 
 export default TemplateList;
