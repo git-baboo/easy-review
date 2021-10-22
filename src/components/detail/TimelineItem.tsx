@@ -3,7 +3,7 @@ import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
-import { codeTheme } from '@/components/detail/codeTheme';
+import codeTheme from '@/components/detail/codeTheme';
 
 type CustomProps = {
   comment: string;
