@@ -1,6 +1,8 @@
-import { Text, Icon, Flex, HStack } from '@chakra-ui/react';
+import { Text, Icon, Flex, HStack, Button } from '@chakra-ui/react';
 import React, { ReactNode } from 'react';
 import { IconType } from 'react-icons';
+
+import { useAuth } from '@/hooks/useAuth';
 
 type Props = {
   text: string;
@@ -9,6 +11,8 @@ type Props = {
 };
 
 const Layout = ({ text, icon, children }: Props) => {
+  const { logout } = useAuth();
+
   return (
     <>
       <Flex alignItems="center" pl={16} h={36} bg="teal.500">
@@ -23,6 +27,7 @@ const Layout = ({ text, icon, children }: Props) => {
           >
             {text}
           </Text>
+          <Button onClick={logout}>logout</Button>
         </HStack>
       </Flex>
       {children}

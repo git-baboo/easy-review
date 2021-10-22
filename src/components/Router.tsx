@@ -1,44 +1,30 @@
-import { onAuthStateChanged } from 'firebase/auth';
-import React from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
 
-import PrivateRoute from '@/components/PrivateRoute';
+import AuthContext from '@/components/AuthContext';
 import TopPage from '@/pages';
 import DetailPage from '@/pages/detail';
 import LoginPage from '@/pages/login';
 import ReviewPage from '@/pages/review';
-import { currentUserState } from '@/store/currentUserState';
-import { CurrentUserType } from '@/types/CurrentUserType';
-import { auth } from '@/utils/firebase';
+import authReducer from '@/utils/authReducer';
+import { listenAuthState } from '@/utils/firebase';
 
 const Router = () => {
-  const setCurrentUser = useSetRecoilState<CurrentUserType>(currentUserState);
+  const [state, dispatch] = useReducer(authReducer.reducer, authReducer.initialState);
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      setCurrentUser((prevState) => ({
-        ...prevState,
-        isSignedIn: true,
-      }));
-    } else {
-      setCurrentUser({
-        isSignedIn: false,
-        username: '',
-        accessToken: '',
-      });
-    }
-  });
+  useEffect(() => {
+    return listenAuthState(dispatch);
+  }, []);
 
   return (
     <BrowserRouter>
       <Switch>
-        <>
-          <PrivateRoute path="/" component={TopPage} />
+        <AuthContext.Provider value={state}>
+          <Route exact path="/" component={TopPage} />
           <Route exact path="/login" component={LoginPage} />
-          <PrivateRoute path="/:owner/:repo/:pullNumber" component={DetailPage} />
-          <PrivateRoute path="/:owner/:repo/:pullNumber/review" component={ReviewPage} />
-        </>
+          <Route exact path="/:owner/:repo/:pullNumber" component={DetailPage} />
+          <Route exact path="/:owner/:repo/:pullNumber/review" component={ReviewPage} />
+        </AuthContext.Provider>
       </Switch>
     </BrowserRouter>
   );
