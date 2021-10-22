@@ -11,10 +11,10 @@ const ReviewPage = () => {
   return (
     <>
       <Layout text={'テンプレートを使ってレビューをしてみよう！'} icon={BsFillChatDotsFill}>
-        <Container maxW="container.lg" color="white">
+        <Container maxW="container.lg" color="white" bg="red">
           <HStack spacing="50px" mt={9} align="top">
-            <VStack align="end">
-              <Box width={700}>
+            <Box align="end">
+              <Box width={700} align="start">
                 <Text color="gray" fontSize="xs">
                   git-baboo/minihackathon-a
                 </Text>
@@ -25,18 +25,20 @@ const ReviewPage = () => {
                   <Avatar name="Segun Adebayo" src="https://bit.ly/sage-adebayo" size="2xs" />
                   kacha-122
                 </Text>
-                <Box bg="green.100" width="707" height="147" color="white" mt={3}>
-                  コード
-                </Box>
-                <Box bg="blue.100" width="707" height="500" color="white" mt={6}>
-                  コード
-                </Box>
               </Box>
+              <VStack spacing={6} mt={3} align="start">
+                <Box bg="green.100" w="100%" h="100px" color="white">
+                  {' '}
+                </Box>
+                <Box bg="blue.100" w="100%" h="300px" color="white">
+                  {' '}
+                </Box>
+              </VStack>
               <Popover />
               <Button colorScheme="teal" mt={9} size="lg">
                 完了
               </Button>
-            </VStack>
+            </Box>
             <Center height="lg">
               <Divider color="black" orientation="vertical" />
             </Center>
