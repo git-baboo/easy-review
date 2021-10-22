@@ -23,12 +23,13 @@ const TemplateList = () => {
   const [leftCoordinate, setLeftCoordinate] = useState<number>(0);
 
   window.onscroll = function () {
-    //スクロールの検知の部分
+    //スクロール量の測定
     const tmp =
       document.documentElement.scrollTop || // IE、Firefox、Opera
       document.body.scrollTop; // Chrome、Safari
     setScroll(tmp);
 
+    // 絶対座標の取得
     const targetElement = document.getElementById('target');
     if (targetElement) {
       const targetElementCoordinate = targetElement.getBoundingClientRect();
