@@ -17,6 +17,7 @@ type CustomProps = {
 type Props = BoxProps & CustomProps;
 
 const TimelineItem = ({ comment, ...boxProps }: Props) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const customTheme: any = {
     h1: HeadingTheme,
     h2: HeadingTheme,
