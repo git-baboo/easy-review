@@ -17,7 +17,7 @@ const DiffFile = ({ oldPath, newPath, type, hunks }: Props) => {
   const headerPath = oldPath === newPath ? oldPath : `${oldPath} → ${newPath}`;
 
   return (
-    <Box w="full" boxShadow="base" align="start">
+    <Box w="full" overflowX="scroll" boxShadow="base" align="start">
       <Heading p={3} size="xs" bgColor="gray.200">
         {headerPath}
       </Heading>
