@@ -7,7 +7,7 @@ import PullRequestList from '@/components/toppage/PullRequestList';
 
 const TopPage = () => (
   <Layout
-    text={`あなた宛のレビューの依頼が届いているよ👀\nレビューするプルリクエストを選んでみよう！`}
+    text={`あなた宛のレビューの依頼が届いているよ👀\nレビューするプルリクエストを選んでみよう！\nわわわわわ`}
     icon={BsCheckCircleFill}
   >
     <Container maxW="container.sm">
