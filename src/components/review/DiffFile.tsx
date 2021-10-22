@@ -1,3 +1,5 @@
+import { Box, Heading } from '@chakra-ui/layout';
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const reactDiffView = require('react-diff-view');
 const Diff = reactDiffView.Diff;
@@ -12,11 +14,13 @@ type Props = {
 };
 
 const DiffFile = ({ oldPath, newPath, type, hunks }: Props) => {
+  const headerPath = oldPath === newPath ? oldPath : `${oldPath} → ${newPath}`;
+
   return (
-    <div className="file-diff">
-      <header className="diff-header">
-        {oldPath === newPath ? oldPath : `${oldPath} -> ${newPath}`}
-      </header>
+    <Box w="full" boxShadow="base" align="start">
+      <Heading p={3} size="xs" bgColor="gray.200">
+        {headerPath}
+      </Heading>
       <Diff viewType="unified" diffType={type} hunks={hunks}>
         {(hunks: any) =>
           hunks.map((hunk: any) => [
@@ -27,7 +31,7 @@ const DiffFile = ({ oldPath, newPath, type, hunks }: Props) => {
           ])
         }
       </Diff>
-    </div>
+    </Box>
   );
 };
 
