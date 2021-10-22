@@ -40,14 +40,12 @@ const DetailPage = () => {
         pull_number: Number(pullNumber), // NOTE: useParams の型定義は string でなければならない
       })
       .then((res) => {
-        console.log(res.data);
-        const data: PullRequest = {
+        setPullRequest({
           title: res.data.title,
           userName: res.data.assignee?.login,
           avatarUrl: res.data.assignee?.avatar_url,
           comment: res.data.body,
-        };
-        setPullRequest(data);
+        });
       });
   }, []);
 
