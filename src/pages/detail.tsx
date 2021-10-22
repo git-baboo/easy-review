@@ -10,16 +10,16 @@ import Reviewee from '@/components/detail/Reviewee';
 import TimelineItem from '@/components/detail/TimelineItem';
 import { PullRequest } from '@/types/PullRequestType';
 
-// TODO: octokit の宣言を抽象化する
-const octokit = new Octokit({
-  auth: process.env.REACT_APP_TOKEN,
-});
-
 type Path = {
   owner: string;
   repo: string;
   pullNumber: string;
 };
+
+// TODO: octokit の宣言を抽象化する
+const octokit = new Octokit({
+  auth: process.env.REACT_APP_TOKEN,
+});
 
 const initialPullRequest: PullRequest = {
   title: '',
