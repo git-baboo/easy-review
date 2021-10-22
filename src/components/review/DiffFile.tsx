@@ -21,7 +21,7 @@ const DiffFile = ({ oldPath, newPath, type, hunks }: Props) => {
       <Heading p={3} size="xs" bgColor="gray.200">
         {headerPath}
       </Heading>
-      <Diff viewType="unified" diffType={type} hunks={hunks}>
+      <Diff viewType="unified" gutterType="anchor" diffType={type} hunks={hunks}>
         {(hunks: any) =>
           hunks.map((hunk: any) => [
             <Decoration key={'deco-' + hunk.content}>
