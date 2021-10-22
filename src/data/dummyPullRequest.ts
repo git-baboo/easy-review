@@ -6,49 +6,145 @@ export const pullRequest: PullRequest = {
   userName: 'kacha-122',
   avatarUrl: 'https://avatars.githubusercontent.com/u/68210096?v=4',
   comment: `
-  ## ✨ Summary
-  <!-- 概要を記載する -->
+  # 見出し1
+  ## 見出し2
+  ### 見出し3
+  #### 見出し4
+  ##### 見出し5
+  ###### 見出し6
 
-  GitHub API から取得したデータをマークダウン形式で表示する部分の UI を実装する
-  GitHub API との通信は必要なく、ダミーデータを用意してやってみる
+  ---
+  ## スタイル付きテキスト
 
-  ## 🔥 Requirements
-  <!-- 要件を記載する -->
-  <!-- 例) 〇〇ができる、xxなときに△△する -->
-  - マークダウン形式でデータが表示されること
+  **太字**
 
-  ## 📷 Screenshot
-  <!-- 必要であればスクリーンショットを追加する -->
+  *斜体*
 
-  ![image](https://user-images.githubusercontent.com/44804976/138014969-6cb8aeca-bdc8-4554-980a-6b4de03629bd.png)
+  ~~打ち消し線~~
 
-  ## 📄 References
-  <!-- 参考資料などを記載する -->
-  \`react-markdown\`使ったら簡単そう？
-  - https://github.com/remarkjs/react-markdown
+  **強調**
 
-  ## ✅ Tasks
-  <!-- 必要な作業を記載する -->
-  - [ ] xxx
+  ***強調 + 斜体***
 
-  ## 複数行コードブロックの確認
-  \`\`\`ts
-  import { ChakraProvider } from '@chakra-ui/react';
-  import React from 'react';
-  import ReactDOM from 'react-dom';
+  ---
+  ## テキストの引用
 
-  import Router from '@/components/Router';
+  > 引用
+  >> 多重引用
 
-  ReactDOM.render(
-    <ChakraProvider>
-      <React.StrictMode>
-        <Router />
-      </React.StrictMode>
-    </ChakraProvider>,
-    document.getElementById('root')
-  );
+  ---
+  ## コード
+
+  ### インライン
+
+  これは \`インラインコード\` です。
+
+  ### コードブロック
 
   \`\`\`
+  git status
+  git add
+  git commit
+  \`\`\`
 
+  ### 言語識別子付き
+
+  \`\`\`ts
+  ReactDOM.render(
+    <h1>Hello, world!</h1>,
+    document.getElementById('root')
+  );
+  \`\`\`
+
+  ### Diff
+
+  \`\`\`diff
+  - old
+  + new
+  \`\`\`
+
+
+  ---
+  ## リスト
+
+  - リスト1
+    - リスト1_1
+        - リスト1_1_1
+        - リスト1_1_2
+    - リスト1_2
+  - リスト2
+  - リスト3
+
+  1. 番号付きリスト1
+     1. 番号付きリスト1-1
+     1. 番号付きリスト1-2
+  1. 番号付きリスト2
+  1. 番号付きリスト3
+
+  ---
+  ## リンク
+
+  [GitHub](https://github.com/)
+
+  ### リンク文字列 直書き
+
+  https://github.com
+
+  ### 相対リンク
+
+  [このプロジェクトへのコントリビューションガイドライン](docs/CONTRIBUTING.md)
+
+  ### コミットハッシュ
+
+  ea18ba7a93bf3c75b554e5e73bf84621cd283956
+
+  ---
+  ## 折りたたみ
+
+  <details>
+  <summary>Summary</summary>
+  details
+  </details>
+
+  ---
+  ## 表
+
+  | Left-aligned | Center-aligned | Right-aligned |
+  | :---         |     :---:      |          ---: |
+  | git status   | git status     | git status    |
+  | git diff     | git diff       | git diff      |
+
+  ---
+  ## 画像
+
+  ![This is an image](https://myoctocat.com/assets/images/base-octocat.svg)
+
+  ---
+  ## チェックボックス
+
+  - [ ] Todo
+  - [x] Done
+
+  ---
+  ## 人や Team のメンション
+
+  @github/support これらのアップデートについてどう思いますか？
+
+  ---
+  ## Issue, PullRequest の参照
+
+  #1
+
+  ---
+  ## 脚注
+
+  Here is a simple footnote[^1].
+
+  [^1]: My reference.
+
+  ---
+  ## コメントアウト
+
+  <!-- コメントアウト -->
   `,
 };
