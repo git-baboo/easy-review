@@ -33,7 +33,7 @@ const ReviewPage = () => {
                 </Box>
               </Box>
               <Popover />
-              <Button colorScheme="teal" mt={9}>
+              <Button colorScheme="teal" mt={9} size="lg">
                 完了
               </Button>
             </VStack>
