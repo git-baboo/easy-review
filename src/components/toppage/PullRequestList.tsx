@@ -18,6 +18,7 @@ const PullRequestList = () => {
   const [pulls, setPulls] = useState<Pull[]>([]);
   const history = useHistory();
 
+  // FIXME: データを配列として保持できない
   useEffect(() => {
     let isMounted = true;
     octokit
@@ -35,10 +36,8 @@ const PullRequestList = () => {
             title: '',
           };
           pullRequest.pullNumber = item.number;
-          console.log(item.number);
           pullRequest.title = item.title;
           octokit.request(`GET ${item.repository_url}`).then((response) => {
-            console.log(response.data.organization.login);
             pullRequest.ownerName = response.data.organization.login;
             pullRequest.repoName = response.data.name;
             if (isMounted) {
