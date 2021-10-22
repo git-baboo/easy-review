@@ -23,7 +23,10 @@ export const useAuth = () => {
         });
 
         octokit.request('GET /user').then((res) => {
-          console.log(res);
+          setCurrentUser((prevState) => ({
+            ...prevState,
+            username: res.data.login,
+          }));
         });
 
         setCurrentUser((prevState) => ({
