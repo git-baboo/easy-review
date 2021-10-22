@@ -11,7 +11,7 @@ import LinkTheme from '@/components/detail/theme/LinkTheme';
 import QuoteTheme from '@/components/detail/theme/QuoteTheme';
 
 type CustomProps = {
-  comment: string;
+  comment: string | null;
 };
 
 type Props = BoxProps & CustomProps;
@@ -32,17 +32,21 @@ const TimelineItem = ({ comment, ...boxProps }: Props) => {
     input: CheckboxTheme,
   };
 
-  return (
-    <Box {...boxProps}>
-      <ReactMarkdown
-        skipHtml={true}
-        components={ChakraUIRenderer(customTheme)}
-        remarkPlugins={[remarkGfm]}
-      >
-        {comment}
-      </ReactMarkdown>
-    </Box>
-  );
+  if (comment) {
+    return (
+      <Box {...boxProps}>
+        <ReactMarkdown
+          skipHtml={true}
+          components={ChakraUIRenderer(customTheme)}
+          remarkPlugins={[remarkGfm]}
+        >
+          {comment}
+        </ReactMarkdown>
+      </Box>
+    );
+  } else {
+    return <></>;
+  }
 };
 
 export default TimelineItem;
