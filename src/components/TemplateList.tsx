@@ -1,5 +1,5 @@
 import { VStack } from '@chakra-ui/react';
-import React from 'react';
+import React, { useState } from 'react';
 
 import Template from '@/components/Template';
 
@@ -19,13 +19,43 @@ const templates = [
 ];
 
 const TemplateList = () => {
+  const [scrollTop, setScrollTop] = useState(0);
+
+  window.onscroll = function () {
+    const tmp =
+      document.documentElement.scrollTop || // IE、Firefox、Opera
+      document.body.scrollTop; // Chrome、Safari
+    setScrollTop(tmp);
+    console.log(scrollTop);
+  };
+
   return (
-    <VStack spacing={5} left={888} top={180} position="fixed">
+    // {console.log(scrollTop)
+    <VStack spacing={5} left={862} top={190} position="sticky">
       {templates.map((template) => (
         <Template key={template.title} title={template.title} description={template.description} />
       ))}
     </VStack>
   );
+  //   {(scrollTop > 180) ? (
+  //     <VStack spacing={5} left={862} top={0} position="fixed">
+  //     {templates.map((template) => (
+  //       <Template
+  //         key={template.title}
+  //         title={template.title}
+  //         description={template.description}
+  //       />
+  //     ))}
+  //   </VStack>
+  //   ): (      <VStack spacing={5} left={862} top={0} position="fixed">
+  //   {templates.map((template) => (
+  //     <Template
+  //       key={template.title}
+  //       title={template.title}
+  //       description={template.description}
+  //     />
+  //   ))}
+  // </VStack>)}
 };
 
 export default TemplateList;
