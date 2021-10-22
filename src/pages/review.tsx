@@ -1,5 +1,7 @@
 import { Box, Text, Container, HStack, Divider, Center } from '@chakra-ui/layout';
+import { Avatar, Button } from '@chakra-ui/react';
 import React from 'react';
+import { BiCommentAdd } from 'react-icons/bi';
 import { BsFillChatDotsFill } from 'react-icons/bs';
 
 import Layout from '@/components/Layout';
@@ -19,11 +21,15 @@ const ReviewPage = () => {
                 ToDoのstate管理方法の変更
               </Text>
               <Text color="black" fontSize="xs">
+                <Avatar name="Segun Adebayo" src="https://bit.ly/sage-adebayo" size="2xs" />
                 kacha-122
               </Text>
               <Text color="black" fontSize="xs">
                 以下コード
               </Text>
+              <Button size="xs" colorScheme="blue">
+                <BiCommentAdd color="white" size="15" />
+              </Button>
             </Box>
             <Center height="lg">
               <Divider color="black" orientation="vertical" />
