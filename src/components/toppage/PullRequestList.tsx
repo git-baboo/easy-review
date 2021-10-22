@@ -1,11 +1,8 @@
 import { Box, Heading, StackDivider, Text, VStack } from '@chakra-ui/react';
-import { Octokit } from '@octokit/rest';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
 
-const octokit = new Octokit({
-  auth: process.env.REACT_APP_TOKEN,
-});
+import { useApi } from '@/hooks/useApi';
 
 type Pull = {
   pullNumber: number;
@@ -17,6 +14,7 @@ type Pull = {
 const PullRequestList = () => {
   const [pulls, setPulls] = useState<Pull[]>([]);
   const history = useHistory();
+  const { octokit } = useApi();
 
   // FIXME: データを配列として保持できない
   useEffect(() => {
