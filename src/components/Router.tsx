@@ -3,9 +3,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 
-// TODO: 作業用・後に削除
 import PrivateRoute from '@/components/PrivateRoute';
-import Popover from '@/components/review/Popover';
 import TopPage from '@/pages';
 import DetailPage from '@/pages/detail';
 import LoginPage from '@/pages/login';
@@ -40,8 +38,6 @@ const Router = () => {
           <Route exact path="/login" component={LoginPage} />
           <PrivateRoute path="/:owner/:repo/:pullNumber" component={DetailPage} />
           <PrivateRoute path="/:owner/:repo/:pullNumber/review" component={ReviewPage} />
-          {/* TODO: 作業用・後に削除 */}
-          <PrivateRoute path="/popover" component={Popover} />
         </>
       </Switch>
     </BrowserRouter>

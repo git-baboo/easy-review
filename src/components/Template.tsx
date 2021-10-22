@@ -8,7 +8,7 @@ type Props = {
 
 const Template = ({ title, description }: Props) => {
   return (
-    <Box width={235}>
+    <Box width={190}>
       <Text color="black" fontSize="lg" fontWeight="semibold">
         {title}
       </Text>
