@@ -16,7 +16,7 @@ const ButtonTextList = ['❓質問', '✨素敵', '🤔改善'];
 
 const ReviewPopover = () => {
   return (
-    // TODO: Boxは作業用に見やすくするための出力場所移動用
+    // TODO: Boxは作業用に見やすくするための出力場所移動用 後に削除
     <Box p={300}>
       <Popover>
         <PopoverTrigger>
