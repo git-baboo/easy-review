@@ -20,6 +20,7 @@ const templates = [
 
 const TemplateList = () => {
   const [scroll, setScroll] = useState<number>(0);
+  const [leftCoordinate, setLeftCoordinate] = useState<number>(0);
 
   window.onscroll = function () {
     //スクロールの検知の部分
@@ -27,8 +28,16 @@ const TemplateList = () => {
       document.documentElement.scrollTop || // IE、Firefox、Opera
       document.body.scrollTop; // Chrome、Safari
     setScroll(tmp);
+
+    const targetElement = document.getElementById('target');
+    if (targetElement) {
+      const targetElementCoordinate = targetElement.getBoundingClientRect();
+      console.log(targetElementCoordinate);
+      setLeftCoordinate(targetElementCoordinate.left);
+    }
   };
 
+  console.log(leftCoordinate);
   return scroll < 180 ? (
     <VStack id="target" spacing={5} position="sticky">
       {templates.map((template) => (
@@ -36,7 +45,7 @@ const TemplateList = () => {
       ))}
     </VStack>
   ) : (
-    <VStack id="target" top={0} left={862} spacing={5} position="fixed">
+    <VStack id="target" top={0} left={leftCoordinate - 50} spacing={5} position="fixed">
       {templates.map((template) => (
         <Template key={template.title} title={template.title} description={template.description} />
       ))}
