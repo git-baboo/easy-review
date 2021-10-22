@@ -12,7 +12,7 @@ const ReviewPage = () => {
     <>
       <Layout text={'テンプレートを使ってレビューをしてみよう！'} icon={BsFillChatDotsFill}>
         <Container maxW="container.lg" color="white">
-          <HStack spacing={20} mt={9} align="top">
+          <HStack spacing="50px" mt={9} align="top">
             <VStack align="end">
               <Box width={700}>
                 <Text color="gray" fontSize="xs">
