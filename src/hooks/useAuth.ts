@@ -1,28 +1,51 @@
-import { GithubAuthProvider, signInWithPopup } from 'firebase/auth';
+import { Octokit } from '@octokit/rest';
+import { GithubAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
+import { useHistory } from 'react-router';
+import { useSetRecoilState } from 'recoil';
 
+import { currentUserState } from '@/store/currentUserState';
+import { CurrentUserType } from '@/types/CurrentUserType';
 import { auth } from '@/utils/firebase';
 
 export const useAuth = () => {
+  const history = useHistory();
+  const setCurrentUser = useSetRecoilState<CurrentUserType>(currentUserState);
   const provider = new GithubAuthProvider();
 
   const login = () => {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        /* NOTE: 後の実装に必要
-        const credential = GithubAuthProvider.credentialFromResult(result);
+    signInWithPopup(auth, provider).then((result) => {
+      const credential = GithubAuthProvider.credentialFromResult(result);
+      if (credential) {
+        const token = credential.accessToken;
 
-        if (credential) {
-          const token = credential.accessToken;
-        }
-       */
+        const octokit = new Octokit({
+          auth: token,
+        });
 
-        const user = result.user;
-        console.log(`displayName: ${user.displayName}`);
-      })
-      .catch((error) => {
-        console.log('error:', error);
-      });
+        octokit.request('GET /user').then((res) => {
+          console.log(res);
+        });
+
+        setCurrentUser((prevState) => ({
+          ...prevState,
+          isSignedIn: true,
+          accessToken: String(token),
+        }));
+
+        history.push('/');
+      }
+    });
   };
 
-  return { login };
+  const logout = () => {
+    signOut(auth);
+    setCurrentUser({
+      isSignedIn: false,
+      username: '',
+      accessToken: '',
+    });
+    history.push('/login');
+  };
+
+  return { login, logout };
 };

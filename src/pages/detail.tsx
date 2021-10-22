@@ -1,5 +1,4 @@
 import { Container, Heading, Text } from '@chakra-ui/layout';
-import { Octokit } from '@octokit/rest';
 import React, { useEffect, useState } from 'react';
 import { AiOutlineThunderbolt } from 'react-icons/ai';
 import { useParams } from 'react-router-dom';
@@ -8,6 +7,7 @@ import Layout from '@/components/Layout';
 import ReviewButton from '@/components/detail/ReviewButton';
 import Reviewee from '@/components/detail/Reviewee';
 import TimelineItem from '@/components/detail/TimelineItem';
+import { useApi } from '@/hooks/useApi';
 import { PullRequest } from '@/types/PullRequestType';
 
 type Path = {
@@ -15,11 +15,6 @@ type Path = {
   repo: string;
   pullNumber: string;
 };
-
-// TODO: octokit の宣言を抽象化する
-const octokit = new Octokit({
-  auth: process.env.REACT_APP_TOKEN,
-});
 
 const initialPullRequest: PullRequest = {
   title: '',
@@ -31,6 +26,7 @@ const initialPullRequest: PullRequest = {
 const DetailPage = () => {
   const [pullRequest, setPullRequest] = useState<PullRequest>(initialPullRequest);
   const { owner, repo, pullNumber } = useParams<Path>();
+  const { octokit } = useApi();
 
   useEffect(() => {
     octokit
