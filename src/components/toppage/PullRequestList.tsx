@@ -57,25 +57,23 @@ const PullRequestList = () => {
   };
 
   return (
-    <>
-      <VStack align="stretch" my={6} spacing={6} divider={<StackDivider />}>
-        {/* TODO: API から取得したデータに置き換える */}
-        {pulls.map((pullRequest, index) => (
-          <Box key={index} mx={8}>
-            <Box
-              display="inline-block"
-              _hover={{ cursor: 'pointer' }}
-              onClick={() => handleClick(pullRequest)}
-            >
-              <Heading size="md">{pullRequest.title}</Heading>
-              <Text fontSize="xs" color="gray.600">
-                {pullRequest.ownerName}/{pullRequest.repoName}
-              </Text>
-            </Box>
+    <VStack align="stretch" my={6} spacing={6} divider={<StackDivider />}>
+      {/* TODO: API から取得したデータに置き換える */}
+      {pulls.map((pullRequest, index) => (
+        <Box key={index} mx={8}>
+          <Box
+            display="inline-block"
+            _hover={{ cursor: 'pointer' }}
+            onClick={() => handleClick(pullRequest)}
+          >
+            <Heading size="md">{pullRequest.title}</Heading>
+            <Text fontSize="xs" color="gray.600">
+              {pullRequest.ownerName}/{pullRequest.repoName}
+            </Text>
           </Box>
-        ))}
-      </VStack>
-    </>
+        </Box>
+      ))}
+    </VStack>
   );
 };
 
