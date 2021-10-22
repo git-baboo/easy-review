@@ -5,16 +5,16 @@ type Props = {
   children: ReactNode;
 };
 
-const tableTheme = ({ children }: Props) => {
+const TableTheme = ({ children }: Props) => {
   return <Table borderWidth={2}>{children}</Table>;
 };
 
-export const thTheme = ({ children }: Props) => {
+export const ThTheme = ({ children }: Props) => {
   return <Th borderWidth={2}>{children}</Th>;
 };
 
-export const tdTheme = ({ children }: Props) => {
+export const TdTheme = ({ children }: Props) => {
   return <Td borderWidth={2}>{children}</Td>;
 };
 
-export default tableTheme;
+export default TableTheme;

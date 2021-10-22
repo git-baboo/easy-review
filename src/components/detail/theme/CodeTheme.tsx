@@ -9,7 +9,7 @@ type Props = {
   children: ReactNode;
 };
 
-const codeTheme = ({ inline, className, children }: Props) => {
+const CodeTheme = ({ inline, className, children }: Props) => {
   // 正規表現で言語名を抽出する (ex. 'language-ts' -> 'ts')
   // 正規表現にマッチした場合、配列が返り、言語名は match[1] に入る
   // マッチしなかった場合、null が返る
@@ -27,4 +27,4 @@ const codeTheme = ({ inline, className, children }: Props) => {
   );
 };
 
-export default codeTheme;
+export default CodeTheme;

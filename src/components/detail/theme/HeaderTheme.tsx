@@ -6,7 +6,7 @@ type Props = {
   children: ReactNode;
 };
 
-const headingTheme = ({ level, children }: Props) => {
+const HeadingTheme = ({ level, children }: Props) => {
   switch (level) {
     case 1:
       return (
@@ -47,4 +47,4 @@ const headingTheme = ({ level, children }: Props) => {
   }
 };
 
-export default headingTheme;
+export default HeadingTheme;

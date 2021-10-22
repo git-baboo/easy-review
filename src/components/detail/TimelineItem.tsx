@@ -3,12 +3,12 @@ import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
-import codeTheme from '@/components/detail/theme/codeTheme';
-import dividerTheme from '@/components/detail/theme/dividerTheme';
-import headingTheme from '@/components/detail/theme/headerTheme';
-import linkTheme from '@/components/detail/theme/linkTheme';
-import quoteTheme from '@/components/detail/theme/quoteTheme';
-import tableTheme, { tdTheme, thTheme } from '@/components/detail/theme/tableTheme';
+import CodeTheme from '@/components/detail/theme/CodeTheme';
+import DividerTheme from '@/components/detail/theme/DividerTheme';
+import HeadingTheme from '@/components/detail/theme/HeaderTheme';
+import LinkTheme from '@/components/detail/theme/LinkTheme';
+import QuoteTheme from '@/components/detail/theme/QuoteTheme';
+import TableTheme, { TdTheme, ThTheme } from '@/components/detail/theme/TableTheme';
 
 type CustomProps = {
   comment: string;
@@ -18,19 +18,19 @@ type Props = BoxProps & CustomProps;
 
 const TimelineItem = ({ comment, ...boxProps }: Props) => {
   const customTheme: any = {
-    h1: headingTheme,
-    h2: headingTheme,
-    h3: headingTheme,
-    h4: headingTheme,
-    h5: headingTheme,
-    h6: headingTheme,
-    code: codeTheme,
-    blockquote: quoteTheme,
-    hr: dividerTheme,
-    a: linkTheme,
-    table: tableTheme,
-    th: thTheme,
-    td: tdTheme,
+    h1: HeadingTheme,
+    h2: HeadingTheme,
+    h3: HeadingTheme,
+    h4: HeadingTheme,
+    h5: HeadingTheme,
+    h6: HeadingTheme,
+    code: CodeTheme,
+    blockquote: QuoteTheme,
+    hr: DividerTheme,
+    a: LinkTheme,
+    table: TableTheme,
+    th: ThTheme,
+    td: TdTheme,
   };
 
   return (

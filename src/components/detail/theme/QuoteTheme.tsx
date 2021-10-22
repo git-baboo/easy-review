@@ -5,7 +5,7 @@ type Props = {
   children: ReactNode;
 };
 
-const quoteTheme = ({ children }: Props) => {
+const QuoteTheme = ({ children }: Props) => {
   return (
     <Box pl={3} borderLeft="4px" borderColor="gray.300">
       {children}
@@ -13,4 +13,4 @@ const quoteTheme = ({ children }: Props) => {
   );
 };
 
-export default quoteTheme;
+export default QuoteTheme;

@@ -6,7 +6,7 @@ type Props = {
   children: ReactNode;
 };
 
-const linkTheme = ({ href, children }: Props) => {
+const LinkTheme = ({ href, children }: Props) => {
   return (
     <Link color="blue.500" href={href}>
       {children}
@@ -14,4 +14,4 @@ const linkTheme = ({ href, children }: Props) => {
   );
 };
 
-export default linkTheme;
+export default LinkTheme;
