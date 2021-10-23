@@ -5,7 +5,6 @@ import { BiCommentAdd } from 'react-icons/bi';
 import { BsFillChatDotsFill } from 'react-icons/bs';
 
 import Layout from '@/components/Layout';
-import PostData from '@/components/PostDatas';
 import TemplateList from '@/components/TemplateList';
 import DiffFiles from '@/components/review/DiffFiles';
 import Popover from '@/components/review/Popover';
@@ -32,7 +31,7 @@ const ReviewPage = () => {
                   <BiCommentAdd color="white" size={15} />
                 </Button>
               </Popover>
-              <Button colorScheme="teal" mt={9} size="lg" onClick={PostData}>
+              <Button colorScheme="teal" mt={9} size="lg">
                 完了
               </Button>
             </Box>
