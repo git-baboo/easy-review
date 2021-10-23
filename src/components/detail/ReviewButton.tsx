@@ -1,5 +1,6 @@
 import { Button } from '@chakra-ui/button';
-import { useParams, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router';
+import { useParams } from 'react-router-dom';
 
 type Path = {
   owner: string;
