@@ -19,7 +19,7 @@ const LoginPage = () => {
   return (
     <Flex bgColor="teal.500" h="100vh">
       <Container maxW="container.md" color="white">
-        <Heading size="xl" mt={64}>
+        <Heading size="xl" mt={[48, 64]}>
           Easy Review
         </Heading>
         <Heading size="md" mt={2}>
