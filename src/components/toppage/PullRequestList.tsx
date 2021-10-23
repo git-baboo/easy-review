@@ -23,7 +23,6 @@ const PullRequestList = () => {
     if (username) {
       octokit
         .request('GET /search/issues', {
-          // TODO: ユーザ名をログイン中のユーザのものに変更する
           q: `is:pr+user-review-requested:${username}+state:open`,
         })
         .then((response) => {
