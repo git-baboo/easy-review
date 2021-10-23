@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Box, Heading, Text } from '@chakra-ui/layout';
+import { PlusSquareIcon } from '@chakra-ui/icons';
+import { Box, Heading } from '@chakra-ui/layout';
 
 import '@/style/difffile.css';
 
@@ -19,7 +20,14 @@ const DiffFile = ({ oldPath, newPath, type, hunks }: Props) => {
   const headerPath = oldPath === newPath ? oldPath : `${oldPath} → ${newPath}`;
 
   const renderGutter = ({ side, renderDefault, inHoverState }: any) =>
-    inHoverState ? side === 'new' ? <Text>{'+'}</Text> : <></> : renderDefault();
+    inHoverState && side === 'new' ? (
+      <>
+        {renderDefault()}
+        <PlusSquareIcon position="absolute" color="white" bgColor="blue.500" />
+      </>
+    ) : (
+      renderDefault()
+    );
 
   return (
     <Box w="full" overflowX="scroll" boxShadow="base" align="start">
