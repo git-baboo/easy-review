@@ -39,7 +39,7 @@ const TemplateList = () => {
   };
 
   return scroll < constant ? (
-    <VStack id="target" h={420} p={5} spacing={5} position="sticky" shadow="md" borderWidth="3px">
+    <VStack id="target" h={420} p={5} spacing={5} position="sticky" shadow="base">
       {templates.map((template) => (
         <Template key={template.title} title={template.title} description={template.description} />
       ))}
@@ -53,8 +53,7 @@ const TemplateList = () => {
       left={leftCoordinate - 50}
       spacing={5}
       position="fixed"
-      shadow="md"
-      borderWidth="3px"
+      shadow="base"
     >
       {templates.map((template) => (
         <Template key={template.title} title={template.title} description={template.description} />
