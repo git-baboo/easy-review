@@ -26,6 +26,10 @@ const DiffFile = ({ oldPath, newPath, type, hunks, reviewer, setComments }: Prop
   const headerPath = oldPath === newPath ? oldPath : `${oldPath} → ${newPath}`;
   const [widgets, { addWidget }]: any = useWidgets(reviewer);
 
+  const getComments = (): Comment[] => {
+    return [{ path: '', line: '', body: '' }];
+  };
+
   const renderGutter = ({ side, renderDefault, wrapInAnchor, inHoverState }: any) =>
     inHoverState && side === 'new' ? (
       <>
@@ -42,8 +46,7 @@ const DiffFile = ({ oldPath, newPath, type, hunks, reviewer, setComments }: Prop
         const key = getChangeKey(change);
         addWidget(key);
 
-        const dummy: Comment[] = [{ path: '', line: '', body: '' }];
-        setComments(dummy);
+        setComments(getComments());
       },
     };
   }, [addWidget]);
