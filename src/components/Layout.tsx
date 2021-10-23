@@ -2,7 +2,7 @@ import { Text, Icon, Flex, HStack, Box } from '@chakra-ui/react';
 import React, { ReactNode } from 'react';
 import { IconType } from 'react-icons';
 
-import LogoutButton from '@/components/LogoutButton';
+import LogoutButton from '@/components/Menu';
 
 type Props = {
   text: string;
