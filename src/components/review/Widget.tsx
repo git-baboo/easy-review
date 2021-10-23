@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Avatar } from '@chakra-ui/avatar';
 import { Button } from '@chakra-ui/button';
-import { Box, List, ListItem, Text } from '@chakra-ui/layout';
+import { Box, List, ListItem, Spacer, Text } from '@chakra-ui/layout';
 import { Flex } from '@chakra-ui/react';
 import { Textarea } from '@chakra-ui/textarea';
 import React, { useCallback, useEffect } from 'react';
@@ -39,9 +39,12 @@ const Widget = ({ changeKey, comments, draft, onDraftChange, onSubmit }: any) =>
     <Box m={4}>
       <List>{comments.map(renderComment)}</List>
       <Textarea value={draft} onChange={input} />
-      <Button m={2} colorScheme="teal" onClick={submit}>
-        コメントを追加
-      </Button>
+      <Flex>
+        <Spacer />
+        <Button m={2} colorScheme="teal" onClick={submit}>
+          コメントを追加
+        </Button>
+      </Flex>
     </Box>
   );
 };
