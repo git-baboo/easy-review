@@ -2,16 +2,18 @@ import { AddIcon, EmailIcon, HamburgerIcon } from '@chakra-ui/icons';
 import { Menu, MenuList, MenuItem, MenuButton, IconButton } from '@chakra-ui/react';
 import React from 'react';
 
-// import { useAuth } from '@/hooks/useAuth';
+import { useAuth } from '@/hooks/useAuth';
 
 const LogoutButton = () => {
-  // const { logout } = useAuth();
+  const { logout } = useAuth();
 
   return (
     <Menu>
-      <MenuButton as={IconButton} aria-label="Options" icon={<HamburgerIcon />} variant="outline" />
+      <MenuButton as={IconButton} icon={<HamburgerIcon />} color="teal.500" />
       <MenuList>
-        <MenuItem icon={<AddIcon />}>ログアウト</MenuItem>
+        <MenuItem icon={<AddIcon />} onClick={logout}>
+          ログアウト
+        </MenuItem>
         <MenuItem icon={<EmailIcon />}>お問い合わせ</MenuItem>
       </MenuList>
     </Menu>
