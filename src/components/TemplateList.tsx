@@ -20,7 +20,8 @@ const templates = [
 
 const TemplateList = () => {
   const [scroll, setScroll] = useState<number>(0);
-  const [leftCoordinate, setLeftCoordinate] = useState<number>(0);
+  const [leftCoordinate, setLeftCoordinate] = useState<number>(1000);
+  const constant = 170;
 
   window.onscroll = function () {
     //スクロール量の測定
@@ -33,21 +34,27 @@ const TemplateList = () => {
     const targetElement = document.getElementById('target');
     if (targetElement) {
       const targetElementCoordinate = targetElement.getBoundingClientRect();
-      console.log(targetElementCoordinate);
       setLeftCoordinate(targetElementCoordinate.left);
     }
   };
 
-  console.log(leftCoordinate);
-  return scroll < 180 ? (
-    <VStack id="target" spacing={5} position="sticky">
+  return scroll < constant ? (
+    <VStack id="target" h={420} p={5} spacing={5} position="sticky" shadow="base">
       {templates.map((template) => (
         <Template key={template.title} title={template.title} description={template.description} />
       ))}
     </VStack>
   ) : (
     // XXX: leftCoordinate で取得した座標と画面上の座標との差を埋めるために-50 している。何が起因しているかはよくわかってない
-    <VStack id="target" top={0} left={leftCoordinate - 50} spacing={5} position="fixed">
+    <VStack
+      id="target"
+      top={180 - constant + 5}
+      p={5}
+      left={leftCoordinate - 50}
+      spacing={5}
+      position="fixed"
+      shadow="base"
+    >
       {templates.map((template) => (
         <Template key={template.title} title={template.title} description={template.description} />
       ))}
