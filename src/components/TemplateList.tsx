@@ -1,5 +1,5 @@
 import { VStack } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Template from '@/components/Template';
 
@@ -22,6 +22,10 @@ const TemplateList = () => {
   const [scroll, setScroll] = useState<number>(0);
   const [leftCoordinate, setLeftCoordinate] = useState<number>(1000);
   const constant = 170;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   window.onscroll = function () {
     //スクロール量の測定
