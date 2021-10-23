@@ -2,7 +2,7 @@ import { Text, Icon, Flex, HStack, Box } from '@chakra-ui/react';
 import React, { ReactNode } from 'react';
 import { IconType } from 'react-icons';
 
-import LogoutButton from '@/components/LogoutButton';
+import Menu from '@/components/Menu';
 
 type Props = {
   text: string;
@@ -28,7 +28,7 @@ const Layout = ({ text, icon, children }: Props) => {
             </Text>
           </HStack>
           <Box h="100%" w="10%" align="right">
-            <LogoutButton />
+            <Menu />
           </Box>
         </HStack>
       </Flex>
