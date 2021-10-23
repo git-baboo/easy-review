@@ -16,7 +16,6 @@ const PullRequestList = () => {
   const history = useHistory();
   const { octokit } = useApi();
 
-  // FIXME: データを配列として保持できない
   useEffect(() => {
     let isMounted = true;
     octokit
@@ -26,22 +25,20 @@ const PullRequestList = () => {
       })
       .then((response) => {
         const items = response.data.items;
+        const newPulls: Pull[] = [];
         items.map((item) => {
-          const pullRequest: Pull = {
-            pullNumber: 0,
-            ownerName: '',
-            repoName: '',
-            title: '',
-          };
-          pullRequest.pullNumber = item.number;
-          pullRequest.title = item.title;
           octokit.request(`GET ${item.repository_url}`).then((response) => {
-            pullRequest.ownerName = response.data.organization.login;
-            pullRequest.repoName = response.data.name;
-            if (isMounted) {
-              setPulls([...pulls, pullRequest]);
-            }
+            const pullRequest: Pull = {
+              pullNumber: item.number,
+              ownerName: response.data.organization.login,
+              repoName: response.data.name,
+              title: item.title,
+            };
+            newPulls.push(pullRequest);
           });
+          if (isMounted) {
+            setPulls(newPulls);
+          }
         });
       });
 
