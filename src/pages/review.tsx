@@ -7,7 +7,6 @@ import { useParams } from 'react-router';
 import Layout from '@/components/Layout';
 import TemplateList from '@/components/TemplateList';
 import DiffFiles from '@/components/review/DiffFiles';
-import Popover from '@/components/review/Popover';
 import ReviewTitle from '@/components/review/ReviewTitle';
 import useWidgets from '@/components/review/useWidgets';
 import { dummyDiff as diff } from '@/data/dummyDiff'; // TODO: ダミーデータ入れ換え
@@ -59,8 +58,8 @@ const ReviewPage = () => {
   return (
     <>
       <Layout text={'テンプレートを使ってレビューをしてみよう！'} icon={BsFillChatDotsFill}>
-        <Container maxW="container.lg">
-          <HStack spacing="50px" mt={9} align="top">
+        <Container py={9} maxW="container.lg">
+          <HStack spacing="50px" align="top">
             <Box align="end">
               <Box width={700} align="start">
                 <ReviewTitle color="gray" fontSize="xs" title={`${owner}/${repo}`} />
@@ -79,7 +78,6 @@ const ReviewPage = () => {
                 widgets={widgets}
                 addWidget={addWidget}
               />
-              <Popover />
               <Button colorScheme="teal" mt={9} size="lg" onClick={handleSubmit}>
                 完了
               </Button>
