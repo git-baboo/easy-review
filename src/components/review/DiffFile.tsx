@@ -27,7 +27,7 @@ const DiffFile = ({ oldPath, newPath, type, hunks, reviewer, setComments }: Prop
   const [widgets, { addWidget }]: any = useWidgets(reviewer);
 
   const getComments = (): Comment[] => {
-    return [{ path: '', line: '', body: '' }];
+    return [{ path: '', line: '', side: '', body: '' }];
   };
 
   const renderGutter = ({ side, renderDefault, wrapInAnchor, inHoverState }: any) =>
