@@ -1,9 +1,6 @@
 import { Box, Heading, StackDivider, Text, VStack } from '@chakra-ui/react';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router';
-
-import { useApi } from '@/hooks/useApi';
-import { useCurrentUser } from '@/hooks/useCurrentUser';
 
 type Pull = {
   pullNumber: number;
@@ -12,43 +9,12 @@ type Pull = {
   title: string;
 };
 
-const PullRequestList = () => {
-  const [pulls, setPulls] = useState<Pull[]>([]);
+type Props = {
+  pulls: Pull[];
+};
+
+const PullRequestList = ({ pulls }: Props) => {
   const history = useHistory();
-  const { octokit } = useApi();
-  const { username } = useCurrentUser();
-
-  useEffect(() => {
-    let isMounted = true;
-    if (username) {
-      octokit
-        .request('GET /search/issues', {
-          q: `is:pr+user-review-requested:${username}+state:open`,
-        })
-        .then((response) => {
-          const items = response.data.items;
-          const newPulls: Pull[] = [];
-          items.map((item) => {
-            octokit.request(`GET ${item.repository_url}`).then((response) => {
-              const pullRequest: Pull = {
-                pullNumber: item.number,
-                ownerName: response.data.organization.login,
-                repoName: response.data.name,
-                title: item.title,
-              };
-              newPulls.push(pullRequest);
-            });
-            if (isMounted) {
-              setPulls(newPulls);
-            }
-          });
-        });
-    }
-
-    return () => {
-      isMounted = false;
-    };
-  }, [username]);
 
   const handleClick = (pullRequest: Pull) => {
     history.push(`/${pullRequest.ownerName}/${pullRequest.repoName}/${pullRequest.pullNumber}`);
