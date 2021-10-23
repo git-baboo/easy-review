@@ -4,7 +4,7 @@ import { useCallback, useReducer } from 'react';
 
 import Widget from '@/components/review/Widget';
 
-const useWidgets = () => {
+const useWidgets = (reviewer: any) => {
   const [widgetsData, dispatch] = useReducer((state: any, action: any) => {
     const previous = state[action?.payload?.key] ?? {};
     switch (action.type) {
@@ -22,7 +22,7 @@ const useWidgets = () => {
           ...state,
           [action.payload.key]: {
             ...previous,
-            draft: action.payload.content,
+            draft: action.payload.body,
           },
         };
       case 'submit':
@@ -35,10 +35,9 @@ const useWidgets = () => {
               ...previous.comments,
               {
                 id: uniqueId('comment-'),
-                author: 'dummy author',
-                avatarUrl: 'avatar.png',
-                content: previous.draft,
-                time: Date.now(),
+                author: reviewer.userName,
+                avatarUrl: reviewer.avatarUrl,
+                body: previous.draft,
               },
             ],
           },
@@ -51,12 +50,12 @@ const useWidgets = () => {
   const addWidget = useCallback((key) => dispatch({ type: 'add', payload: { key } }), []);
 
   const writeComment = useCallback(
-    (key, content) => dispatch({ type: 'input', payload: { key, content } }),
+    (key, body) => dispatch({ type: 'input', payload: { key, body } }),
     []
   );
 
   const submitComment = useCallback(
-    (key, content) => dispatch({ type: 'submit', payload: { key, content } }),
+    (key, body) => dispatch({ type: 'submit', payload: { key, body } }),
     []
   );
 
