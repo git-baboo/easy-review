@@ -1,6 +1,8 @@
-import { Text, Icon, Flex, HStack, Button } from '@chakra-ui/react';
+import { Text, Icon, Flex, HStack } from '@chakra-ui/react';
 import React, { ReactNode } from 'react';
 import { IconType } from 'react-icons';
+
+import LogoutButton from '@/components/LogoutButton';
 
 type Props = {
   text: string;
@@ -23,9 +25,7 @@ const Layout = ({ text, icon, children }: Props) => {
           >
             {text}
           </Text>
-          <Button bgColor="whiteAlpha" color="teal.500">
-            ログアウト
-          </Button>
+          <LogoutButton />
         </HStack>
       </Flex>
       {children}
