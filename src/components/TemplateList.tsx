@@ -33,7 +33,6 @@ const TemplateList = () => {
     const targetElement = document.getElementById('target');
     if (targetElement) {
       const targetElementCoordinate = targetElement.getBoundingClientRect();
-      console.log(targetElementCoordinate);
       setLeftCoordinate(targetElementCoordinate.left);
     }
   };
