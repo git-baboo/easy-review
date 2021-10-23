@@ -1,22 +1,23 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Avatar } from '@chakra-ui/avatar';
 import { Button } from '@chakra-ui/button';
 import { Box, List, ListItem, Spacer, Text } from '@chakra-ui/layout';
 import { Flex } from '@chakra-ui/react';
 import { Textarea } from '@chakra-ui/textarea';
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 
 type Props = {
   id: string;
   author: string;
+  avatarUrl: string;
   content: string;
   time: string;
-  avatarUrl: string;
 };
 
 const Widget = ({ changeKey, comments, draft, onDraftChange, onSubmit }: any) => {
-  const renderComment = ({ id, author, content, time, avatarUrl }: Props) => (
+  // TODO: 不要になったら削除
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const renderComment = ({ id, author, avatarUrl, content, time }: Props) => (
     <ListItem key={id} m={2} p={4} border="1px" borderRadius="md" borderColor="gray.300">
       <Flex alignItems="center">
         <Avatar size="sm" name={author} src={avatarUrl} />
