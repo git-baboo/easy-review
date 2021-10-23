@@ -26,8 +26,8 @@ const DiffFile = ({ oldPath, newPath, type, hunks }: Props) => {
   const renderGutter = ({ side, renderDefault, wrapInAnchor, inHoverState }: any) =>
     inHoverState && side === 'new' ? (
       <>
-        <PlusSquareIcon position="absolute" color="white" bgColor="blue.500" />
         {wrapInAnchor(renderDefault())}
+        <PlusSquareIcon color="white" bgColor="blue.500" />
       </>
     ) : (
       renderDefault()
