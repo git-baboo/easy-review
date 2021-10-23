@@ -20,7 +20,8 @@ const templates = [
 
 const TemplateList = () => {
   const [scroll, setScroll] = useState<number>(0);
-  const [leftCoordinate, setLeftCoordinate] = useState<number>(817);
+  const [leftCoordinate, setLeftCoordinate] = useState<number>(1000);
+  const constant = 170;
 
   window.onscroll = function () {
     //スクロール量の測定
@@ -37,7 +38,7 @@ const TemplateList = () => {
     }
   };
 
-  return scroll < 171 ? (
+  return scroll < constant ? (
     <VStack id="target" h={420} p={5} spacing={5} position="sticky" shadow="md" borderWidth="3px">
       {templates.map((template) => (
         <Template key={template.title} title={template.title} description={template.description} />
@@ -47,7 +48,7 @@ const TemplateList = () => {
     // XXX: leftCoordinate で取得した座標と画面上の座標との差を埋めるために-50 している。何が起因しているかはよくわかってない
     <VStack
       id="target"
-      top="9px"
+      top={180 - constant + 5}
       p={5}
       left={leftCoordinate - 50}
       spacing={5}
