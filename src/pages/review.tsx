@@ -1,6 +1,6 @@
 import { Box, Text, Container, HStack, Divider, Center } from '@chakra-ui/layout';
 import { Avatar, Button } from '@chakra-ui/react';
-import React from 'react';
+import React, { useState } from 'react';
 import { BsFillChatDotsFill } from 'react-icons/bs';
 import { useParams } from 'react-router';
 
@@ -10,8 +10,10 @@ import DiffFiles from '@/components/review/DiffFiles';
 import Popover from '@/components/review/Popover';
 import ReviewTitle from '@/components/review/ReviewTitle';
 import { dummyDiff as diff } from '@/data/dummyDiff'; // TODO: ダミーデータ入れ換え
+import { dummyPost as post } from '@/data/dummyPost'; // TODO: ダミーデータ入れ替え
 import { pullRequest } from '@/data/dummyPullRequest'; // TODO: ダミーデータ入れ替え
 import { reviewer } from '@/data/dummyReviewer';
+import { Comment } from '@/types/CommentType';
 
 type Path = {
   owner: string;
@@ -20,9 +22,14 @@ type Path = {
 };
 
 const ReviewPage = () => {
+  const [comments, setComments] = useState<Comment[]>([]);
   // TODO: pullNumber を使用したら ESLint 警告無視用のコメントを削除
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { owner, repo, pullNumber } = useParams<Path>();
+
+  const handleSubmit = () => {
+    post(comments);
+  };
 
   return (
     <>
@@ -38,9 +45,17 @@ const ReviewPage = () => {
                   {pullRequest.userName}
                 </Text>
               </Box>
-              <DiffFiles spacing={6} mt={3} w={700} align="start" diff={diff} reviewer={reviewer} />
+              <DiffFiles
+                spacing={6}
+                mt={3}
+                w={700}
+                align="start"
+                diff={diff}
+                reviewer={reviewer}
+                setComments={setComments}
+              />
               <Popover />
-              <Button colorScheme="teal" mt={9} size="lg">
+              <Button colorScheme="teal" mt={9} size="lg" onClick={handleSubmit}>
                 完了
               </Button>
             </Box>
