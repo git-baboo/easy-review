@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { PlusSquareIcon } from '@chakra-ui/icons';
 import { Box, Heading } from '@chakra-ui/layout';
-import { mapValues, uniqueId } from 'lodash';
-import { useCallback, useMemo, useReducer } from 'react';
+import { useMemo } from 'react';
 
 import '@/style/difffile.css';
-import Widget from '@/components/review/Widget';
+import useWidgets from '@/components/review/useWidgets';
 
 const reactDiffView = require('react-diff-view');
 const Diff = reactDiffView.Diff;
@@ -18,64 +17,6 @@ type Props = {
   newPath: string;
   type: string;
   hunks: any;
-};
-
-const useWidgets = () => {
-  const [widgetsData, dispatch] = useReducer((state: any, action: any) => {
-    const previous = state[action?.payload?.key] ?? {};
-    switch (action.type) {
-      case 'add':
-        return {
-          ...state,
-          [action.payload.key]: {
-            id: uniqueId('widget-'),
-            draft: '',
-            comments: [],
-          },
-        };
-      case 'input':
-        return {
-          ...state,
-          [action.payload.key]: {
-            ...previous,
-            draft: action.payload.content,
-          },
-        };
-      case 'submit':
-        return {
-          ...state,
-          [action.payload.key]: {
-            ...previous,
-            draft: '',
-            comments: [
-              ...previous.comments,
-              {
-                id: uniqueId('comment-'),
-                author: 'dummy author',
-                content: previous.draft,
-                time: Date.now(),
-              },
-            ],
-          },
-        };
-      default:
-        return state;
-    }
-  }, {});
-  const addWidget = useCallback((key) => dispatch({ type: 'add', payload: { key } }), []);
-  const writeComment = useCallback(
-    (key, content) => dispatch({ type: 'input', payload: { key, content } }),
-    []
-  );
-  const submitComment = useCallback(
-    (key, content) => dispatch({ type: 'submit', payload: { key, content } }),
-    []
-  );
-  const renderWidget = (data: any, key: any) => (
-    <Widget changeKey={key} {...data} onDraftChange={writeComment} onSubmit={submitComment} />
-  );
-
-  return [mapValues(widgetsData, renderWidget), { addWidget, submitComment }];
 };
 
 const DiffFile = ({ oldPath, newPath, type, hunks }: Props) => {
