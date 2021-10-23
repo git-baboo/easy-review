@@ -5,15 +5,17 @@ import { BsCheckCircleFill } from 'react-icons/bs';
 import Layout from '@/components/Layout';
 import PullRequestList from '@/components/toppage/PullRequestList';
 
-const TopPage = () => (
-  <Layout
-    text={`あなた宛のレビューの依頼が届いているよ👀\nレビューするプルリクエストを選んでみよう！`}
-    icon={BsCheckCircleFill}
-  >
-    <Container maxW="container.sm">
-      <PullRequestList />
-    </Container>
-  </Layout>
-);
+const TopPage = () => {
+  return (
+    <Layout
+      text={`あなた宛のレビューの依頼が届いているよ👀\nレビューするプルリクエストを選んでみよう！`}
+      icon={BsCheckCircleFill}
+    >
+      <Container maxW="container.sm">
+        <PullRequestList />
+      </Container>
+    </Layout>
+  );
+};
 
 export default TopPage;
