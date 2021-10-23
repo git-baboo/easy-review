@@ -21,12 +21,7 @@ type Props = {
 const ReviewPopover = ({ children }: Props) => {
   return (
     <Popover>
-      <PopoverTrigger>
-        {/* <Button size="xs" colorScheme="blue">
-          <BiCommentAdd color="white" size={15} />
-        </Button> */}
-        {children}
-      </PopoverTrigger>
+      <PopoverTrigger>{children}</PopoverTrigger>
       <Portal>
         <PopoverContent>
           <PopoverArrow />
