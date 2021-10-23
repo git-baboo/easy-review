@@ -11,8 +11,7 @@ const LogoutButton = () => {
     <Menu>
       <MenuButton
         as={IconButton}
-        icon={<HamburgerIcon />}
-        Size="lg"
+        icon={<HamburgerIcon w={6} h={6} />}
         color="white"
         variant="ghost"
         colorScheme="ghost"
