@@ -1,5 +1,5 @@
-import { ArrowBackIcon, EmailIcon } from '@chakra-ui/icons';
-import { Menu, MenuList, MenuItem, MenuButton, IconButton, Avatar } from '@chakra-ui/react';
+import { ArrowBackIcon, EmailIcon, HamburgerIcon } from '@chakra-ui/icons';
+import { Menu, MenuList, MenuItem, MenuButton, IconButton } from '@chakra-ui/react';
 import React from 'react';
 
 import { useAuth } from '@/hooks/useAuth';
@@ -11,7 +11,7 @@ const LogoutButton = () => {
     <Menu>
       <MenuButton
         as={IconButton}
-        icon={<Avatar src="https://bit.ly/sage-adebayo" />}
+        icon={<HamburgerIcon />}
         variant="ghost"
         _hover={{ bg: 'teal.500' }}
       />
