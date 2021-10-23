@@ -1,5 +1,6 @@
 import { Text } from '@chakra-ui/layout';
 import {
+  Image,
   Container,
   Flex,
   Heading,
@@ -12,6 +13,7 @@ import {
 import React from 'react';
 
 import LoginButton from '@/components/login/LoginButton';
+import LogoImage from '@/images/app_icon.png';
 
 const LoginPage = () => {
   const mediaType = useBreakpointValue({ base: 'phone', md: 'pc' });
@@ -19,6 +21,7 @@ const LoginPage = () => {
   return (
     <Flex bgColor="teal.500" h="100vh">
       <Container maxW="container.md" color="white">
+        <Image src={LogoImage} />
         <Heading size="xl" mt={[48, 64]}>
           Easy Review
         </Heading>
