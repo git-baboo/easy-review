@@ -49,7 +49,7 @@ const TopPage = () => {
       text={`あなた宛のレビューの依頼が届いているよ👀\nレビューするプルリクエストを選んでみよう！`}
       icon={BsCheckCircleFill}
     >
-      {console.log('渡邉理佐はかわいい')}
+      {console.log('森田ひかるちゃんもいいよ')}
       <Container maxW="container.sm">
         <PullRequestList pulls={pulls} />
       </Container>
