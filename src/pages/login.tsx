@@ -1,7 +1,7 @@
 import { Container, Flex, Heading } from '@chakra-ui/react';
 import React from 'react';
 
-import LoginButton from '@/components/LoginButton';
+import LoginButton from '@/components/login/LoginButton';
 
 const LoginPage = () => {
   return (
