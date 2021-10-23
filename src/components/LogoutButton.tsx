@@ -15,6 +15,7 @@ const LogoutButton = () => {
         color="white"
         variant="ghost"
         colorScheme="ghost"
+        _focus={{ boxShadow: 'none' }}
       />
 
       <MenuList>
