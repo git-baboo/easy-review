@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Avatar } from '@chakra-ui/avatar';
 import { Button } from '@chakra-ui/button';

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { mapValues, uniqueId } from 'lodash';
 import { useCallback, useReducer } from 'react';
 
