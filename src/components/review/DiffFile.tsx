@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, Heading } from '@chakra-ui/layout';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
