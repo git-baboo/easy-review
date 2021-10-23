@@ -10,14 +10,11 @@ type Props = {
   id: string;
   author: string;
   avatarUrl: string;
-  content: string;
-  time: string;
+  body: string;
 };
 
 const Widget = ({ changeKey, comments, draft, onDraftChange, onSubmit }: any) => {
-  // TODO: 不要になったら削除
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const renderComment = ({ id, author, avatarUrl, content, time }: Props) => (
+  const renderComment = ({ id, author, avatarUrl, body }: Props) => (
     <ListItem key={id} m={2} p={4} border="1px" borderRadius="md" borderColor="gray.300">
       <Flex alignItems="center">
         <Avatar size="sm" name={author} src={avatarUrl} />
@@ -25,7 +22,7 @@ const Widget = ({ changeKey, comments, draft, onDraftChange, onSubmit }: any) =>
           {author}
         </Text>
       </Flex>
-      <Text ml={10}>{content}</Text>
+      <Text ml={10}>{body}</Text>
     </ListItem>
   );
 

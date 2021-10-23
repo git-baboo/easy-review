@@ -22,7 +22,7 @@ const useWidgets = (reviewer: any) => {
           ...state,
           [action.payload.key]: {
             ...previous,
-            draft: action.payload.content,
+            draft: action.payload.body,
           },
         };
       case 'submit':
@@ -37,8 +37,7 @@ const useWidgets = (reviewer: any) => {
                 id: uniqueId('comment-'),
                 author: reviewer.userName,
                 avatarUrl: reviewer.avatarUrl,
-                content: previous.draft,
-                time: Date.now(),
+                body: previous.draft,
               },
             ],
           },
@@ -51,12 +50,12 @@ const useWidgets = (reviewer: any) => {
   const addWidget = useCallback((key) => dispatch({ type: 'add', payload: { key } }), []);
 
   const writeComment = useCallback(
-    (key, content) => dispatch({ type: 'input', payload: { key, content } }),
+    (key, body) => dispatch({ type: 'input', payload: { key, body } }),
     []
   );
 
   const submitComment = useCallback(
-    (key, content) => dispatch({ type: 'submit', payload: { key, content } }),
+    (key, body) => dispatch({ type: 'submit', payload: { key, body } }),
     []
   );
 

@@ -50,8 +50,8 @@ const ReviewPage = () => {
       const [side, line] = getSideAndLine(changeKey);
       console.log(side);
       console.log(line);
-      widgets[key].props.comments.map(({ content }: any) => {
-        console.log(content);
+      widgets[key].props.comments.map(({ body }: any) => {
+        console.log(body);
       });
     });
     // post(comments);
