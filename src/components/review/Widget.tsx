@@ -36,10 +36,12 @@ const Widget = ({ changeKey, comments, draft, onDraftChange, onSubmit }: any) =>
   const submit = useCallback(() => onSubmit(changeKey), [onSubmit, changeKey]);
 
   return (
-    <Box>
+    <Box m={4}>
       <List>{comments.map(renderComment)}</List>
       <Textarea value={draft} onChange={input} />
-      <Button onClick={submit}>{'Submit Comment'}</Button>
+      <Button m={2} colorScheme="teal" onClick={submit}>
+        コメントを追加
+      </Button>
     </Box>
   );
 };
