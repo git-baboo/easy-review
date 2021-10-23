@@ -38,7 +38,6 @@ const TemplateList = () => {
     }
   };
 
-  console.log(scroll);
   return scroll < 171 ? (
     <VStack id="target" h={420} p={5} spacing={5} position="sticky" shadow="md" borderWidth="3px">
       {templates.map((template) => (
