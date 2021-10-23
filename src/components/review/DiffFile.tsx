@@ -37,29 +37,27 @@ const DiffFile = ({ oldPath, newPath, type, hunks, widgets, addWidget }: Props) 
 
   const renderGutter = ({ side, renderDefault, inHoverState }: any) =>
     inHoverState && side === 'new' ? (
-      <>
-        <Popover>
-          <PopoverTrigger>
-            <PlusSquareIcon color="white" bgColor="blue.500" />
-          </PopoverTrigger>
-          <Portal>
-            <PopoverContent>
-              <PopoverArrow />
-              <PopoverHeader>テンプレートを選んでみよう！</PopoverHeader>
-              <PopoverCloseButton />
-              <PopoverBody>
-                <VStack>
-                  {ButtonTextList.map((ButtonText, index) => (
-                    <Button key={index} w="100%" colorScheme="teal">
-                      {ButtonText}
-                    </Button>
-                  ))}
-                </VStack>
-              </PopoverBody>
-            </PopoverContent>
-          </Portal>
-        </Popover>
-      </>
+      <Popover>
+        <PopoverTrigger>
+          <PlusSquareIcon color="white" bgColor="blue.500" />
+        </PopoverTrigger>
+        <Portal>
+          <PopoverContent>
+            <PopoverArrow />
+            <PopoverHeader>テンプレートを選んでみよう！</PopoverHeader>
+            <PopoverCloseButton />
+            <PopoverBody>
+              <VStack>
+                {ButtonTextList.map((ButtonText, index) => (
+                  <Button key={index} w="100%" colorScheme="teal">
+                    {ButtonText}
+                  </Button>
+                ))}
+              </VStack>
+            </PopoverBody>
+          </PopoverContent>
+        </Portal>
+      </Popover>
     ) : (
       renderDefault()
     );
