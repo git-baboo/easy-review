@@ -27,7 +27,7 @@ const ReviewPage = () => {
                 <Box bg="green.100" w="100%" h="100px" color="white">
                   {' '}
                 </Box>
-                <Box bg="blue.100" w="100%" h="300px" color="white">
+                <Box bg="blue.100" w="100%" h="3000px" color="white">
                   {' '}
                 </Box>
               </VStack>
