@@ -18,32 +18,30 @@ const PullRequestList = () => {
   const { octokit } = useApi();
   const { username } = useCurrentUser();
 
-  // FIXME: データを配列として保持できない
   useEffect(() => {
     let isMounted = true;
     if (username) {
       octokit
         .request('GET /search/issues', {
-          q: `is:pr+review-requested:${username}+state:open`,
+          // TODO: ユーザ名をログイン中のユーザのものに変更する
+          q: `is:pr+user-review-requested:${username}+state:open`,
         })
         .then((response) => {
           const items = response.data.items;
+          const newPulls: Pull[] = [];
           items.map((item) => {
-            const pullRequest: Pull = {
-              pullNumber: 0,
-              ownerName: '',
-              repoName: '',
-              title: '',
-            };
-            pullRequest.pullNumber = item.number;
-            pullRequest.title = item.title;
             octokit.request(`GET ${item.repository_url}`).then((response) => {
-              pullRequest.ownerName = response.data.organization.login;
-              pullRequest.repoName = response.data.name;
-              if (isMounted) {
-                setPulls([...pulls, pullRequest]);
-              }
+              const pullRequest: Pull = {
+                pullNumber: item.number,
+                ownerName: response.data.organization.login,
+                repoName: response.data.name,
+                title: item.title,
+              };
+              newPulls.push(pullRequest);
             });
+            if (isMounted) {
+              setPulls(newPulls);
+            }
           });
         });
     }
