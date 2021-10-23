@@ -43,7 +43,7 @@ const DiffFile = ({ oldPath, newPath, type, hunks }: Props) => {
   }, [addWidget]);
 
   return (
-    <Box w="full" overflowX="scroll" boxShadow="base" align="start">
+    <Box w="full" boxShadow="base" align="start">
       <Heading p={3} size="xs" bgColor="gray.200">
         {headerPath}
       </Heading>
