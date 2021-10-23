@@ -23,7 +23,7 @@ const Layout = ({ text, icon, children }: Props) => {
           >
             {text}
           </Text>
-          <Button colorScheme="white" color="teal.500">
+          <Button bgColor="whiteAlpha" color="teal.500">
             ログアウト
           </Button>
         </HStack>
