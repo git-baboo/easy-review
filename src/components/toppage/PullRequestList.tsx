@@ -22,7 +22,6 @@ const PullRequestList = () => {
   useEffect(() => {
     let isMounted = true;
     if (username) {
-      console.log('hello');
       octokit
         .request('GET /search/issues', {
           q: `is:pr+review-requested:${username}+state:open`,
