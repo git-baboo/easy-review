@@ -1,5 +1,5 @@
 import { Button } from '@chakra-ui/button';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 type Path = {
   owner: string;
@@ -9,9 +9,10 @@ type Path = {
 
 const ReviewButton = () => {
   const { owner, repo, pullNumber } = useParams<Path>();
+  const history = useHistory();
 
   const handleClick = () => {
-    window.location.href = `/${owner}/${repo}/${pullNumber}/review`;
+    history.push(`/${owner}/${repo}/${pullNumber}/review`);
   };
 
   return (
