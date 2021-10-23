@@ -1,6 +1,7 @@
 import { Box, Text, Container, HStack, Divider, Center } from '@chakra-ui/layout';
 import { Avatar, Button } from '@chakra-ui/react';
 import React from 'react';
+import { BiCommentAdd } from 'react-icons/bi';
 import { BsFillChatDotsFill } from 'react-icons/bs';
 
 import Layout from '@/components/Layout';
@@ -26,7 +27,11 @@ const ReviewPage = () => {
                 </Text>
               </Box>
               <DiffFiles spacing={6} mt={3} w={700} align="start" />
-              <Popover />
+              <Popover>
+                <Button size="xs" colorScheme="blue">
+                  <BiCommentAdd color="white" size={15} />
+                </Button>
+              </Popover>
               <Button colorScheme="teal" mt={9} size="lg" onClick={PostData}>
                 完了
               </Button>
