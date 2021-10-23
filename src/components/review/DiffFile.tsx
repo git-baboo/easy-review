@@ -27,7 +27,7 @@ const DiffFile = ({ oldPath, newPath, type, hunks, widgets, addWidget }: Props) 
   const renderGutter = ({ side, renderDefault, inHoverState }: any) =>
     inHoverState && side === 'new' ? (
       <ReviewPopover>
-        <PlusSquareIcon color="white" bgColor="blue.500" />
+        <PlusSquareIcon boxSize={5} color="white" bgColor="blue.500" />
       </ReviewPopover>
     ) : (
       renderDefault()
