@@ -28,7 +28,7 @@ const LogoutButton = () => {
             window.open('https://forms.gle/W4s7xqEiAeskEof38');
           }}
         >
-          お問い合わせ
+          フィードバック
         </MenuItem>
       </MenuList>
     </Menu>
