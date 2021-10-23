@@ -9,7 +9,14 @@ const LogoutButton = () => {
 
   return (
     <Menu>
-      <MenuButton as={IconButton} icon={<HamburgerIcon />} variant="ghost" colorScheme="ghost" />
+      <MenuButton
+        as={IconButton}
+        icon={<HamburgerIcon />}
+        Size="lg"
+        color="white"
+        variant="ghost"
+        colorScheme="ghost"
+      />
 
       <MenuList>
         <MenuItem icon={<ArrowBackIcon />} onClick={logout}>
