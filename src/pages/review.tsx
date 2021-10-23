@@ -27,8 +27,33 @@ const ReviewPage = () => {
   const { owner, repo, pullNumber } = useParams<Path>();
   const [widgets, { addWidget }]: any = useWidgets(reviewer);
 
+  const getSideAndLine = (changeKey: string): [string, string] => {
+    const changeType = changeKey.slice(0, 1);
+    const line = changeKey.slice(1);
+    switch (changeType) {
+      case 'I':
+        return ['RIGHT', line];
+      case 'N':
+        return ['LEFT', line];
+      case 'D':
+        return ['LEFT', line];
+
+      default:
+        return ['', ''];
+    }
+  };
+
   const handleSubmit = () => {
-    console.log(widgets);
+    // console.log(widgets);
+    Object.keys(widgets).map((key) => {
+      const changeKey = widgets[key].props.changeKey;
+      const [side, line] = getSideAndLine(changeKey);
+      console.log(side);
+      console.log(line);
+      widgets[key].props.comments.map(({ content }: any) => {
+        console.log(content);
+      });
+    });
     // post(comments);
   };
 
