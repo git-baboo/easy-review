@@ -11,9 +11,10 @@ import Popover from '@/components/review/Popover';
 import ReviewTitle from '@/components/review/ReviewTitle';
 import useWidgets from '@/components/review/useWidgets';
 import { dummyDiff as diff } from '@/data/dummyDiff'; // TODO: ダミーデータ入れ換え
-// import { dummyPost as post } from '@/data/dummyPost'; // TODO: ダミーデータ入れ替え
+import { dummyPost as post } from '@/data/dummyPost'; // TODO: ダミーデータ入れ替え
 import { pullRequest } from '@/data/dummyPullRequest'; // TODO: ダミーデータ入れ替え
 import { reviewer } from '@/data/dummyReviewer';
+import { Comment } from '@/types/CommentType';
 
 type Path = {
   owner: string;
@@ -44,17 +45,15 @@ const ReviewPage = () => {
   };
 
   const handleSubmit = () => {
-    // console.log(widgets);
+    const comments: Comment[] = [];
     Object.keys(widgets).map((key) => {
       const changeKey = widgets[key].props.changeKey;
       const [side, line] = getSideAndLine(changeKey);
-      console.log(side);
-      console.log(line);
       widgets[key].props.comments.map(({ body }: any) => {
-        console.log(body);
+        comments.push({ path: '', line: line, side: side, body: body });
       });
     });
-    // post(comments);
+    post(comments);
   };
 
   return (

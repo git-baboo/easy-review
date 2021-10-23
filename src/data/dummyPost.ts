@@ -2,5 +2,5 @@
 import { Comment } from '@/types/CommentType';
 
 export const dummyPost = (comments: Comment[]) => {
-  console.log(comments);
+  console.table(comments);
 };
