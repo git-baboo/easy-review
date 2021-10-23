@@ -1,22 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { StackProps, VStack } from '@chakra-ui/layout';
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 
 import DiffFile from '@/components/review/DiffFile';
-import { Comment } from '@/types/CommentType';
 
 const reactDiffView = require('react-diff-view');
 const parseDiff = reactDiffView.parseDiff;
 
 type CustomProps = {
   diff: string;
-  reviewer: any;
-  setComments: Dispatch<SetStateAction<Comment[]>>;
+  widgets: any;
+  addWidget: any;
 };
 
 type Props = StackProps & CustomProps;
 
-const DiffFiles = ({ diff, reviewer, setComments, ...props }: Props) => {
+const DiffFiles = ({ diff, widgets, addWidget, ...props }: Props) => {
   const files = parseDiff(diff);
 
   return (
@@ -28,8 +27,8 @@ const DiffFiles = ({ diff, reviewer, setComments, ...props }: Props) => {
           newPath={newPath}
           type={type}
           hunks={hunks}
-          reviewer={reviewer}
-          setComments={setComments}
+          widgets={widgets}
+          addWidget={addWidget}
         />
       ))}
     </VStack>

@@ -1,11 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { PlusSquareIcon } from '@chakra-ui/icons';
 import { Box, Heading } from '@chakra-ui/layout';
-import { Dispatch, SetStateAction, useMemo } from 'react';
+import { useMemo } from 'react';
 
 import '@/style/difffile.css';
-import useWidgets from '@/components/review/useWidgets';
-import { Comment } from '@/types/CommentType';
 
 const reactDiffView = require('react-diff-view');
 const Diff = reactDiffView.Diff;
@@ -18,17 +16,12 @@ type Props = {
   newPath: string;
   type: string;
   hunks: any;
-  reviewer: any;
-  setComments: Dispatch<SetStateAction<Comment[]>>;
+  widgets: any;
+  addWidget: any;
 };
 
-const DiffFile = ({ oldPath, newPath, type, hunks, reviewer, setComments }: Props) => {
+const DiffFile = ({ oldPath, newPath, type, hunks, widgets, addWidget }: Props) => {
   const headerPath = oldPath === newPath ? oldPath : `${oldPath} → ${newPath}`;
-  const [widgets, { addWidget }]: any = useWidgets(reviewer);
-
-  const getComments = (): Comment[] => {
-    return [{ path: '', line: '', side: '', body: '' }];
-  };
 
   const renderGutter = ({ side, renderDefault, wrapInAnchor, inHoverState }: any) =>
     inHoverState && side === 'new' ? (
@@ -45,8 +38,6 @@ const DiffFile = ({ oldPath, newPath, type, hunks, reviewer, setComments }: Prop
       onClick({ change }: any) {
         const key = getChangeKey(change);
         addWidget(key);
-
-        setComments(getComments());
       },
     };
   }, [addWidget]);
