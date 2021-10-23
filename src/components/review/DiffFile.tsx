@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Box, Heading } from '@chakra-ui/layout';
+import { Box, Heading, Text } from '@chakra-ui/layout';
 
 import '@/style/difffile.css';
 
@@ -18,12 +18,21 @@ type Props = {
 const DiffFile = ({ oldPath, newPath, type, hunks }: Props) => {
   const headerPath = oldPath === newPath ? oldPath : `${oldPath} → ${newPath}`;
 
+  const renderGutter = ({ side, renderDefault, inHoverState }: any) =>
+    inHoverState ? side === 'new' ? <Text>{'+'}</Text> : <></> : renderDefault();
+
   return (
     <Box w="full" overflowX="scroll" boxShadow="base" align="start">
       <Heading p={3} size="xs" bgColor="gray.200">
         {headerPath}
       </Heading>
-      <Diff viewType="unified" gutterType="anchor" diffType={type} hunks={hunks}>
+      <Diff
+        viewType="unified"
+        gutterType="anchor"
+        diffType={type}
+        hunks={hunks}
+        renderGutter={renderGutter}
+      >
         {(hunks: any) =>
           hunks.map((hunk: any) => [
             <Decoration key={'deco-' + hunk.content}>
