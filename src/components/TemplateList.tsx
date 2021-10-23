@@ -24,7 +24,6 @@ const TemplateList = () => {
   const constant = 170;
 
   useEffect(() => {
-    console.log('useEffect');
     window.scrollTo(0, 0);
   }, []);
 
