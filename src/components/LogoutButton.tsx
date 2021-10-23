@@ -9,18 +9,34 @@ const LogoutButton = () => {
 
   return (
     <Menu>
-      <MenuButton
-        as={IconButton}
-        icon={<HamburgerIcon />}
-        variant="ghost"
-        _hover={{ bg: 'teal.500' }}
-      />
-      <MenuList>
-        <MenuItem icon={<ArrowBackIcon />} onClick={logout}>
-          ログアウト
-        </MenuItem>
-        <MenuItem icon={<EmailIcon />}>お問い合わせ</MenuItem>
-      </MenuList>
+      {({ isOpen }) => (
+        <>
+          {isOpen ? (
+            <MenuButton
+              isActive={isOpen}
+              as={IconButton}
+              icon={<HamburgerIcon />}
+              variant="ghost"
+              colorScheme="ghost"
+            />
+          ) : (
+            <MenuButton
+              isActive={isOpen}
+              as={IconButton}
+              icon={<HamburgerIcon />}
+              variant="ghost"
+              _hover={{ bg: 'teal.500' }}
+              _selected={{ bg: 'teal.500' }}
+            />
+          )}
+          <MenuList>
+            <MenuItem icon={<ArrowBackIcon />} onClick={logout}>
+              ログアウト
+            </MenuItem>
+            <MenuItem icon={<EmailIcon />}>お問い合わせ</MenuItem>
+          </MenuList>
+        </>
+      )}
     </Menu>
   );
 };
