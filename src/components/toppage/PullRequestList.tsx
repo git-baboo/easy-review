@@ -21,35 +21,38 @@ const PullRequestList = () => {
   // FIXME: データを配列として保持できない
   useEffect(() => {
     let isMounted = true;
-    octokit
-      .request('GET /search/issues', {
-        q: `is:pr+review-requested:${username}+state:open`,
-      })
-      .then((response) => {
-        const items = response.data.items;
-        items.map((item) => {
-          const pullRequest: Pull = {
-            pullNumber: 0,
-            ownerName: '',
-            repoName: '',
-            title: '',
-          };
-          pullRequest.pullNumber = item.number;
-          pullRequest.title = item.title;
-          octokit.request(`GET ${item.repository_url}`).then((response) => {
-            pullRequest.ownerName = response.data.organization.login;
-            pullRequest.repoName = response.data.name;
-            if (isMounted) {
-              setPulls([...pulls, pullRequest]);
-            }
+    if (username) {
+      console.log('hello');
+      octokit
+        .request('GET /search/issues', {
+          q: `is:pr+review-requested:${username}+state:open`,
+        })
+        .then((response) => {
+          const items = response.data.items;
+          items.map((item) => {
+            const pullRequest: Pull = {
+              pullNumber: 0,
+              ownerName: '',
+              repoName: '',
+              title: '',
+            };
+            pullRequest.pullNumber = item.number;
+            pullRequest.title = item.title;
+            octokit.request(`GET ${item.repository_url}`).then((response) => {
+              pullRequest.ownerName = response.data.organization.login;
+              pullRequest.repoName = response.data.name;
+              if (isMounted) {
+                setPulls([...pulls, pullRequest]);
+              }
+            });
           });
         });
-      });
+    }
 
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [username]);
 
   const handleClick = (pullRequest: Pull) => {
     history.push(`/${pullRequest.ownerName}/${pullRequest.repoName}/${pullRequest.pullNumber}`);
