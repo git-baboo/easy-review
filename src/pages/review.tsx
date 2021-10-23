@@ -4,6 +4,7 @@ import React from 'react';
 import { BsFillChatDotsFill } from 'react-icons/bs';
 
 import Layout from '@/components/Layout';
+import PostData from '@/components/PostDatas';
 import TemplateList from '@/components/TemplateList';
 import Popover from '@/components/review/Popover';
 import ReviewTitle from '@/components/review/ReviewTitle';
@@ -32,7 +33,7 @@ const ReviewPage = () => {
                 </Box>
               </VStack>
               <Popover />
-              <Button colorScheme="teal" mt={9} size="lg">
+              <Button colorScheme="teal" mt={9} size="lg" onClick={PostData}>
                 完了
               </Button>
             </Box>
