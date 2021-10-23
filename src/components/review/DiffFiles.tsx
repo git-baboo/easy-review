@@ -9,11 +9,12 @@ const parseDiff = reactDiffView.parseDiff;
 
 type CustomProps = {
   diff: string;
+  reviewer: any;
 };
 
 type Props = StackProps & CustomProps;
 
-const DiffFiles = ({ diff, ...props }: Props) => {
+const DiffFiles = ({ diff, reviewer, ...props }: Props) => {
   const files = parseDiff(diff);
 
   return (
@@ -25,6 +26,7 @@ const DiffFiles = ({ diff, ...props }: Props) => {
           newPath={newPath}
           type={type}
           hunks={hunks}
+          reviewer={reviewer}
         />
       ))}
     </VStack>

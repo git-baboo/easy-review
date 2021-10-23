@@ -17,11 +17,12 @@ type Props = {
   newPath: string;
   type: string;
   hunks: any;
+  reviewer: any;
 };
 
-const DiffFile = ({ oldPath, newPath, type, hunks }: Props) => {
+const DiffFile = ({ oldPath, newPath, type, hunks, reviewer }: Props) => {
   const headerPath = oldPath === newPath ? oldPath : `${oldPath} → ${newPath}`;
-  const [widgets, { addWidget }]: any = useWidgets();
+  const [widgets, { addWidget }]: any = useWidgets(reviewer);
 
   const renderGutter = ({ side, renderDefault, wrapInAnchor, inHoverState }: any) =>
     inHoverState && side === 'new' ? (

@@ -4,7 +4,7 @@ import { useCallback, useReducer } from 'react';
 
 import Widget from '@/components/review/Widget';
 
-const useWidgets = () => {
+const useWidgets = (reviewer: any) => {
   const [widgetsData, dispatch] = useReducer((state: any, action: any) => {
     const previous = state[action?.payload?.key] ?? {};
     switch (action.type) {
@@ -35,8 +35,8 @@ const useWidgets = () => {
               ...previous.comments,
               {
                 id: uniqueId('comment-'),
-                author: 'dummy author',
-                avatarUrl: 'avatar.png',
+                author: reviewer.userName,
+                avatarUrl: reviewer.avatarUrl,
                 content: previous.draft,
                 time: Date.now(),
               },

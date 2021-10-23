@@ -18,13 +18,13 @@ type Props = {
 const Widget = ({ changeKey, comments, draft, onDraftChange, onSubmit }: any) => {
   const renderComment = ({ id, author, content, time, avatarUrl }: Props) => (
     <ListItem key={id} m={2} p={4} border="1px" borderRadius="md" borderColor="gray.300">
-      <Flex>
-        <Avatar size="2md" name={author} src={avatarUrl} />
+      <Flex alignItems="center">
+        <Avatar size="sm" name={author} src={avatarUrl} />
         <Text ml={2} fontSize="md">
           {author}
         </Text>
       </Flex>
-      <Text ml={8}>{content}</Text>
+      <Text ml={10}>{content}</Text>
     </ListItem>
   );
 
