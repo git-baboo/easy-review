@@ -33,12 +33,10 @@ const TemplateList = () => {
     const targetElement = document.getElementById('target');
     if (targetElement) {
       const targetElementCoordinate = targetElement.getBoundingClientRect();
-      console.log(targetElementCoordinate);
       setLeftCoordinate(targetElementCoordinate.left);
     }
   };
 
-  console.log(leftCoordinate);
   return scroll < 180 ? (
     <VStack id="target" spacing={5} position="sticky">
       {templates.map((template) => (
