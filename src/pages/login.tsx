@@ -1,9 +1,11 @@
-import { Container, Flex, Heading } from '@chakra-ui/react';
+import { Container, Flex, Heading, useBreakpointValue } from '@chakra-ui/react';
 import React from 'react';
 
 import LoginButton from '@/components/login/LoginButton';
 
 const LoginPage = () => {
+  const mediaType = useBreakpointValue({ base: 'base', md: 'md' });
+
   return (
     <Flex bgColor="teal.500" h="100vh">
       <Container maxW="container.md" color="white">
@@ -13,7 +15,7 @@ const LoginPage = () => {
         <Heading size="md" mt={2}>
           より気軽なコードレビュー体験を
         </Heading>
-        <LoginButton />
+        {mediaType === 'md' && <LoginButton />}
       </Container>
     </Flex>
   );
