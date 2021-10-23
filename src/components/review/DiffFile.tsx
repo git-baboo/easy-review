@@ -23,10 +23,10 @@ type Props = {
 const DiffFile = ({ oldPath, newPath, type, hunks, widgets, addWidget }: Props) => {
   const headerPath = oldPath === newPath ? oldPath : `${oldPath} → ${newPath}`;
 
-  const renderGutter = ({ side, renderDefault, wrapInAnchor, inHoverState }: any) =>
+  const renderGutter = ({ side, renderDefault, inHoverState }: any) =>
     inHoverState && side === 'new' ? (
       <>
-        {wrapInAnchor(renderDefault())}
+        {renderDefault()}
         <PlusSquareIcon color="white" bgColor="blue.500" />
       </>
     ) : (
