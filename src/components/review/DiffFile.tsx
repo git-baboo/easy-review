@@ -38,7 +38,6 @@ const DiffFile = ({ oldPath, newPath, type, hunks, widgets, addWidget }: Props) 
   const renderGutter = ({ side, renderDefault, inHoverState }: any) =>
     inHoverState && side === 'new' ? (
       <>
-        {renderDefault()}
         <Popover>
           <PopoverTrigger>
             <PlusSquareIcon color="white" bgColor="blue.500" />
