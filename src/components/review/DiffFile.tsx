@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, Heading } from '@chakra-ui/layout';
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import '@/style/difffile.css';
+
 const reactDiffView = require('react-diff-view');
 const Diff = reactDiffView.Diff;
 const Hunk = reactDiffView.Hunk;
