@@ -1,7 +1,9 @@
-import React, { ComponentType } from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import { onAuthStateChanged } from 'firebase/auth';
+import React, { ComponentType, useEffect } from 'react';
+import { useHistory } from 'react-router';
+import { Route } from 'react-router-dom';
 
-import { useCurrentUser } from '@/hooks/useCurrentUser';
+import { auth } from '@/utils/firebase';
 
 type Props = {
   path: string;
@@ -9,9 +11,18 @@ type Props = {
 };
 
 const PrivateRoute = ({ path, component }: Props) => {
-  const { isSignedIn } = useCurrentUser();
+  const history = useHistory();
 
-  return isSignedIn ? <Route exact path={path} component={component} /> : <Redirect to="/login" />;
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        history.push('/login');
+      }
+    });
+  }, []);
+
+  return <Route exact path={path} component={component} />;
 };
 
 export default PrivateRoute;
