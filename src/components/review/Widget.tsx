@@ -1,28 +1,43 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Avatar } from '@chakra-ui/avatar';
 import { Button } from '@chakra-ui/button';
-import { Box, Text } from '@chakra-ui/layout';
+import { Box, List, ListItem, Text } from '@chakra-ui/layout';
+import { Flex } from '@chakra-ui/react';
 import { Textarea } from '@chakra-ui/textarea';
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
+
+type Props = {
+  id: string;
+  author: string;
+  content: string;
+  time: string;
+  avatarUrl: string;
+};
 
 const Widget = ({ changeKey, comments, draft, onDraftChange, onSubmit }: any) => {
-  const renderComment = (comment: any) => (
-    <li key={comment.id}>
-      <Text>{comment.author}</Text>
-      <Avatar name={comment.author} src="avatar.png" />
-      <Text>{comment.content}</Text>
-    </li>
+  const renderComment = ({ id, author, content, time, avatarUrl }: Props) => (
+    <ListItem key={id} m={2} p={4} border="1px" borderRadius="md" borderColor="gray.300">
+      <Flex>
+        <Avatar size="2md" name={author} src={avatarUrl} />
+        <Text ml={2} fontSize="md">
+          {author}
+        </Text>
+      </Flex>
+      <Text ml={8}>{content}</Text>
+    </ListItem>
   );
+
   const input = useCallback(
     (e) => onDraftChange(changeKey, e.target.value),
     [onDraftChange, changeKey]
   );
+
   const submit = useCallback(() => onSubmit(changeKey), [onSubmit, changeKey]);
 
   return (
     <Box>
-      <ol>{comments.map(renderComment)}</ol>
-      <Textarea />
+      <List>{comments.map(renderComment)}</List>
+      <Textarea value={draft} onChange={input} />
       <Button onClick={submit}>{'Submit Comment'}</Button>
     </Box>
   );

@@ -35,6 +35,7 @@ const useWidgets = () => {
               {
                 id: uniqueId('comment-'),
                 author: 'dummy author',
+                avatarUrl: 'avatar.png',
                 content: previous.draft,
                 time: Date.now(),
               },
@@ -45,15 +46,19 @@ const useWidgets = () => {
         return state;
     }
   }, {});
+
   const addWidget = useCallback((key) => dispatch({ type: 'add', payload: { key } }), []);
+
   const writeComment = useCallback(
     (key, content) => dispatch({ type: 'input', payload: { key, content } }),
     []
   );
+
   const submitComment = useCallback(
     (key, content) => dispatch({ type: 'submit', payload: { key, content } }),
     []
   );
+
   const renderWidget = (data: any, key: any) => (
     <Widget changeKey={key} {...data} onDraftChange={writeComment} onSubmit={submitComment} />
   );
