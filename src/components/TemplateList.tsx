@@ -40,14 +40,23 @@ const TemplateList = () => {
 
   console.log(leftCoordinate);
   return scroll < 180 ? (
-    <VStack id="target" spacing={5} position="sticky">
+    <VStack id="target" h={420} p={5} spacing={5} position="sticky" shadow="md" borderWidth="3px">
       {templates.map((template) => (
         <Template key={template.title} title={template.title} description={template.description} />
       ))}
     </VStack>
   ) : (
     // XXX: leftCoordinate で取得した座標と画面上の座標との差を埋めるために-50 している。何が起因しているかはよくわかってない
-    <VStack id="target" top={0} left={leftCoordinate - 50} spacing={5} position="fixed">
+    <VStack
+      id="target"
+      top={0}
+      p={5}
+      left={leftCoordinate - 50}
+      spacing={5}
+      position="fixed"
+      shadow="md"
+      borderWidth="3px"
+    >
       {templates.map((template) => (
         <Template key={template.title} title={template.title} description={template.description} />
       ))}
