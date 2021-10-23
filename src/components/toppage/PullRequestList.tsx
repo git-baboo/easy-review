@@ -13,7 +13,6 @@ type Pull = {
 };
 
 const PullRequestList = () => {
-  const [usernameState, setUsernameState] = useState<string>('watagit');
   const [pulls, setPulls] = useState<Pull[]>([]);
   const history = useHistory();
   const { octokit } = useApi();
@@ -22,10 +21,9 @@ const PullRequestList = () => {
   // FIXME: データを配列として保持できない
   useEffect(() => {
     let isMounted = true;
-    setUsernameState(username);
     octokit
       .request('GET /search/issues', {
-        q: `is:pr+review-requested:${usernameState}+state:open`,
+        q: `is:pr+review-requested:${username}+state:open`,
       })
       .then((response) => {
         const items = response.data.items;
