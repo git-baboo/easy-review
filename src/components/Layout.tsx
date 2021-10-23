@@ -1,4 +1,4 @@
-import { Text, Icon, Flex, HStack } from '@chakra-ui/react';
+import { Text, Icon, Flex, HStack, Button } from '@chakra-ui/react';
 import React, { ReactNode } from 'react';
 import { IconType } from 'react-icons';
 
@@ -23,6 +23,9 @@ const Layout = ({ text, icon, children }: Props) => {
           >
             {text}
           </Text>
+          <Button colorScheme="white" color="teal.500">
+            ログアウト
+          </Button>
         </HStack>
       </Flex>
       {children}
