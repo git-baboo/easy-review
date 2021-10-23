@@ -22,7 +22,14 @@ const LogoutButton = () => {
         <MenuItem icon={<ArrowBackIcon />} onClick={logout}>
           ログアウト
         </MenuItem>
-        <MenuItem icon={<EmailIcon />}>お問い合わせ</MenuItem>
+        <MenuItem
+          icon={<EmailIcon />}
+          onClick={() => {
+            window.location.href = 'https://forms.gle/W4s7xqEiAeskEof38';
+          }}
+        >
+          お問い合わせ
+        </MenuItem>
       </MenuList>
     </Menu>
   );
