@@ -20,7 +20,7 @@ const templates = [
 
 const TemplateList = () => {
   const [scroll, setScroll] = useState<number>(0);
-  const [leftCoordinate, setLeftCoordinate] = useState<number>(0);
+  const [leftCoordinate, setLeftCoordinate] = useState<number>(817);
 
   window.onscroll = function () {
     //スクロール量の測定
