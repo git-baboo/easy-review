@@ -6,7 +6,7 @@ import remarkGfm from 'remark-gfm';
 import CheckboxTheme from '@/components/detail/theme/CheckboxTheme';
 import CodeTheme from '@/components/detail/theme/CodeTheme';
 import DividerTheme from '@/components/detail/theme/DividerTheme';
-import HeadingTheme from '@/components/detail/theme/HeaderTheme';
+import HeadingTheme from '@/components/detail/theme/HeadingTheme';
 import LinkTheme from '@/components/detail/theme/LinkTheme';
 import QuoteTheme from '@/components/detail/theme/QuoteTheme';
 
