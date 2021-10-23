@@ -3,13 +3,18 @@ import { StackProps, VStack } from '@chakra-ui/layout';
 import React from 'react';
 
 import DiffFile from '@/components/review/DiffFile';
-import { dummyDiff } from '@/data/dummyDiff';
 
 const reactDiffView = require('react-diff-view');
 const parseDiff = reactDiffView.parseDiff;
 
-const DiffFiles = ({ ...props }: StackProps) => {
-  const files = parseDiff(dummyDiff);
+type CustomProps = {
+  diff: string;
+};
+
+type Props = StackProps & CustomProps;
+
+const DiffFiles = ({ diff, ...props }: Props) => {
+  const files = parseDiff(diff);
 
   return (
     <VStack {...props}>

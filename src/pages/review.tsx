@@ -8,6 +8,7 @@ import TemplateList from '@/components/TemplateList';
 import DiffFiles from '@/components/review/DiffFiles';
 import Popover from '@/components/review/Popover';
 import ReviewTitle from '@/components/review/ReviewTitle';
+import { dummyDiff } from '@/data/dummyDiff';
 
 const ReviewPage = () => {
   return (
@@ -24,7 +25,7 @@ const ReviewPage = () => {
                   kacha-122
                 </Text>
               </Box>
-              <DiffFiles spacing={6} mt={3} w={700} align="start" />
+              <DiffFiles spacing={6} mt={3} w={700} align="start" diff={dummyDiff} />
               <Popover />
               <Button colorScheme="teal" mt={9} size="lg">
                 完了
