@@ -25,6 +25,10 @@ const TopPage = () => {
   }, []);
 
   useEffect(() => {
+    console.log('hello');
+  }, []);
+
+  useEffect(() => {
     if (username) {
       octokit
         .request('GET /search/issues', {
