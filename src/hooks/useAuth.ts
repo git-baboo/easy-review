@@ -11,6 +11,7 @@ export const useAuth = () => {
   const history = useHistory();
   const setCurrentUser = useSetRecoilState<CurrentUserType>(currentUserState);
   const provider = new GithubAuthProvider();
+  provider.addScope('repo');
 
   const login = () => {
     signInWithPopup(auth, provider).then((result) => {
