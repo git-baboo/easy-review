@@ -12,6 +12,7 @@ const initialState: CurrentUserType = {
   username: '',
   accessToken: '',
   reviewId: 0,
+  commitNumber: 0,
 };
 
 export const currentUserState = atom<CurrentUserType>({
