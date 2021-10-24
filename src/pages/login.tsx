@@ -1,5 +1,7 @@
 import { Text } from '@chakra-ui/layout';
 import {
+  Box,
+  Image,
   Container,
   Flex,
   Heading,
@@ -19,12 +21,15 @@ const LoginPage = () => {
   return (
     <Flex bgColor="teal.500" h="100vh">
       <Container maxW="container.md" color="white">
-        <Heading size="xl" mt={[48, 64]}>
-          Easy Review
-        </Heading>
-        <Heading size="md" mt={2}>
-          より気軽なコードレビュー体験を
-        </Heading>
+        <Box mt={40}>
+          <Image src="/app_icon.png" borderRadius="full" boxSize="150px" />
+          <Heading size="xl" mt={3}>
+            Easy Review
+          </Heading>
+          <Heading size="md" mt={2}>
+            より気軽なコードレビュー体験を
+          </Heading>
+        </Box>
         {mediaType === 'pc' && <LoginButton />}
       </Container>
       {mediaType === 'phone' && (
