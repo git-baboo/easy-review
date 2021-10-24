@@ -38,7 +38,6 @@ const ReviewPage = () => {
   const { owner, repo, pullNumber } = useParams<Path>();
   const [widgets, { addWidget }]: any = useWidgets(reviewer);
   const { octokit } = useApi();
-  const { reviewId } = useCurrentUser();
   const history = useHistory();
   const toast = useToast();
 
