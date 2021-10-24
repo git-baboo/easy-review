@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button } from '@chakra-ui/button';
 import { PlusSquareIcon } from '@chakra-ui/icons';
 import { Box, Heading } from '@chakra-ui/layout';
 import { useMemo, useState } from 'react';
@@ -29,14 +28,15 @@ const DiffFile = ({ oldPath, newPath, type, hunks, widgets, addWidget }: Props) 
 
   const renderGutter = ({ side, renderDefault, inHoverState }: any) =>
     inHoverState && side === 'new' ? (
-      <ReviewPopover>
+      <ReviewPopover handleClick={handleClick}>
         <PlusSquareIcon boxSize={5} color="white" bgColor="blue.500" />
       </ReviewPopover>
     ) : (
       renderDefault()
     );
 
-  const handleClick = () => {
+  const handleClick = (initText: string) => {
+    console.log(initText);
     const key = tmpKey;
     addWidget(key);
     setTmpKey('');
@@ -52,35 +52,32 @@ const DiffFile = ({ oldPath, newPath, type, hunks, widgets, addWidget }: Props) 
   }, [addWidget]);
 
   return (
-    <>
-      <Box w="full" boxShadow="base" align="start">
-        <Heading p={3} size="xs" bgColor="gray.200">
-          {headerPath}
-        </Heading>
-        <Diff
-          viewType="unified"
-          diffType={type}
-          hunks={hunks}
-          widgets={widgets}
-          renderGutter={renderGutter}
-        >
-          {(hunks: any) =>
-            hunks.map((hunk: any) => [
-              <Decoration key={'deco-' + hunk.content}>
-                <Box bg="blue.300" p={2}>
-                  {'　'}
-                </Box>
-                <Box bg="blue.100" p={2}>
-                  {hunk.content}
-                </Box>
-              </Decoration>,
-              <Hunk key={hunk.content} hunk={hunk} gutterEvents={gutterEvents} />,
-            ])
-          }
-        </Diff>
-      </Box>
-      <Button onClick={handleClick}>debug</Button>
-    </>
+    <Box w="full" boxShadow="base" align="start">
+      <Heading p={3} size="xs" bgColor="gray.200">
+        {headerPath}
+      </Heading>
+      <Diff
+        viewType="unified"
+        diffType={type}
+        hunks={hunks}
+        widgets={widgets}
+        renderGutter={renderGutter}
+      >
+        {(hunks: any) =>
+          hunks.map((hunk: any) => [
+            <Decoration key={'deco-' + hunk.content}>
+              <Box bg="blue.300" p={2}>
+                {'　'}
+              </Box>
+              <Box bg="blue.100" p={2}>
+                {hunk.content}
+              </Box>
+            </Decoration>,
+            <Hunk key={hunk.content} hunk={hunk} gutterEvents={gutterEvents} />,
+          ])
+        }
+      </Diff>
+    </Box>
   );
 };
 
