@@ -10,11 +10,9 @@ import TemplateList from '@/components/TemplateList';
 import DiffFiles from '@/components/review/DiffFiles';
 import ReviewTitle from '@/components/review/ReviewTitle';
 import useWidgets from '@/components/review/useWidgets';
-import { pullRequest } from '@/data/dummyPullRequest'; // TODO: ダミーデータ入れ替え
 import { reviewer } from '@/data/dummyReviewer';
 import { useApi } from '@/hooks/useApi';
 import { useCurrentUser } from '@/hooks/useCurrentUser';
-// import { Comment } from '@/types/CommentType';
 
 type Path = {
   owner: string;
@@ -22,8 +20,21 @@ type Path = {
   pullNumber: string;
 };
 
+type Pull = {
+  title: string;
+  userName: string | undefined;
+  avatarUrl: string | undefined;
+};
+
+const initialPull = {
+  title: '',
+  userName: '',
+  avatarUrl: '',
+};
+
 const ReviewPage = () => {
   const [diff, setDiff] = useState<string>('');
+  const [pull, setPull] = useState<Pull>(initialPull);
   const { owner, repo, pullNumber } = useParams<Path>();
   const [widgets, { addWidget }]: any = useWidgets(reviewer);
   const { octokit } = useApi();
@@ -41,6 +52,20 @@ const ReviewPage = () => {
       })
       .then((response) => {
         setDiff(String(response.data));
+      });
+    octokit
+      .request('GET /repos/{owner}/{repo}/pulls/{pull_number}', {
+        owner: owner,
+        repo: repo,
+        pull_number: Number(pullNumber),
+      })
+      .then((response) => {
+        console.log(response.data);
+        setPull({
+          title: response.data.title,
+          userName: response.data.assignee?.login,
+          avatarUrl: response.data.assignee?.avatar_url,
+        });
       });
   }, []);
 
@@ -87,10 +112,10 @@ const ReviewPage = () => {
             <Box align="end">
               <Box width={700} align="start">
                 <ReviewTitle color="gray" fontSize="xs" title={`${owner}/${repo}`} />
-                <ReviewTitle color="black" fontSize="md" title={pullRequest.title} />
+                <ReviewTitle color="black" fontSize="md" title={pull.title} />
                 <Text color="black" fontSize="xs">
-                  <Avatar name={pullRequest.userName} src={pullRequest.avatarUrl} size="2xs" />
-                  {pullRequest.userName}
+                  <Avatar name={pull.userName} src={pull.avatarUrl} size="2xs" />
+                  {pull.userName}
                 </Text>
               </Box>
               <DiffFiles
