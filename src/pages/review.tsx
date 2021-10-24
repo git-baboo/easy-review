@@ -10,11 +10,11 @@ import TemplateList from '@/components/TemplateList';
 import DiffFiles from '@/components/review/DiffFiles';
 import ReviewTitle from '@/components/review/ReviewTitle';
 import useWidgets from '@/components/review/useWidgets';
-import { dummyPost as post } from '@/data/dummyPost'; // TODO: ダミーデータ入れ替え
 import { pullRequest } from '@/data/dummyPullRequest'; // TODO: ダミーデータ入れ替え
 import { reviewer } from '@/data/dummyReviewer';
 import { useApi } from '@/hooks/useApi';
-import { Comment } from '@/types/CommentType';
+import { useCurrentUser } from '@/hooks/useCurrentUser';
+// import { Comment } from '@/types/CommentType';
 
 type Path = {
   owner: string;
@@ -23,11 +23,11 @@ type Path = {
 };
 
 const ReviewPage = () => {
-  // TODO: pullNumber を使用したら ESLint 警告無視用のコメントを削除
   const [diff, setDiff] = useState<string>('');
   const { owner, repo, pullNumber } = useParams<Path>();
   const [widgets, { addWidget }]: any = useWidgets(reviewer);
   const { octokit } = useApi();
+  const { reviewId } = useCurrentUser();
 
   useEffect(() => {
     octokit
@@ -44,32 +44,39 @@ const ReviewPage = () => {
       });
   }, []);
 
-  const getSideAndLine = (changeKey: string): [string, string] => {
-    const changeType = changeKey.slice(0, 1);
-    const line = changeKey.slice(1);
-    switch (changeType) {
-      case 'I':
-        return ['RIGHT', line];
-      case 'N':
-        return ['LEFT', line];
-      case 'D':
-        return ['LEFT', line];
-
-      default:
-        return ['', ''];
-    }
-  };
+  // const getSideAndLine = (changeKey: string): [string, string] => {
+  //   const changeType = changeKey.slice(0, 1);
+  //   const line = changeKey.slice(1);
+  //   switch (changeType) {
+  //     case 'I':
+  //       return ['RIGHT', line];
+  //     case 'N':
+  //       return ['LEFT', line];
+  //     case 'D':
+  //       return ['LEFT', line];
+  //
+  //     default:
+  //       return ['', ''];
+  //   }
+  // };
 
   const handleSubmit = () => {
-    const comments: Comment[] = [];
-    Object.keys(widgets).map((key) => {
-      const changeKey = widgets[key].props.changeKey;
-      const [side, line] = getSideAndLine(changeKey);
-      widgets[key].props.comments.map(({ body }: any) => {
-        comments.push({ path: '', line: line, side: side, body: body });
-      });
+    // NOTE: comments は使ってないが、あとあと必要そうなので残している
+    // const comments: Comment[] = [];
+    // Object.keys(widgets).map((key) => {
+    //   const changeKey = widgets[key].props.changeKey;
+    //   const [side, line] = getSideAndLine(changeKey);
+    //   widgets[key].props.comments.map(({ body }: any) => {
+    //     comments.push({ path: '', line: line, side: side, body: body });
+    //   });
+    // });
+    octokit.request('POST /repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}/events', {
+      owner: owner,
+      repo: repo,
+      pull_number: Number(pullNumber),
+      review_id: reviewId,
+      event: 'COMMENT',
     });
-    post(comments);
   };
 
   return (
