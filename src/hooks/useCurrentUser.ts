@@ -10,6 +10,7 @@ export const useCurrentUser = () => {
   const username = currentUser.username;
   const accessToken = currentUser.accessToken;
   const reviewId = currentUser.reviewId;
+  const commitNumber = currentUser.commitNumber;
 
-  return { isSignedIn, username, accessToken, reviewId };
+  return { isSignedIn, username, accessToken, reviewId, commitNumber };
 };

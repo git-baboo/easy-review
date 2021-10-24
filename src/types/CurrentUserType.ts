@@ -3,4 +3,5 @@ export type CurrentUserType = {
   username: string;
   accessToken: string;
   reviewId: number;
+  commitNumber: number;
 };
