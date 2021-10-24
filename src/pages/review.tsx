@@ -25,7 +25,6 @@ type Path = {
 };
 
 const ReviewPage = () => {
-  // TODO: pullNumber を使用したら ESLint 警告無視用のコメントを削除
   const [diff, setDiff] = useState<string>('');
   const { owner, repo, pullNumber } = useParams<Path>();
   const [widgets, { addWidget }]: any = useWidgets(reviewer);
