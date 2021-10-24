@@ -47,6 +47,7 @@ export const useAuth = () => {
       isSignedIn: false,
       username: '',
       accessToken: '',
+      reviewId: 0,
     });
     history.push('/login');
   };

@@ -11,6 +11,7 @@ const initialState: CurrentUserType = {
   isSignedIn: false,
   username: '',
   accessToken: '',
+  reviewId: 0,
 };
 
 export const currentUserState = atom<CurrentUserType>({

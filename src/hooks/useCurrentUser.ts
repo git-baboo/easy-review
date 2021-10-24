@@ -9,6 +9,7 @@ export const useCurrentUser = () => {
   const isSignedIn = currentUser.isSignedIn;
   const username = currentUser.username;
   const accessToken = currentUser.accessToken;
+  const reviewId = currentUser.reviewId;
 
-  return { isSignedIn, username, accessToken };
+  return { isSignedIn, username, accessToken, reviewId };
 };
