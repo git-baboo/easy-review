@@ -102,7 +102,14 @@ const ReviewPage = () => {
                 widgets={widgets}
                 addWidget={addWidget}
               />
-              <Button colorScheme="teal" mt={9} size="lg" onClick={handleSubmit}>
+              <Button
+                mt={3}
+                size="lg"
+                w="full"
+                colorScheme="teal"
+                fontWeight="bold"
+                onClick={handleSubmit}
+              >
                 完了
               </Button>
             </Box>
