@@ -1,16 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, Text, Container, HStack, Divider, Center } from '@chakra-ui/layout';
-import { Avatar, Button } from '@chakra-ui/react';
+import { Avatar, Button, useToast } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { BsFillChatDotsFill } from 'react-icons/bs';
-import { useParams } from 'react-router';
+import { useParams, useHistory } from 'react-router';
 
 import Layout from '@/components/Layout';
 import TemplateList from '@/components/TemplateList';
 import DiffFiles from '@/components/review/DiffFiles';
 import ReviewTitle from '@/components/review/ReviewTitle';
 import useWidgets from '@/components/review/useWidgets';
-import { pullRequest } from '@/data/dummyPullRequest'; // TODO: ダミーデータ入れ替え
 import { reviewer } from '@/data/dummyReviewer';
 import { useApi } from '@/hooks/useApi';
 import { Comment } from '@/types/CommentType';
@@ -21,11 +20,27 @@ type Path = {
   pullNumber: string;
 };
 
+type Pull = {
+  title: string;
+  userName: string | undefined;
+  avatarUrl: string | undefined;
+};
+
+const initialPull = {
+  title: '',
+  userName: '',
+  avatarUrl: '',
+};
+
 const ReviewPage = () => {
   const [diff, setDiff] = useState<string>('');
+  const [pull, setPull] = useState<Pull>(initialPull);
   const { owner, repo, pullNumber } = useParams<Path>();
   const [widgets, { addWidget }]: any = useWidgets(reviewer);
   const { octokit } = useApi();
+  const { reviewId } = useCurrentUser();
+  const history = useHistory();
+  const toast = useToast();
 
   useEffect(() => {
     octokit
@@ -39,6 +54,20 @@ const ReviewPage = () => {
       })
       .then((response) => {
         setDiff(String(response.data));
+      });
+    octokit
+      .request('GET /repos/{owner}/{repo}/pulls/{pull_number}', {
+        owner: owner,
+        repo: repo,
+        pull_number: Number(pullNumber),
+      })
+      .then((response) => {
+        console.log(response.data);
+        setPull({
+          title: response.data.title,
+          userName: response.data.assignee?.login,
+          avatarUrl: response.data.assignee?.avatar_url,
+        });
       });
   }, []);
 
@@ -67,6 +96,7 @@ const ReviewPage = () => {
         comments.push({ path: path, line: Number(line), side: side, body: body });
       });
     });
+
     octokit
       .request('POST /repos/{owner}/{repo}/pulls/{pull_number}/reviews', {
         owner: owner,
@@ -86,6 +116,18 @@ const ReviewPage = () => {
           }
         );
       });
+
+    toast({
+      position: 'top',
+      duration: 2000,
+      render: () => (
+        <Box color="teal" p={3} bg="white" borderRadius="md">
+          コメントの追加が完了しました
+        </Box>
+      ),
+    });
+
+    history.push('/');
   };
 
   return (
@@ -96,10 +138,10 @@ const ReviewPage = () => {
             <Box align="end">
               <Box width={700} align="start">
                 <ReviewTitle color="gray" fontSize="xs" title={`${owner}/${repo}`} />
-                <ReviewTitle color="black" fontSize="md" title={pullRequest.title} />
+                <ReviewTitle color="black" fontSize="md" title={pull.title} />
                 <Text color="black" fontSize="xs">
-                  <Avatar name={pullRequest.userName} src={pullRequest.avatarUrl} size="2xs" />
-                  {pullRequest.userName}
+                  <Avatar name={pull.userName} src={pull.avatarUrl} size="2xs" />
+                  {pull.userName}
                 </Text>
               </Box>
               <DiffFiles
@@ -111,7 +153,14 @@ const ReviewPage = () => {
                 widgets={widgets}
                 addWidget={addWidget}
               />
-              <Button colorScheme="teal" mt={9} size="lg" onClick={handleSubmit}>
+              <Button
+                mt={3}
+                size="lg"
+                w="full"
+                colorScheme="teal"
+                fontWeight="bold"
+                onClick={handleSubmit}
+              >
                 完了
               </Button>
             </Box>
