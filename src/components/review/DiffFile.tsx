@@ -38,7 +38,7 @@ const DiffFile = ({ oldPath, newPath, type, hunks, widgets, addWidget }: Props) 
   const handleClick = (initText: string) => {
     console.log(initText);
     const key = tmpKey;
-    addWidget(key);
+    addWidget(key, initText);
     setTmpKey('');
   };
 
