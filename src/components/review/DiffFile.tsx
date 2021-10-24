@@ -23,7 +23,22 @@ type Props = {
 };
 
 const DiffFile = ({ oldPath, newPath, type, hunks, widgets, addWidget }: Props) => {
-  const headerPath = oldPath === newPath ? oldPath : `${oldPath} → ${newPath}`;
+  let headerPath = '';
+  switch (type) {
+    case 'delete':
+      headerPath = oldPath;
+      break;
+    case 'insert':
+      headerPath = newPath;
+      break;
+    case 'rename':
+      headerPath = `${oldPath} → ${newPath}`;
+      break;
+    default:
+      headerPath = newPath;
+      break;
+  }
+  const postPath = type === 'delete' ? oldPath : newPath;
   const [tmpKey, setTmpKey] = useState<string>('');
 
   const renderGutter = ({ side, renderDefault, inHoverState }: any) =>
@@ -38,7 +53,7 @@ const DiffFile = ({ oldPath, newPath, type, hunks, widgets, addWidget }: Props) 
   const handleClick = (initText: string) => {
     console.log(initText);
     const key = tmpKey;
-    addWidget(key, initText);
+    addWidget(key, postPath, initText);
     setTmpKey('');
   };
 
@@ -47,6 +62,7 @@ const DiffFile = ({ oldPath, newPath, type, hunks, widgets, addWidget }: Props) 
       onClick({ change }: any) {
         const key = getChangeKey(change);
         setTmpKey(key);
+        // addWidget(key, postPath);
       },
     };
   }, [addWidget]);

@@ -13,8 +13,7 @@ import useWidgets from '@/components/review/useWidgets';
 import { pullRequest } from '@/data/dummyPullRequest'; // TODO: ダミーデータ入れ替え
 import { reviewer } from '@/data/dummyReviewer';
 import { useApi } from '@/hooks/useApi';
-import { useCurrentUser } from '@/hooks/useCurrentUser';
-// import { Comment } from '@/types/CommentType';
+import { Comment } from '@/types/CommentType';
 
 type Path = {
   owner: string;
@@ -27,7 +26,6 @@ const ReviewPage = () => {
   const { owner, repo, pullNumber } = useParams<Path>();
   const [widgets, { addWidget }]: any = useWidgets(reviewer);
   const { octokit } = useApi();
-  const { reviewId } = useCurrentUser();
 
   useEffect(() => {
     octokit
@@ -44,38 +42,30 @@ const ReviewPage = () => {
       });
   }, []);
 
-  // const getSideAndLine = (changeKey: string): [string, string] => {
-  //   const changeType = changeKey.slice(0, 1);
-  //   const line = changeKey.slice(1);
-  //   switch (changeType) {
-  //     case 'I':
-  //       return ['RIGHT', line];
-  //     case 'N':
-  //       return ['LEFT', line];
-  //     case 'D':
-  //       return ['LEFT', line];
-  //
-  //     default:
-  //       return ['', ''];
-  //   }
-  // };
+  const getSideAndLine = (changeKey: string): [string, string] => {
+    const changeType = changeKey.slice(0, 1);
+    const line = changeKey.slice(1);
+    switch (changeType) {
+      case 'I':
+        return ['RIGHT', line];
+      case 'N':
+        return ['LEFT', line];
+      case 'D':
+        return ['LEFT', line];
+
+      default:
+        return ['', ''];
+    }
+  };
 
   const handleSubmit = () => {
-    // NOTE: comments は使ってないが、あとあと必要そうなので残している
-    // const comments: Comment[] = [];
-    // Object.keys(widgets).map((key) => {
-    //   const changeKey = widgets[key].props.changeKey;
-    //   const [side, line] = getSideAndLine(changeKey);
-    //   widgets[key].props.comments.map(({ body }: any) => {
-    //     comments.push({ path: '', line: line, side: side, body: body });
-    //   });
-    // });
-    octokit.request('POST /repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}/events', {
-      owner: owner,
-      repo: repo,
-      pull_number: Number(pullNumber),
-      review_id: reviewId,
-      event: 'COMMENT',
+    const comments: Comment[] = [];
+    Object.keys(widgets).map((key) => {
+      const changeKey = widgets[key].props.changeKey;
+      const [side, line] = getSideAndLine(changeKey);
+      widgets[key].props.comments.map(({ path, body }: any) => {
+        comments.push({ path: path, line: line, side: side, body: body });
+      });
     });
   };
 
