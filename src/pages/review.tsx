@@ -67,8 +67,8 @@ const ReviewPage = () => {
     Object.keys(widgets).map((key) => {
       const changeKey = widgets[key].props.changeKey;
       const [side, line] = getSideAndLine(changeKey);
-      widgets[key].props.comments.map(({ body }: any) => {
-        comments.push({ path: '', line: line, side: side, body: body });
+      widgets[key].props.comments.map(({ path, body }: any) => {
+        comments.push({ path: path, line: line, side: side, body: body });
       });
     });
     post(comments);

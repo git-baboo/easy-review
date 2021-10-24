@@ -33,6 +33,7 @@ type Props = {
 
 const DiffFile = ({ oldPath, newPath, type, hunks, widgets, addWidget }: Props) => {
   const headerPath = oldPath === newPath ? oldPath : `${oldPath} → ${newPath}`;
+  const postPath = type === 'delete' ? oldPath : newPath;
   const ButtonTextList = ['❓ 質問', '✨ 素敵', '🤔 改善'];
 
   const renderGutter = ({ side, renderDefault, inHoverState }: any) =>
@@ -66,7 +67,7 @@ const DiffFile = ({ oldPath, newPath, type, hunks, widgets, addWidget }: Props) 
     return {
       onClick({ change }: any) {
         const key = getChangeKey(change);
-        addWidget(key);
+        addWidget(key, postPath);
       },
     };
   }, [addWidget]);

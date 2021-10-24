@@ -14,6 +14,7 @@ const useWidgets = (reviewer: any) => {
           [action.payload.key]: {
             id: uniqueId('widget-'),
             draft: '',
+            path: action.payload.path,
             comments: [],
           },
         };
@@ -37,6 +38,7 @@ const useWidgets = (reviewer: any) => {
                 id: uniqueId('comment-'),
                 author: reviewer.userName,
                 avatarUrl: reviewer.avatarUrl,
+                path: previous.path,
                 body: previous.draft,
               },
             ],
@@ -47,7 +49,10 @@ const useWidgets = (reviewer: any) => {
     }
   }, {});
 
-  const addWidget = useCallback((key) => dispatch({ type: 'add', payload: { key } }), []);
+  const addWidget = useCallback(
+    (key, path) => dispatch({ type: 'add', payload: { key, path } }),
+    []
+  );
 
   const writeComment = useCallback(
     (key, body) => dispatch({ type: 'input', payload: { key, body } }),
