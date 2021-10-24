@@ -14,7 +14,6 @@ import {
 import React from 'react';
 
 import LoginButton from '@/components/login/LoginButton';
-import LogoImage from '@/images/app_icon.png';
 
 const LoginPage = () => {
   const mediaType = useBreakpointValue({ base: 'phone', md: 'pc' });
@@ -23,7 +22,7 @@ const LoginPage = () => {
     <Flex bgColor="teal.500" h="100vh">
       <Container maxW="container.md" color="white">
         <Box mt={40}>
-          <Image src={LogoImage} borderRadius="full" boxSize="150px" />
+          <Image src="/app_icon.png" borderRadius="full" boxSize="150px" />
           <Heading size="xl" mt={3}>
             Easy Review
           </Heading>
