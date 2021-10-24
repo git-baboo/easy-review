@@ -48,7 +48,7 @@ type Props = {
 
 const ReviewPopover = ({ handleClick, children }: Props) => {
   return (
-    <Popover>
+    <Popover gutter={0}>
       <PopoverTrigger>{children}</PopoverTrigger>
       <Portal>
         <PopoverContent>
