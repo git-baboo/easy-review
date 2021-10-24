@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, Text, Container, HStack, Divider, Center } from '@chakra-ui/layout';
-import { Avatar, Button } from '@chakra-ui/react';
+import { Avatar, Button, useToast } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { BsFillChatDotsFill } from 'react-icons/bs';
 import { useParams, useHistory } from 'react-router';
@@ -29,6 +29,7 @@ const ReviewPage = () => {
   const { octokit } = useApi();
   const { reviewId } = useCurrentUser();
   const history = useHistory();
+  const toast = useToast();
 
   useEffect(() => {
     octokit
@@ -77,6 +78,16 @@ const ReviewPage = () => {
       pull_number: Number(pullNumber),
       review_id: reviewId,
       event: 'COMMENT',
+    });
+
+    toast({
+      position: 'top',
+      duration: 2000,
+      render: () => (
+        <Box color="teal" p={3} bg="white">
+          コメントの追加が完了しました
+        </Box>
+      ),
     });
 
     history.push('/');
