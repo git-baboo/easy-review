@@ -61,7 +61,7 @@ const Widget = ({ changeKey, comments, draft, onDraftChange, onSubmit }: any) =>
   return (
     <Box m={4}>
       <List>{comments.map(CommentList)}</List>
-      <Textarea value={draft} onChange={input} />
+      <Textarea h={150} value={draft} onChange={input} />
       <Flex>
         <Spacer />
         <Button
