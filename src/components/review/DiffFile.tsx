@@ -33,7 +33,7 @@ type Props = {
 
 const DiffFile = ({ oldPath, newPath, type, hunks, widgets, addWidget }: Props) => {
   const headerPath = oldPath === newPath ? oldPath : `${oldPath} → ${newPath}`;
-  const ButtonTextList = ['❓ 質問', '✨ 素敵', '🤔 改善'];
+  const ButtonTextList = ['❓ 質問', '✨ 素敵', '🤔 なんでだろ〜'];
 
   const renderGutter = ({ side, renderDefault, inHoverState }: any) =>
     inHoverState && side === 'new' ? (
