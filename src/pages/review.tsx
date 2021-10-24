@@ -84,7 +84,7 @@ const ReviewPage = () => {
       position: 'top',
       duration: 2000,
       render: () => (
-        <Box color="teal" p={3} bg="white">
+        <Box color="teal" p={3} bg="white" borderRadius="md">
           コメントの追加が完了しました
         </Box>
       ),
