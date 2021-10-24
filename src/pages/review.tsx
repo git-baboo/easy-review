@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, Text, Container, HStack, Divider, Center } from '@chakra-ui/layout';
 import { Avatar, Button } from '@chakra-ui/react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BiCommentAdd } from 'react-icons/bi';
 import { BsFillChatDotsFill } from 'react-icons/bs';
 import { useParams } from 'react-router';
@@ -12,11 +12,12 @@ import DiffFiles from '@/components/review/DiffFiles';
 import Popover from '@/components/review/Popover';
 import ReviewTitle from '@/components/review/ReviewTitle';
 import useWidgets from '@/components/review/useWidgets';
-import { dummyDiff as diff } from '@/data/dummyDiff'; // TODO: ダミーデータ入れ換え
 import { dummyPost as post } from '@/data/dummyPost'; // TODO: ダミーデータ入れ替え
 import { pullRequest } from '@/data/dummyPullRequest'; // TODO: ダミーデータ入れ替え
 import { reviewer } from '@/data/dummyReviewer';
+import { useApi } from '@/hooks/useApi';
 import { Comment } from '@/types/CommentType';
+
 type Path = {
   owner: string;
   repo: string;
@@ -25,9 +26,25 @@ type Path = {
 
 const ReviewPage = () => {
   // TODO: pullNumber を使用したら ESLint 警告無視用のコメントを削除
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [diff, setDiff] = useState<string>('');
   const { owner, repo, pullNumber } = useParams<Path>();
   const [widgets, { addWidget }]: any = useWidgets(reviewer);
+  const { octokit } = useApi();
+
+  useEffect(() => {
+    octokit
+      .request('GET /repos/{owner}/{repo}/pulls/{pull_number}', {
+        headers: {
+          Accept: 'application/vnd.github.v3.diff', // NOTE: diff データを取得するため
+        },
+        owner: owner,
+        repo: repo,
+        pull_number: Number(pullNumber),
+      })
+      .then((response) => {
+        setDiff(String(response.data));
+      });
+  }, []);
 
   const getSideAndLine = (changeKey: string): [string, string] => {
     const changeType = changeKey.slice(0, 1);
