@@ -3,7 +3,7 @@ import { Box, Text, Container, HStack, Divider, Center } from '@chakra-ui/layout
 import { Avatar, Button } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { BsFillChatDotsFill } from 'react-icons/bs';
-import { useParams } from 'react-router';
+import { useParams, useHistory } from 'react-router';
 
 import Layout from '@/components/Layout';
 import TemplateList from '@/components/TemplateList';
@@ -28,6 +28,7 @@ const ReviewPage = () => {
   const [widgets, { addWidget }]: any = useWidgets(reviewer);
   const { octokit } = useApi();
   const { reviewId } = useCurrentUser();
+  const history = useHistory();
 
   useEffect(() => {
     octokit
@@ -77,6 +78,8 @@ const ReviewPage = () => {
       review_id: reviewId,
       event: 'COMMENT',
     });
+
+    history.push('/');
   };
 
   return (
