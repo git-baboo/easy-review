@@ -64,9 +64,28 @@ const ReviewPage = () => {
       const changeKey = widgets[key].props.changeKey;
       const [side, line] = getSideAndLine(changeKey);
       widgets[key].props.comments.map(({ path, body }: any) => {
-        comments.push({ path: path, line: line, side: side, body: body });
+        comments.push({ path: path, line: Number(line), side: side, body: body });
       });
     });
+    octokit
+      .request('POST /repos/{owner}/{repo}/pulls/{pull_number}/reviews', {
+        owner: owner,
+        repo: repo,
+        pull_number: Number(pullNumber),
+        comments: comments,
+      })
+      .then((response) => {
+        octokit.request(
+          'POST /repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}/events',
+          {
+            owner: owner,
+            repo: repo,
+            pull_number: Number(pullNumber),
+            review_id: response.data.id,
+            event: 'COMMENT',
+          }
+        );
+      });
   };
 
   return (
