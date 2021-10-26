@@ -42,6 +42,7 @@ const ReviewPage = () => {
   const { octokit } = useApi();
   const history = useHistory();
   const toast = useToast();
+  let random_number: number;
 
   useEffect(() => {
     octokit
@@ -118,12 +119,13 @@ const ReviewPage = () => {
         );
       });
 
+    random_number = Math.floor(Math.random() * 3);
     toast({
       position: 'top',
       duration: 2000,
       render: () => (
         <Box color="teal" p={3} bg="white" borderRadius="md" align="center">
-          {toast_text[1]}
+          {toast_text[random_number]}
         </Box>
       ),
     });
