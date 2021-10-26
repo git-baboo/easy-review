@@ -119,7 +119,7 @@ const ReviewPage = () => {
         );
       });
 
-    random_number = Math.floor(Math.random() * 3);
+    random_number = Math.floor(Math.random() * toast_text.length);
     toast({
       position: 'top',
       duration: 2000,
