@@ -32,6 +32,8 @@ const initialPull = {
   avatarUrl: '',
 };
 
+const toast_text = ['レビューお疲れ様でした！', 'レビューありがとう！'];
+
 const ReviewPage = () => {
   const [diff, setDiff] = useState<string>('');
   const [pull, setPull] = useState<Pull>(initialPull);
@@ -120,8 +122,8 @@ const ReviewPage = () => {
       position: 'top',
       duration: 2000,
       render: () => (
-        <Box color="teal" p={3} bg="white" borderRadius="md">
-          コメントの追加が完了しました
+        <Box color="teal" p={3} bg="white" borderRadius="md" align="center">
+          {toast_text[1]}
         </Box>
       ),
     });
