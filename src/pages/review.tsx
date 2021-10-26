@@ -42,7 +42,6 @@ const ReviewPage = () => {
   const { octokit } = useApi();
   const history = useHistory();
   const toast = useToast();
-  let random_number: number;
 
   useEffect(() => {
     octokit
@@ -119,7 +118,7 @@ const ReviewPage = () => {
         );
       });
 
-    random_number = Math.floor(Math.random() * toast_text.length);
+    const random_number = Math.floor(Math.random() * toast_text.length);
     toast({
       position: 'top',
       duration: 2000,
