@@ -1,9 +1,9 @@
 import { Avatar } from '@chakra-ui/avatar';
 import { Flex, Text } from '@chakra-ui/layout';
 
-import { PullRequest } from '@/types/PullRequestType';
+import { PullRequestType } from '@/types/PullRequestType';
 
-type Props = { pullRequest: PullRequest };
+type Props = { pullRequest: PullRequestType };
 
 const Reviewee = ({ pullRequest }: Props) => {
   return (
