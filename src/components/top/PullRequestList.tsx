@@ -2,21 +2,16 @@ import { Box, Heading, StackDivider, Text, VStack } from '@chakra-ui/react';
 import React from 'react';
 import { useHistory } from 'react-router';
 
-type Pull = {
-  pullNumber: number;
-  ownerName: string;
-  repoName: string;
-  title: string;
-};
+import { TopPullRequestType } from '@/types/PullRequestType';
 
 type Props = {
-  pulls: Pull[];
+  pulls: TopPullRequestType[];
 };
 
 const PullRequestList = ({ pulls }: Props) => {
   const history = useHistory();
 
-  const handleClick = (pullRequest: Pull) => {
+  const handleClick = (pullRequest: TopPullRequestType) => {
     history.push(`/${pullRequest.ownerName}/${pullRequest.repoName}/${pullRequest.pullNumber}`);
   };
 

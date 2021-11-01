@@ -8,7 +8,7 @@ import ReviewButton from '@/components/detail/ReviewButton';
 import Reviewee from '@/components/detail/Reviewee';
 import TimelineItem from '@/components/detail/TimelineItem';
 import { useApi } from '@/hooks/useApi';
-import { PullRequestType } from '@/types/PullRequestType';
+import { DetailPullRequestType } from '@/types/PullRequestType';
 
 type Path = {
   owner: string;
@@ -16,7 +16,7 @@ type Path = {
   pullNumber: string;
 };
 
-const initialPullRequest: PullRequestType = {
+const initialPullRequest: DetailPullRequestType = {
   title: '',
   userName: '',
   avatarUrl: '',
@@ -24,7 +24,7 @@ const initialPullRequest: PullRequestType = {
 };
 
 const DetailPage = () => {
-  const [pullRequest, setPullRequest] = useState<PullRequestType>(initialPullRequest);
+  const [pullRequest, setPullRequest] = useState<DetailPullRequestType>(initialPullRequest);
   const { owner, repo, pullNumber } = useParams<Path>();
   const { octokit } = useApi();
 

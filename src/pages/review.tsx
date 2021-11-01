@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, Text, Container, HStack, Divider, Center } from '@chakra-ui/layout';
 import { Avatar, Button, useToast } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
@@ -13,17 +12,12 @@ import useWidgets from '@/components/review/useWidgets';
 import { reviewer } from '@/data/dummyReviewer';
 import { useApi } from '@/hooks/useApi';
 import { Comment } from '@/types/CommentType';
+import { ReviewPullRequestType } from '@/types/PullRequestType';
 
 type Path = {
   owner: string;
   repo: string;
   pullNumber: string;
-};
-
-type Pull = {
-  title: string;
-  userName: string | undefined;
-  avatarUrl: string | undefined;
 };
 
 const initialPull = {
@@ -34,7 +28,7 @@ const initialPull = {
 
 const ReviewPage = () => {
   const [diff, setDiff] = useState<string>('');
-  const [pull, setPull] = useState<Pull>(initialPull);
+  const [pull, setPull] = useState<ReviewPullRequestType>(initialPull);
   const { owner, repo, pullNumber } = useParams<Path>();
   const [widgets, { addWidget }]: any = useWidgets(reviewer);
   const { octokit } = useApi();
