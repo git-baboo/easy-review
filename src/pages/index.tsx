@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { BsCheckCircleFill } from 'react-icons/bs';
 
 import Layout from '@/components/Layout';
-import PullRequestList from '@/components/toppage/PullRequestList';
+import PullRequestList from '@/components/top/PullRequestList';
 import { useApi } from '@/hooks/useApi';
 import { useCurrentUser } from '@/hooks/useCurrentUser';
 
