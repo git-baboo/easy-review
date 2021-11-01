@@ -6,16 +6,10 @@ import Layout from '@/components/Layout';
 import PullRequestList from '@/components/top/PullRequestList';
 import { useApi } from '@/hooks/useApi';
 import { useCurrentUser } from '@/hooks/useCurrentUser';
-
-type Pull = {
-  pullNumber: number;
-  ownerName: string;
-  repoName: string;
-  title: string;
-};
+import { TopPullRequestType } from '@/types/PullRequestType';
 
 const TopPage = () => {
-  const [pulls, setPulls] = useState<Pull[]>([]);
+  const [pulls, setPulls] = useState<TopPullRequestType[]>([]);
   const { octokit } = useApi();
   const { username } = useCurrentUser();
 
@@ -36,10 +30,10 @@ const TopPage = () => {
         })
         .then((response) => {
           const items = response.data.items;
-          const newPulls: Pull[] = [];
+          const newPulls: TopPullRequestType[] = [];
           items.map((item) => {
             octokit.request(`GET ${item.repository_url}`).then((response) => {
-              const pullRequest: Pull = {
+              const pullRequest: TopPullRequestType = {
                 pullNumber: item.number,
                 ownerName: response.data.organization.login,
                 repoName: response.data.name,
