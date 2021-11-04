@@ -15,7 +15,7 @@ type CustomProps = {
 
 type Props = StackProps & CustomProps;
 
-const DiffFiles = ({ diff, widgets, addWidget, ...props }: Props) => {
+const DiffFileList = ({ diff, widgets, addWidget, ...props }: Props) => {
   const files = parseDiff(diff);
 
   return (
@@ -35,4 +35,4 @@ const DiffFiles = ({ diff, widgets, addWidget, ...props }: Props) => {
   );
 };
 
-export default DiffFiles;
+export default DiffFileList;
