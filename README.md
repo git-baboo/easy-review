@@ -1,46 +1,41 @@
 # Easy Review
 
-## アプリケーションの起動
+Easy Review は初心者エンジニアのためのレビュー投稿サービスです。
 
-### VSCode を用いる場合
+![demo.gif](https://github.com/git-baboo/easy-review/blob/images/demo.gif?raw=true)
 
-VSCode を用いる場合は Remote Container を使用して起動すると便利です。
+## ✨ 特徴
 
-### VSCode を用いない場合
+### 初心者エンジニアに寄り添った UI
 
-以下のコマンドを順に実行してください。
+日本語による表記や不要な情報の削除により、初心者エンジニアに寄り添った UI を実現しています。
 
-```shell
-make i
-make up
+### テンプレート機能によるレビューコメントの容易化
 
-# make コマンドを使用しない場合は以下のコマンドを実行してください
-docker compose run --rm app yarn install
-docker compose up
-```
+あらかじめ用意されたテンプレートに沿ってレビューコメントを記述することで、「どうコメントを書けば良いかわからない」「何に対してコメントすれば良いかわからない」といった悩みを解消できます。
 
-## 確認
+### GitHub への自動投稿機能
 
-コンテナが立ち上がったら以下のリンクにアクセスしてください。`App`の文字列が確認できれば問題なく起動しています。
+Easy Review 内で投稿したコメントはすべて GitHub のプルリクエストにレビューコメントとして投稿されます。この体験により、初心者エンジニアの GitHub に対する不安感や障壁を取り除くことに成功しています。
 
-http://localhost:3000
+## 🧑‍💻 開発体制
+| メンバー | 役割 |
+| --- | --- |
+| [<div style='display: flex; align-items: center; height: 30px'><img src="https://github.com/watagit.png" width='20' height='20' style='border-radius: 100%; margin-right: 5px' /><p style='font-size: 15px'>watagit</p></div>](https://github.com/watagit) | マネジメント, デザイン作成, API通信周り |
+| [<div style='display: flex; align-items: center; height: 30px'><img src="https://github.com/ltoppyl.png" width='20' height='20' style='border-radius: 100%; margin-right: 5px' /><p style='font-size: 15px'>ltoppyl</p></div>](https://github.com/ltoppyl) | UI, ロジック実装 |
+| [<div style='display: flex; align-items: center; height: 30px'><img src="https://github.com/kacha-122.png" width='20' height='20' style='border-radius: 100%; margin-right: 5px' /><p style='font-size: 15px'>kacha-122</p></div>](https://github.com/kacha-122) | ドメインエキスパート, UI実装 |
+| [<div style='display: flex; align-items: center; height: 30px'><img src="https://github.com/mikiya1130.png" width='20' height='20' style='border-radius: 100%; margin-right: 5px' /><p style='font-size: 15px'>mikiya1130</p></div>](https://github.com/mikiya1130) | UI, ロジック実装 |
 
-## その他便利コマンド
+## 👀 備考
+- サポーターズ 技育CAMP ハッカソンvol.10 最優秀賞受賞
+- 2021年12月末 Ver. 1.0 リリース予定
 
-### ESLint
-
-```shell
-make lint
-
-# make コマンドを使用しない場合
-docker compose exec app yarn lint
-```
-
-### Prettier
+<!--
+開発者向け情報
+## 🏃 セットアップ‍
 
 ```shell
-make format
-
-# make コマンドを使用しない場合
-docker compose exec app yarn format
+yarn
+yarn start
 ```
+-->
