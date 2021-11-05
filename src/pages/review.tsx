@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, Text, Container, HStack, Divider, Center } from '@chakra-ui/layout';
 import { Avatar, Button, useToast } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
