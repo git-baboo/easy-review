@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, Text, Container, HStack, Divider, Center } from '@chakra-ui/layout';
 import { Avatar, Button, useToast } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
@@ -5,7 +6,7 @@ import { BsFillChatDotsFill } from 'react-icons/bs';
 import { useParams, useHistory } from 'react-router';
 
 import Layout from '@/components/Layout';
-import DiffFiles from '@/components/review/DiffFiles';
+import DiffFileList from '@/components/review/DiffFileList';
 import ReviewTitle from '@/components/review/ReviewTitle';
 import TemplateList from '@/components/review/TemplateList';
 import useWidgets from '@/components/review/useWidgets';
@@ -137,7 +138,7 @@ const ReviewPage = () => {
                   {pull.userName}
                 </Text>
               </Box>
-              <DiffFiles
+              <DiffFileList
                 spacing={6}
                 mt={3}
                 w={700}
