@@ -18,4 +18,4 @@ yarn start
 | [@mikiya1130](https://github.com/mikiya1130) | UI, ロジック実装 |
 
 ## 👀 備考
-- サポーターズ 技育CAMP ハッカソンvol.10 最優秀賞受賞
+- サポーターズ 技育CAMP 2021 ハッカソンvol.10 最優秀賞受賞 🎉
