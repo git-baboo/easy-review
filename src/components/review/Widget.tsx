@@ -1,8 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button } from '@chakra-ui/button';
-import { Box, List, Spacer } from '@chakra-ui/layout';
-import { Flex } from '@chakra-ui/react';
-import { Textarea } from '@chakra-ui/textarea';
+import { Box, Button, Flex, List, Spacer, Textarea } from '@chakra-ui/react';
 import React, { useCallback } from 'react';
 
 import CommentList from '@/components/review/CommentList';
