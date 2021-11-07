@@ -9,7 +9,7 @@ const LoginButton = () => {
 
   return (
     <Button
-      leftIcon={<DiGithubBadge color="black" size="25" />}
+      leftIcon={<DiGithubBadge color="black" size={25} />}
       bgColor="white"
       color="black"
       mt={8}
