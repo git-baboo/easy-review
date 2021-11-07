@@ -19,7 +19,7 @@ const templates = [
 ];
 
 const TemplateList = () => {
-  const [scroll, setScroll] = useState<number>(0);
+  const [scrollAmount, setScrollAmount] = useState<number>(0);
   const [leftCoordinate, setLeftCoordinate] = useState<number>(1000);
   const initialCoordinate = 170;
 
@@ -32,7 +32,7 @@ const TemplateList = () => {
     const tmp =
       document.documentElement.scrollTop || // IE、Firefox、Opera
       document.body.scrollTop; // Chrome、Safari
-    setScroll(tmp);
+    setScrollAmount(tmp);
 
     // 絶対座標の取得
     const targetElement = document.getElementById('target');
@@ -42,7 +42,7 @@ const TemplateList = () => {
     }
   };
 
-  return scroll < initialCoordinate ? (
+  return scrollAmount < initialCoordinate ? (
     <VStack id="target" h={420} p={5} spacing={5} position="sticky" shadow="base">
       {templates.map((template) => (
         <Template key={template.title} title={template.title} description={template.description} />
