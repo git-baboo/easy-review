@@ -17,7 +17,6 @@ const PullRequestList = ({ pulls }: Props) => {
 
   return (
     <VStack align="stretch" my={6} spacing={6} divider={<StackDivider />}>
-      {/* TODO: API から取得したデータに置き換える */}
       {pulls.map((pullRequest, index) => (
         <Box key={index} mx={8}>
           <Box

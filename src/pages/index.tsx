@@ -13,15 +13,6 @@ const TopPage = () => {
   const { octokit } = useApi();
   const { username } = useCurrentUser();
 
-  // FIXME: 開発者コンソールを開きながらだとデータが正常に表示される
-  useEffect(() => {
-    console.log('hello');
-  }, []);
-
-  useEffect(() => {
-    console.log('hello');
-  }, []);
-
   useEffect(() => {
     if (username) {
       octokit
