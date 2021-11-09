@@ -1,18 +1,19 @@
 import { Avatar, Text, Box } from '@chakra-ui/react';
 import React from 'react';
 
-import { ReviewPullRequestType, TopPullRequestType } from '@/types/PullRequestType';
+import { ReviewPullRequestType } from '@/types/PullRequestType';
 
 type Props = {
-  ownerrepoName: Pick<TopPullRequestType, 'ownerName' | 'repoName'>;
+  ownerName: string;
+  repoName: string;
   pull: ReviewPullRequestType;
 };
 
-const ReviewTitleNew = ({ ownerrepoName, pull }: Props) => {
+const ReviewTitleNew = ({ ownerName, repoName, pull }: Props) => {
   return (
     <Box width={700} align="start">
       <Text color="gray" fontSize="xs">
-        {`${ownerrepoName.ownerName}/${ownerrepoName.repoName}`}
+        {`${ownerName}/${repoName}`}
       </Text>
       <Text color="black" fontSize="md">
         {pull.title}
