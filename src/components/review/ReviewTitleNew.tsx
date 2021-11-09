@@ -1,4 +1,4 @@
-import { Avatar, Text } from '@chakra-ui/react';
+import { Avatar, Text, Box } from '@chakra-ui/react';
 import React from 'react';
 
 // import { ReviewPullRequestType } from '@/types/PullRequestType';
@@ -13,7 +13,7 @@ type Props = {
 
 const ReviewTitleNew = ({ ownerName, repoName, reviewTitle, userName, avatarUrl }: Props) => {
   return (
-    <>
+    <Box width={700} align="start">
       <Text color="gray" fontSize="xs">
         {`${ownerName}/${repoName}`}
       </Text>
@@ -24,7 +24,7 @@ const ReviewTitleNew = ({ ownerName, repoName, reviewTitle, userName, avatarUrl 
         <Avatar name={userName} src={avatarUrl} size="2xs" />
         {userName}
       </Text>
-    </>
+    </Box>
   );
 };
 

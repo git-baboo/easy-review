@@ -130,15 +130,14 @@ const ReviewPage = () => {
         <Container py={9} maxW="container.lg">
           <HStack spacing="50px" align="top">
             <Box align="end">
-              <Box width={700} align="start">
-                <ReviewTitleNew
-                  ownerName={owner}
-                  repoName={repo}
-                  reviewTitle={pull.title}
-                  userName={pull.userName}
-                  avatarUrl={pull.avatarUrl}
-                />
-              </Box>
+              <ReviewTitleNew
+                ownerName={owner}
+                repoName={repo}
+                reviewTitle={pull.title}
+                userName={pull.userName}
+                avatarUrl={pull.avatarUrl}
+              />
+
               <DiffFileList
                 spacing={6}
                 mt={3}
