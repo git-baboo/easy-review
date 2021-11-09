@@ -5,16 +5,16 @@ import React from 'react';
 import { ReviewPullRequestType } from '@/types/PullRequestType';
 
 type Props = {
-  ownerName: string;
-  repoName: string;
+  owner: string;
+  repo: string;
   pull: ReviewPullRequestType;
 };
 
-const ReviewTitle = ({ ownerName, repoName, pull }: Props) => {
+const ReviewTitle = ({ owner, repo, pull }: Props) => {
   return (
     <Box width={700} align="start">
       <Text color="gray" fontSize="xs">
-        {`${ownerName}/${repoName}`}
+        {`${owner}/${repo}`}
       </Text>
       <Text color="black" fontSize="md">
         {pull.title}
