@@ -7,7 +7,7 @@ import { useParams, useHistory } from 'react-router';
 
 import Layout from '@/components/Layout';
 import DiffFileList from '@/components/review/DiffFileList';
-import ReviewTitleNew from '@/components/review/ReviewTitleNew';
+import ReviewTitle from '@/components/review/ReviewTitle';
 import TemplateList from '@/components/review/TemplateList';
 import useWidgets from '@/components/review/useWidgets';
 import { reviewer } from '@/data/dummyReviewer';
@@ -130,7 +130,7 @@ const ReviewPage = () => {
         <Container py={9} maxW="container.lg">
           <HStack spacing="50px" align="top">
             <Box align="end">
-              <ReviewTitleNew ownerName={owner} repoName={repo} pull={pull} />
+              <ReviewTitle ownerName={owner} repoName={repo} pull={pull} />
               <DiffFileList
                 spacing={6}
                 mt={3}
