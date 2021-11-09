@@ -7,8 +7,8 @@ type Props = {
   ownerName: string;
   repoName: string;
   reviewTitle: string;
-  userName: string;
-  avatarUrl: string;
+  userName: string | undefined;
+  avatarUrl: string | undefined;
 };
 
 const ReviewTitleNew = ({ ownerName, repoName, reviewTitle, userName, avatarUrl }: Props) => {

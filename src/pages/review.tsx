@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Box, Text, Container, HStack, Divider, Center } from '@chakra-ui/layout';
-import { Avatar, Button, useToast } from '@chakra-ui/react';
+import { Box, Container, HStack, Divider, Center } from '@chakra-ui/layout';
+import { Button, useToast } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { BsFillChatDotsFill } from 'react-icons/bs';
 import { useParams, useHistory } from 'react-router';
 
 import Layout from '@/components/Layout';
 import DiffFileList from '@/components/review/DiffFileList';
-import ReviewTitle from '@/components/review/ReviewTitle';
+import ReviewTitleNew from '@/components/review/ReviewTitleNew';
 import TemplateList from '@/components/review/TemplateList';
 import useWidgets from '@/components/review/useWidgets';
 import { reviewer } from '@/data/dummyReviewer';
@@ -131,12 +131,13 @@ const ReviewPage = () => {
           <HStack spacing="50px" align="top">
             <Box align="end">
               <Box width={700} align="start">
-                <ReviewTitle color="gray" fontSize="xs" title={`${owner}/${repo}`} />
-                <ReviewTitle color="black" fontSize="md" title={pull.title} />
-                <Text color="black" fontSize="xs">
-                  <Avatar name={pull.userName} src={pull.avatarUrl} size="2xs" />
-                  {pull.userName}
-                </Text>
+                <ReviewTitleNew
+                  ownerName={owner}
+                  repoName={repo}
+                  reviewTitle={pull.title}
+                  userName={pull.userName}
+                  avatarUrl={pull.avatarUrl}
+                />
               </Box>
               <DiffFileList
                 spacing={6}
