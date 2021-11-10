@@ -10,7 +10,7 @@ type Props = {
   pull: ReviewPullRequestType;
 };
 
-const ReviewTitle = ({ owner, repo, pull }: Props) => {
+const PullRequestHeading = ({ owner, repo, pull }: Props) => {
   return (
     <Box width={700} align="start">
       <Text color="gray" fontSize="xs">
@@ -27,4 +27,4 @@ const ReviewTitle = ({ owner, repo, pull }: Props) => {
   );
 };
 
-export default ReviewTitle;
+export default PullRequestHeading;
