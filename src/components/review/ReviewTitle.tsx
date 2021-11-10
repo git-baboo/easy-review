@@ -14,7 +14,7 @@ const ReviewTitle = ({ owner, repo, pull }: Props) => {
   return (
     <Box width={700} align="start">
       <Text color="gray" fontSize="xs">
-        {`${owner}/${repo}`}
+        {owner}/{repo}
       </Text>
       <Text color="black" fontSize="md">
         {pull.title}
