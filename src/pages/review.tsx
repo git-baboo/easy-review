@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Box, Container, HStack, Divider, Center } from '@chakra-ui/layout';
-import { Button, useToast } from '@chakra-ui/react';
+import { Button, Box, Container, HStack, Divider, Center, useToast } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { BsFillChatDotsFill } from 'react-icons/bs';
 import { useParams, useHistory } from 'react-router';
