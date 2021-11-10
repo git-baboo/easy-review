@@ -1,5 +1,4 @@
-import { Text } from '@chakra-ui/layout';
-import { Avatar, Box } from '@chakra-ui/react';
+import { Avatar, Box, Text } from '@chakra-ui/react';
 import React from 'react';
 
 import { ReviewPullRequestType } from '@/types/PullRequestType';
