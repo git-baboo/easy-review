@@ -10,6 +10,21 @@ type Props = {
 };
 
 const useWidgets = ({ userName, avatarUrl }: Props) => {
+  type StateType = {
+    id: string;
+    path: string;
+    draft: string;
+    comments:
+      | {
+          id: string;
+          author: string;
+          avatarUrl: string;
+          path: string;
+          body: string;
+        }[]
+      | [];
+  };
+
   type ActionType =
     | {
         type: 'add';
@@ -24,8 +39,8 @@ const useWidgets = ({ userName, avatarUrl }: Props) => {
         payload: { key: number; body: string };
       };
 
-  const [widgetsData, dispatch] = useReducer((state: any, action: ActionType) => {
-    const previous = state[action?.payload?.key] ?? {};
+  const [widgetsData, dispatch] = useReducer((state: StateType[], action: ActionType) => {
+    const previous = state[action.payload.key] ?? {};
     switch (action.type) {
       case 'add':
         return {
@@ -66,7 +81,7 @@ const useWidgets = ({ userName, avatarUrl }: Props) => {
       default:
         return state;
     }
-  }, {});
+  }, []);
 
   const addWidget = useCallback(
     (key, path, body) => dispatch({ type: 'add', payload: { key, path, body } }),
