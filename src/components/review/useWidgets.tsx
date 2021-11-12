@@ -2,6 +2,7 @@ import { mapValues, uniqueId } from 'lodash';
 import { useCallback, useReducer } from 'react';
 
 import Widget from '@/components/review/Widget';
+import { PreviewComment } from '@/types/CommentType';
 
 type Props = {
   userName: string;
@@ -13,15 +14,7 @@ const useWidgets = ({ userName, avatarUrl }: Props) => {
     id: string;
     path: string;
     draft: string;
-    comments:
-      | {
-          id: string;
-          author: string;
-          avatarUrl: string;
-          path: string;
-          body: string;
-        }[]
-      | [];
+    comments: PreviewComment[];
   };
 
   type ActionType =

@@ -12,7 +12,7 @@ import TemplateList from '@/components/review/TemplateList';
 import useWidgets from '@/components/review/useWidgets';
 import { reviewer } from '@/data/dummyReviewer';
 import { useApi } from '@/hooks/useApi';
-import { Comment } from '@/types/CommentType';
+import { Comment, PreviewComment } from '@/types/CommentType';
 import { ReviewPullRequestType } from '@/types/PullRequestType';
 
 type Path = {
@@ -86,7 +86,7 @@ const ReviewPage = () => {
     Object.keys(widgets).map((key) => {
       const changeKey = widgets[key].props.changeKey;
       const [side, line] = getSideAndLine(changeKey);
-      widgets[key].props.comments.map(({ path, body }: any) => {
+      widgets[key].props.comments.map(({ path, body }: PreviewComment) => {
         comments.push({ path: path, line: Number(line), side: side, body: body });
       });
     });
