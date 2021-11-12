@@ -10,7 +10,21 @@ type Props = {
 };
 
 const useWidgets = ({ userName, avatarUrl }: Props) => {
-  const [widgetsData, dispatch] = useReducer((state: any, action: any) => {
+  type ActionType =
+    | {
+        type: 'add';
+        payload: { key: number; path: string; body: string };
+      }
+    | {
+        type: 'input';
+        payload: { key: number; body: string };
+      }
+    | {
+        type: 'submit';
+        payload: { key: number; body: string };
+      };
+
+  const [widgetsData, dispatch] = useReducer((state: any, action: ActionType) => {
     const previous = state[action?.payload?.key] ?? {};
     switch (action.type) {
       case 'add':
