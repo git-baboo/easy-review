@@ -4,7 +4,12 @@ import { useCallback, useReducer } from 'react';
 
 import Widget from '@/components/review/Widget';
 
-const useWidgets = (reviewer: any) => {
+type Props = {
+  userName: string;
+  avatarUrl: string;
+};
+
+const useWidgets = ({ userName, avatarUrl }: Props) => {
   const [widgetsData, dispatch] = useReducer((state: any, action: any) => {
     const previous = state[action?.payload?.key] ?? {};
     switch (action.type) {
@@ -36,8 +41,8 @@ const useWidgets = (reviewer: any) => {
               ...previous.comments,
               {
                 id: uniqueId('comment-'),
-                author: reviewer.userName,
-                avatarUrl: reviewer.avatarUrl,
+                author: userName,
+                avatarUrl: avatarUrl,
                 path: previous.path,
                 body: previous.draft,
               },
