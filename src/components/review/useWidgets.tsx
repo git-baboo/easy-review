@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { mapValues, uniqueId } from 'lodash';
 import { useCallback, useReducer } from 'react';
 
@@ -98,6 +97,7 @@ const useWidgets = ({ userName, avatarUrl }: Props) => {
     []
   );
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const renderWidget = (data: any, key: any) => (
     <Widget changeKey={key} {...data} onDraftChange={writeComment} onSubmit={submitComment} />
   );
