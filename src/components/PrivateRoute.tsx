@@ -14,7 +14,6 @@ const PrivateRoute = ({ path, component }: Props) => {
   const history = useHistory();
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onAuthStateChanged(auth, (user) => {
       if (!user) {
         history.push('/login');
