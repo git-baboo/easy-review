@@ -33,7 +33,12 @@ const ReviewPage = () => {
   const [widgets, { addWidget }]: any = useWidgets(reviewer);
   const { octokit } = useApi();
   const history = useHistory();
-  const toast = useToast();
+  const toast = useToast({
+    title: 'コメントの追加が完了しました',
+    position: 'top',
+    variant: 'subtle',
+    status: 'success',
+  });
 
   useEffect(() => {
     octokit
@@ -110,15 +115,7 @@ const ReviewPage = () => {
         );
       });
 
-    toast({
-      position: 'top',
-      duration: 2000,
-      render: () => (
-        <Box color="teal" p={3} bg="white" borderRadius="md">
-          コメントの追加が完了しました
-        </Box>
-      ),
-    });
+    toast();
 
     history.push('/');
   };
