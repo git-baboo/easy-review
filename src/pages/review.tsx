@@ -38,6 +38,7 @@ const ReviewPage = () => {
     position: 'top',
     variant: 'subtle',
     status: 'success',
+    duration: 2000,
   });
 
   useEffect(() => {
