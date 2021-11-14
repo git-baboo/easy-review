@@ -1,12 +1,38 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { mapValues, uniqueId } from 'lodash';
 import { useCallback, useReducer } from 'react';
 
 import Widget from '@/components/review/Widget';
+import { PreviewComment } from '@/types/CommentType';
 
-const useWidgets = (reviewer: any) => {
-  const [widgetsData, dispatch] = useReducer((state: any, action: any) => {
-    const previous = state[action?.payload?.key] ?? {};
+type Props = {
+  userName: string;
+  avatarUrl: string;
+};
+
+const useWidgets = ({ userName, avatarUrl }: Props) => {
+  type StateType = {
+    id: string;
+    path: string;
+    draft: string;
+    comments: PreviewComment[];
+  };
+
+  type ActionType =
+    | {
+        type: 'add';
+        payload: { key: number; path: string; body: string };
+      }
+    | {
+        type: 'input';
+        payload: { key: number; body: string };
+      }
+    | {
+        type: 'submit';
+        payload: { key: number; body: string };
+      };
+
+  const [widgetsData, dispatch] = useReducer((state: StateType[], action: ActionType) => {
+    const previous = state[action.payload.key] ?? {};
     switch (action.type) {
       case 'add':
         return {
@@ -36,8 +62,8 @@ const useWidgets = (reviewer: any) => {
               ...previous.comments,
               {
                 id: uniqueId('comment-'),
-                author: reviewer.userName,
-                avatarUrl: reviewer.avatarUrl,
+                author: userName,
+                avatarUrl: avatarUrl,
                 path: previous.path,
                 body: previous.draft,
               },
@@ -47,7 +73,7 @@ const useWidgets = (reviewer: any) => {
       default:
         return state;
     }
-  }, {});
+  }, []);
 
   const addWidget = useCallback(
     (key, path, body) => dispatch({ type: 'add', payload: { key, path, body } }),
@@ -64,6 +90,7 @@ const useWidgets = (reviewer: any) => {
     []
   );
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const renderWidget = (data: any, key: any) => (
     <Widget changeKey={key} {...data} onDraftChange={writeComment} onSubmit={submitComment} />
   );

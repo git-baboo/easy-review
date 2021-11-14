@@ -41,7 +41,13 @@ const DiffFile = ({ oldPath, newPath, type, hunks, widgets, addWidget }: Props) 
   const postPath = type === 'delete' ? oldPath : newPath;
   const [tmpKey, setTmpKey] = useState<string>('');
 
-  const renderGutter = ({ side, renderDefault, inHoverState }: any) =>
+  type RenderGutterProps = {
+    side: string;
+    renderDefault: () => number;
+    inHoverState: boolean;
+  };
+
+  const renderGutter = ({ side, renderDefault, inHoverState }: RenderGutterProps) =>
     inHoverState && side === 'new' ? (
       <ReviewPopover handleClick={handleClick}>
         <PlusSquareIcon boxSize={5} color="white" bgColor="blue.500" />
