@@ -1,3 +1,22 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "next",
+    "next/core-web-vitals",
+    "prettier",
+    "plugin:import/typescript",
+    "plugin:import/warnings"
+  ],
+  "rules": {
+    "semi": "error",
+    "quotes": ["error", "double"],
+    "max-len": "error",
+    "no-var": "error",
+    "import/order": [
+      2,
+      {
+        "alphabetize": { "order": "asc" },
+        "newlines-between": "always"
+      }
+    ]
+  }
 }
