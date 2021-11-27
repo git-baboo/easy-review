@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_API_KEY,
@@ -13,25 +13,3 @@ const firebaseConfig = {
 
 initializeApp(firebaseConfig);
 export const auth = getAuth();
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const listenAuthState = (dispatch: any) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return onAuthStateChanged(auth, (user: any) => {
-    if (user) {
-      // User is signed in.
-      dispatch({
-        type: "login",
-        payload: {
-          user,
-        },
-      });
-    } else {
-      // User is signed out.
-      // ...
-      dispatch({
-        type: "logout",
-      });
-    }
-  });
-};
