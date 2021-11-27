@@ -22,7 +22,12 @@ const LoginPage = () => {
     <Flex bgColor="teal.500" h="100vh">
       <Container maxW="container.md" color="white">
         <Box mt={40}>
-          <Image src="/app_icon.png" borderRadius="full" boxSize="150px" />
+          <Image
+            src="/app_icon.png"
+            alt="サービスロゴ"
+            borderRadius="full"
+            boxSize="150px"
+          />
           <Heading size="xl" mt={3}>
             Easy Review
           </Heading>
@@ -37,7 +42,11 @@ const LoginPage = () => {
           <ModalOverlay />
           <ModalContent>
             <ModalBody py={6}>
-              <Text whiteSpace="pre-line">{"Easy Reviewをご利用いただきありがとうございます。\n現在弊サービスはPC版ブラウザからのみご利用いただけます。\nモバイル版ブラウザへの対応も順次行っていく予定です。"}</Text>
+              <Text whiteSpace="pre-line">
+                {"Easy Reviewをご利用いただきありがとうございます。\n" +
+                  "現在弊サービスはPC版ブラウザからのみご利用いただけます。\n" +
+                  "モバイル版ブラウザへの対応も順次行っていく予定です。"}
+              </Text>
             </ModalBody>
           </ModalContent>
         </Modal>
