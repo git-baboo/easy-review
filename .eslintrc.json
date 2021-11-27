@@ -17,6 +17,7 @@
         "alphabetize": { "order": "asc" },
         "newlines-between": "always"
       }
-    ]
+    ],
+    "react-hooks/exhaustive-deps": "off"
   }
 }

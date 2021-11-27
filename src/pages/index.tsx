@@ -36,7 +36,7 @@ const TopPage = () => {
           });
         });
     }
-  }, [octokit, username]);
+  }, [username]);
 
   return (
     <Layout
