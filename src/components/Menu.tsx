@@ -1,8 +1,14 @@
-import { ArrowBackIcon, EmailIcon, HamburgerIcon } from '@chakra-ui/icons';
-import { Menu, MenuList, MenuItem, MenuButton, IconButton } from '@chakra-ui/react';
-import React from 'react';
+import { ArrowBackIcon, EmailIcon, HamburgerIcon } from "@chakra-ui/icons";
+import {
+  Menu,
+  MenuList,
+  MenuItem,
+  MenuButton,
+  IconButton,
+} from "@chakra-ui/react";
+import React from "react";
 
-import { useAuth } from '@/hooks/useAuth';
+import { useAuth } from "@/hooks/useAuth";
 
 const LogoutButton = () => {
   const { logout } = useAuth();
@@ -15,7 +21,7 @@ const LogoutButton = () => {
         color="white"
         variant="ghost"
         colorScheme="ghost"
-        _focus={{ boxShadow: 'none' }}
+        _focus={{ boxShadow: "none" }}
       />
 
       <MenuList>
@@ -25,7 +31,7 @@ const LogoutButton = () => {
         <MenuItem
           icon={<EmailIcon />}
           onClick={() => {
-            window.open('https://forms.gle/W4s7xqEiAeskEof38');
+            window.open("https://forms.gle/W4s7xqEiAeskEof38");
           }}
         >
           フィードバック

@@ -1,7 +1,7 @@
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue } from "recoil";
 
-import { currentUserState } from '@/store/currentUserState';
-import { CurrentUserType } from '@/types/CurrentUserType';
+import { currentUserState } from "@/store/currentUserState";
+import { CurrentUserType } from "@/types/CurrentUserType";
 
 export const useCurrentUser = () => {
   const currentUser = useRecoilValue<CurrentUserType>(currentUserState);

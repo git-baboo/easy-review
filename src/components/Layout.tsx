@@ -1,8 +1,8 @@
-import { Text, Icon, Flex, HStack, Box } from '@chakra-ui/react';
-import React, { ReactNode } from 'react';
-import { IconType } from 'react-icons';
+import { Text, Icon, Flex, HStack, Box } from "@chakra-ui/react";
+import React, { ReactNode } from "react";
+import { IconType } from "react-icons";
 
-import Menu from '@/components/Menu';
+import Menu from "@/components/Menu";
 
 type Props = {
   text: string;

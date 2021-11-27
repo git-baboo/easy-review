@@ -1,13 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { PlusSquareIcon } from '@chakra-ui/icons';
-import { Box, Heading } from '@chakra-ui/layout';
-import { useMemo, useState } from 'react';
+import { PlusSquareIcon } from "@chakra-ui/icons";
+import { Box, Heading } from "@chakra-ui/layout";
+import { useMemo, useState } from "react";
 
-import ReviewPopover from '@/components/review/Popover';
+import ReviewPopover from "@/components/review/Popover";
 
-import '@/style/difffile.css';
-
-const reactDiffView = require('react-diff-view');
+const reactDiffView = require("react-diff-view");
 const Diff = reactDiffView.Diff;
 const Hunk = reactDiffView.Hunk;
 const Decoration = reactDiffView.Decoration;
@@ -22,24 +19,31 @@ type Props = {
   addWidget: any;
 };
 
-const DiffFile = ({ oldPath, newPath, type, hunks, widgets, addWidget }: Props) => {
-  let headerPath = '';
+const DiffFile = ({
+  oldPath,
+  newPath,
+  type,
+  hunks,
+  widgets,
+  addWidget,
+}: Props) => {
+  let headerPath = "";
   switch (type) {
-    case 'delete':
+    case "delete":
       headerPath = oldPath;
       break;
-    case 'insert':
+    case "insert":
       headerPath = newPath;
       break;
-    case 'rename':
+    case "rename":
       headerPath = `${oldPath} → ${newPath}`;
       break;
     default:
       headerPath = newPath;
       break;
   }
-  const postPath = type === 'delete' ? oldPath : newPath;
-  const [tmpKey, setTmpKey] = useState<string>('');
+  const postPath = type === "delete" ? oldPath : newPath;
+  const [tmpKey, setTmpKey] = useState<string>("");
 
   type RenderGutterProps = {
     side: string;
@@ -47,8 +51,12 @@ const DiffFile = ({ oldPath, newPath, type, hunks, widgets, addWidget }: Props) 
     inHoverState: boolean;
   };
 
-  const renderGutter = ({ side, renderDefault, inHoverState }: RenderGutterProps) =>
-    inHoverState && side === 'new' ? (
+  const renderGutter = ({
+    side,
+    renderDefault,
+    inHoverState,
+  }: RenderGutterProps) =>
+    inHoverState && side === "new" ? (
       <ReviewPopover handleClick={handleClick}>
         <PlusSquareIcon boxSize={5} color="white" bgColor="blue.500" />
       </ReviewPopover>
@@ -60,7 +68,7 @@ const DiffFile = ({ oldPath, newPath, type, hunks, widgets, addWidget }: Props) 
     console.log(initText);
     const key = tmpKey;
     addWidget(key, postPath, initText);
-    setTmpKey('');
+    setTmpKey("");
   };
 
   const gutterEvents = useMemo(() => {
@@ -87,9 +95,9 @@ const DiffFile = ({ oldPath, newPath, type, hunks, widgets, addWidget }: Props) 
       >
         {(hunks: any) =>
           hunks.map((hunk: any) => [
-            <Decoration key={'deco-' + hunk.content}>
+            <Decoration key={"deco-" + hunk.content}>
               <Box bg="blue.300" p={2}>
-                {'　'}
+                {"　"}
               </Box>
               <Box bg="blue.100" p={2}>
                 {hunk.content}

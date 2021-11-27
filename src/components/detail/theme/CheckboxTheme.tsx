@@ -1,5 +1,5 @@
-import { Text } from '@chakra-ui/layout';
-import { ReactNode } from 'react';
+import { Text } from "@chakra-ui/layout";
+import { ReactNode } from "react";
 
 type Props = {
   children: ReactNode;

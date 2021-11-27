@@ -1,5 +1,5 @@
-import { Text, Box } from '@chakra-ui/react';
-import React from 'react';
+import { Text, Box } from "@chakra-ui/react";
+import React from "react";
 
 type Props = {
   title: string;
@@ -12,7 +12,12 @@ const Template = ({ title, description }: Props) => {
       <Text color="black" fontSize="lg" fontWeight="semibold">
         {title}
       </Text>
-      <Text color="black" fontSize="xs" fontWeight="medium" whiteSpace="pre-line">
+      <Text
+        color="black"
+        fontSize="xs"
+        fontWeight="medium"
+        whiteSpace="pre-line"
+      >
         {description}
       </Text>
     </Box>

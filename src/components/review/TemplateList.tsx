@@ -1,20 +1,23 @@
-import { VStack } from '@chakra-ui/react';
-import React, { useState, useEffect } from 'react';
+import { VStack } from "@chakra-ui/react";
+import React, { useState, useEffect } from "react";
 
-import Template from '@/components/review/Template';
+import Template from "@/components/review/Template";
 
 const templates = [
   {
-    title: '❓ 質問',
-    description: 'わからないコードや疑問に思った部分があれば積極的に質問してみましょう！',
+    title: "❓ 質問",
+    description:
+      "わからないコードや疑問に思った部分があれば積極的に質問してみましょう！",
   },
   {
-    title: '✨ 素敵',
-    description: `命名や設計がキレイなどの良いコードを見つけたときはポジティブな意見をバシバシ送っちゃいましょう！\nプルリクエストの作成者は嬉しいこと間違いなしです`,
+    title: "✨ 素敵",
+    description:
+      "命名や設計がキレイなどの良いコードを見つけたときはポジティブな意見をバシバシ送っちゃいましょう！\nプルリクエストの作成者は嬉しいこと間違いなしです",
   },
   {
-    title: '🤔 改善',
-    description: `タイポや可読性の低いコードを見つけた場合は早急に報告しましょう！\nあなたの報告がプロダクトを改善します！`,
+    title: "🤔 改善",
+    description:
+      "タイポや可読性の低いコードを見つけた場合は早急に報告しましょう！\nあなたの報告がプロダクトを改善します！",
   },
 ];
 
@@ -27,25 +30,51 @@ const TemplateList = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  window.onscroll = function () {
-    //スクロール量の測定
+  const handleScroll = () => {
     const tmp =
       document.documentElement.scrollTop || // IE、Firefox、Opera
       document.body.scrollTop; // Chrome、Safari
     setScrollAmount(tmp);
 
     // 絶対座標の取得
-    const targetElement = document.getElementById('target');
+    const targetElement = document.getElementById("target");
     if (targetElement) {
       const targetElementCoordinate = targetElement.getBoundingClientRect();
       setLeftCoordinate(targetElementCoordinate.left);
     }
   };
 
+  // onscroll = function () {
+  //   //スクロール量の測定
+  //   const tmp =
+  //     document.documentElement.scrollTop || // IE、Firefox、Opera
+  //     document.body.scrollTop; // Chrome、Safari
+  //   setScrollAmount(tmp);
+  //
+  //   // 絶対座標の取得
+  //   const targetElement = document.getElementById("target");
+  //   if (targetElement) {
+  //     const targetElementCoordinate = targetElement.getBoundingClientRect();
+  //     setLeftCoordinate(targetElementCoordinate.left);
+  //   }
+  // };
+
   return scrollAmount < initialCoordinate ? (
-    <VStack id="target" h={420} p={5} spacing={5} position="sticky" shadow="base">
+    <VStack
+      id="target"
+      h={420}
+      p={5}
+      spacing={5}
+      position="sticky"
+      shadow="base"
+      onScroll={handleScroll}
+    >
       {templates.map((template) => (
-        <Template key={template.title} title={template.title} description={template.description} />
+        <Template
+          key={template.title}
+          title={template.title}
+          description={template.description}
+        />
       ))}
     </VStack>
   ) : (
@@ -58,9 +87,14 @@ const TemplateList = () => {
       spacing={5}
       position="fixed"
       shadow="base"
+      onScroll={handleScroll}
     >
       {templates.map((template) => (
-        <Template key={template.title} title={template.title} description={template.description} />
+        <Template
+          key={template.title}
+          title={template.title}
+          description={template.description}
+        />
       ))}
     </VStack>
   );

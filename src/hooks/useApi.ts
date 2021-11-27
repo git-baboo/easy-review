@@ -1,6 +1,6 @@
-import { Octokit } from '@octokit/rest';
+import { Octokit } from "@octokit/rest";
 
-import { useCurrentUser } from '@/hooks/useCurrentUser';
+import { useCurrentUser } from "@/hooks/useCurrentUser";
 
 export const useApi = () => {
   const { accessToken } = useCurrentUser();

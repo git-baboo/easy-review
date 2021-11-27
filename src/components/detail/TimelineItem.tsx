@@ -1,14 +1,15 @@
-import { Box, BoxProps } from '@chakra-ui/layout';
-import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
+import { Box, BoxProps } from "@chakra-ui/react";
+import ChakraUIRenderer from "chakra-ui-markdown-renderer";
+import { VFC } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
-import CheckboxTheme from '@/components/detail/theme/CheckboxTheme';
-import CodeTheme from '@/components/detail/theme/CodeTheme';
-import DividerTheme from '@/components/detail/theme/DividerTheme';
-import HeadingTheme from '@/components/detail/theme/HeadingTheme';
-import LinkTheme from '@/components/detail/theme/LinkTheme';
-import QuoteTheme from '@/components/detail/theme/QuoteTheme';
+import CheckboxTheme from "@/components/detail/theme/CheckboxTheme";
+import CodeTheme from "@/components/detail/theme/CodeTheme";
+import DividerTheme from "@/components/detail/theme/DividerTheme";
+import HeadingTheme from "@/components/detail/theme/HeadingTheme";
+import LinkTheme from "@/components/detail/theme/LinkTheme";
+import QuoteTheme from "@/components/detail/theme/QuoteTheme";
 
 type CustomProps = {
   comment: string | null;
@@ -16,9 +17,8 @@ type CustomProps = {
 
 type Props = BoxProps & CustomProps;
 
-const TimelineItem = ({ comment, ...boxProps }: Props) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const customTheme: any = {
+const TimelineItem: VFC<Props> = ({ comment, ...boxProps }) => {
+  const customTheme = {
     h1: HeadingTheme,
     h2: HeadingTheme,
     h3: HeadingTheme,

@@ -108,7 +108,7 @@
   height: 0;
 }
 .diff-gutter-omit:before {
-  content: ' ';
+  content: " ";
   display: block;
   white-space: pre;
   width: 2px;

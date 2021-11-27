@@ -1,12 +1,12 @@
-import { Container } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
-import { BsCheckCircleFill } from 'react-icons/bs';
+import { Container } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import { BsCheckCircleFill } from "react-icons/bs";
 
-import Layout from '@/components/Layout';
-import PullRequestList from '@/components/top/PullRequestList';
-import { useApi } from '@/hooks/useApi';
-import { useCurrentUser } from '@/hooks/useCurrentUser';
-import { TopPullRequestType } from '@/types/PullRequestType';
+import Layout from "@/components/Layout";
+import PullRequestList from "@/components/top/PullRequestList";
+import { useApi } from "@/hooks/useApi";
+import { useCurrentUser } from "@/hooks/useCurrentUser";
+import { TopPullRequestType } from "@/types/PullRequestType";
 
 const TopPage = () => {
   const [pulls, setPulls] = useState<TopPullRequestType[]>([]);
@@ -16,7 +16,7 @@ const TopPage = () => {
   useEffect(() => {
     if (username) {
       octokit
-        .request('GET /search/issues', {
+        .request("GET /search/issues", {
           q: `is:pr+user-review-requested:${username}+state:open`,
         })
         .then((response) => {
@@ -40,7 +40,9 @@ const TopPage = () => {
 
   return (
     <Layout
-      text={`あなた宛のレビューの依頼が届いているよ👀\nレビューするプルリクエストを選んでみよう！`}
+      text={
+        "あなた宛のレビューの依頼が届いているよ👀\nレビューするプルリクエストを選んでみよう！"
+      }
       icon={BsCheckCircleFill}
     >
       <Container maxW="container.sm">

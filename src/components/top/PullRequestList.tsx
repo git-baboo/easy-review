@@ -1,18 +1,20 @@
-import { Box, Heading, StackDivider, Text, VStack } from '@chakra-ui/react';
-import React from 'react';
-import { useHistory } from 'react-router';
+import { Box, Heading, StackDivider, Text, VStack } from "@chakra-ui/react";
+import { useRouter } from "next/router";
+import React from "react";
 
-import { TopPullRequestType } from '@/types/PullRequestType';
+import { TopPullRequestType } from "@/types/PullRequestType";
 
 type Props = {
   pulls: TopPullRequestType[];
 };
 
 const PullRequestList = ({ pulls }: Props) => {
-  const history = useHistory();
+  const router = useRouter();
 
   const handleClick = (pullRequest: TopPullRequestType) => {
-    history.push(`/${pullRequest.ownerName}/${pullRequest.repoName}/${pullRequest.pullNumber}`);
+    router.push(
+      `/${pullRequest.ownerName}/${pullRequest.repoName}/${pullRequest.pullNumber}`
+    );
   };
 
   return (
@@ -21,7 +23,7 @@ const PullRequestList = ({ pulls }: Props) => {
         <Box key={index} mx={8}>
           <Box
             display="inline-block"
-            _hover={{ cursor: 'pointer' }}
+            _hover={{ cursor: "pointer" }}
             onClick={() => handleClick(pullRequest)}
           >
             <Heading size="md">{pullRequest.title}</Heading>

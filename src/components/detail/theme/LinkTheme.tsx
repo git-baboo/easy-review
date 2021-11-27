@@ -1,5 +1,5 @@
-import { Link } from '@chakra-ui/react';
-import { ReactNode } from 'react';
+import { Link } from "@chakra-ui/react";
+import { ReactNode } from "react";
 
 type Props = {
   href: string;

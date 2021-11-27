@@ -1,8 +1,8 @@
-import { mapValues, uniqueId } from 'lodash';
-import { useCallback, useReducer } from 'react';
+import { mapValues, uniqueId } from "lodash";
+import { useCallback, useReducer } from "react";
 
-import Widget from '@/components/review/Widget';
-import { PreviewComment } from '@/types/CommentType';
+import Widget from "@/components/review/Widget";
+import { PreviewComment } from "@/types/CommentType";
 
 type Props = {
   userName: string;
@@ -19,80 +19,88 @@ const useWidgets = ({ userName, avatarUrl }: Props) => {
 
   type ActionType =
     | {
-        type: 'add';
+        type: "add";
         payload: { key: number; path: string; body: string };
       }
     | {
-        type: 'input';
+        type: "input";
         payload: { key: number; body: string };
       }
     | {
-        type: 'submit';
+        type: "submit";
         payload: { key: number; body: string };
       };
 
-  const [widgetsData, dispatch] = useReducer((state: StateType[], action: ActionType) => {
-    const previous = state[action.payload.key] ?? {};
-    switch (action.type) {
-      case 'add':
-        return {
-          ...state,
-          [action.payload.key]: {
-            id: uniqueId('widget-'),
-            path: action.payload.path,
-            draft: action.payload.body,
-            comments: [],
-          },
-        };
-      case 'input':
-        return {
-          ...state,
-          [action.payload.key]: {
-            ...previous,
-            draft: action.payload.body,
-          },
-        };
-      case 'submit':
-        return {
-          ...state,
-          [action.payload.key]: {
-            ...previous,
-            draft: '',
-            comments: [
-              ...previous.comments,
-              {
-                id: uniqueId('comment-'),
-                author: userName,
-                avatarUrl: avatarUrl,
-                path: previous.path,
-                body: previous.draft,
-              },
-            ],
-          },
-        };
-      default:
-        return state;
-    }
-  }, []);
+  const [widgetsData, dispatch] = useReducer(
+    (state: StateType[], action: ActionType) => {
+      const previous = state[action.payload.key] ?? {};
+      switch (action.type) {
+        case "add":
+          return {
+            ...state,
+            [action.payload.key]: {
+              id: uniqueId("widget-"),
+              path: action.payload.path,
+              draft: action.payload.body,
+              comments: [],
+            },
+          };
+        case "input":
+          return {
+            ...state,
+            [action.payload.key]: {
+              ...previous,
+              draft: action.payload.body,
+            },
+          };
+        case "submit":
+          return {
+            ...state,
+            [action.payload.key]: {
+              ...previous,
+              draft: "",
+              comments: [
+                ...previous.comments,
+                {
+                  id: uniqueId("comment-"),
+                  author: userName,
+                  avatarUrl: avatarUrl,
+                  path: previous.path,
+                  body: previous.draft,
+                },
+              ],
+            },
+          };
+        default:
+          return state;
+      }
+    },
+    []
+  );
 
   const addWidget = useCallback(
-    (key, path, body) => dispatch({ type: 'add', payload: { key, path, body } }),
+    (key, path, body) =>
+      dispatch({ type: "add", payload: { key, path, body } }),
     []
   );
 
   const writeComment = useCallback(
-    (key, body) => dispatch({ type: 'input', payload: { key, body } }),
+    (key, body) => dispatch({ type: "input", payload: { key, body } }),
     []
   );
 
   const submitComment = useCallback(
-    (key, body) => dispatch({ type: 'submit', payload: { key, body } }),
+    (key, body) => dispatch({ type: "submit", payload: { key, body } }),
     []
   );
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const renderWidget = (data: any, key: any) => (
-    <Widget changeKey={key} {...data} onDraftChange={writeComment} onSubmit={submitComment} />
+    <Widget
+      changeKey={key}
+      {...data}
+      onDraftChange={writeComment}
+      onSubmit={submitComment}
+    />
   );
 
   return [mapValues(widgetsData, renderWidget), { addWidget, submitComment }];

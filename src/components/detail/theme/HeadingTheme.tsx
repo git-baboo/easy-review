@@ -1,5 +1,5 @@
-import { Heading } from '@chakra-ui/react';
-import { ReactNode } from 'react';
+import { Heading } from "@chakra-ui/react";
+import { ReactNode } from "react";
 
 type Props = {
   level: number;
@@ -10,13 +10,27 @@ const HeadingTheme = ({ level, children }: Props) => {
   switch (level) {
     case 1:
       return (
-        <Heading as="h1" my={4} pb={2} size="xl" borderBottom="1px" borderColor="gray.300">
+        <Heading
+          as="h1"
+          my={4}
+          pb={2}
+          size="xl"
+          borderBottom="1px"
+          borderColor="gray.300"
+        >
           {children}
         </Heading>
       );
     case 2:
       return (
-        <Heading as="h2" my={4} pb={2} size="lg" borderBottom="1px" borderColor="gray.300">
+        <Heading
+          as="h2"
+          my={4}
+          pb={2}
+          size="lg"
+          borderBottom="1px"
+          borderColor="gray.300"
+        >
           {children}
         </Heading>
       );

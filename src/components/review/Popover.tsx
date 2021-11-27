@@ -9,12 +9,12 @@ import {
   PopoverBody,
   PopoverArrow,
   PopoverCloseButton,
-} from '@chakra-ui/react';
-import React, { ReactNode } from 'react';
+} from "@chakra-ui/react";
+import React, { ReactNode } from "react";
 
 const ButtonTextList = [
   {
-    label: '❓ 質問',
+    label: "❓ 質問",
     initText: `<!--
 できるだけ具体的に質問してみましょう
 例）〜の処理の内容がわからないので教えてください！
@@ -22,7 +22,7 @@ const ButtonTextList = [
 `,
   },
   {
-    label: '✨ 素敵',
+    label: "✨ 素敵",
     initText: `<!--
 良いと感じたコードを見つけたら気軽にコメントしましょう！
 例）命名がとてもキレイです 💯
@@ -31,7 +31,7 @@ const ButtonTextList = [
 `,
   },
   {
-    label: '🤔 改善',
+    label: "🤔 改善",
     initText: ` <!--
 タイポやバグなどを見つけたら早急に報告しましょう！
 例）タイポしてるので修正お願いします！ reveiw > review

@@ -1,7 +1,7 @@
-import { Avatar, Box, Text } from '@chakra-ui/react';
-import React from 'react';
+import { Avatar, Box, Text } from "@chakra-ui/react";
+import React from "react";
 
-import { ReviewPullRequestType } from '@/types/PullRequestType';
+import { ReviewPullRequestType } from "@/types/PullRequestType";
 
 type Props = {
   owner: string;

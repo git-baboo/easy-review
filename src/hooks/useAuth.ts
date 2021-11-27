@@ -1,17 +1,17 @@
-import { Octokit } from '@octokit/rest';
-import { GithubAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
-import { useHistory } from 'react-router';
-import { useSetRecoilState } from 'recoil';
+import { Octokit } from "@octokit/rest";
+import { GithubAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import { useRouter } from "next/router";
+import { useSetRecoilState } from "recoil";
 
-import { currentUserState } from '@/store/currentUserState';
-import { CurrentUserType } from '@/types/CurrentUserType';
-import { auth } from '@/utils/firebase';
+import { currentUserState } from "@/store/currentUserState";
+import { CurrentUserType } from "@/types/CurrentUserType";
+import { auth } from "@/utils/firebase";
 
 export const useAuth = () => {
-  const history = useHistory();
+  const router = useRouter();
   const setCurrentUser = useSetRecoilState<CurrentUserType>(currentUserState);
   const provider = new GithubAuthProvider();
-  provider.addScope('repo');
+  provider.addScope("repo");
 
   const login = () => {
     signInWithPopup(auth, provider).then((result) => {
@@ -23,7 +23,7 @@ export const useAuth = () => {
           auth: token,
         });
 
-        octokit.request('GET /user').then((res) => {
+        octokit.request("GET /user").then((res) => {
           setCurrentUser((prevState) => ({
             ...prevState,
             username: res.data.login,
@@ -36,7 +36,7 @@ export const useAuth = () => {
           accessToken: String(token),
         }));
 
-        history.push('/');
+        router.push("/");
       }
     });
   };
@@ -45,11 +45,11 @@ export const useAuth = () => {
     signOut(auth);
     setCurrentUser({
       isSignedIn: false,
-      username: '',
-      accessToken: '',
+      username: "",
+      accessToken: "",
       reviewId: 0,
     });
-    history.push('/login');
+    router.push("/login");
   };
 
   return { login, logout };

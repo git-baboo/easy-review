@@ -1,8 +1,8 @@
-import { Button } from '@chakra-ui/react';
-import React from 'react';
-import { DiGithubBadge } from 'react-icons/di';
+import { Button } from "@chakra-ui/react";
+import React from "react";
+import { DiGithubBadge } from "react-icons/di";
 
-import { useAuth } from '@/hooks/useAuth';
+import { useAuth } from "@/hooks/useAuth";
 
 const LoginButton = () => {
   const { login } = useAuth();
