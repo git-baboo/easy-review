@@ -9,7 +9,7 @@
   "rules": {
     "semi": "error",
     "quotes": ["error", "double"],
-    "max-len": "error",
+    "max-len": ["error", 100],
     "no-var": "error",
     "import/order": [
       2,
