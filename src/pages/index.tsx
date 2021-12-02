@@ -30,13 +30,11 @@ const TopPage = () => {
             // 例: item.repository_url が https://api.github.com/repos/git-baboo/dummy-pr のとき
             // slicedRepositoryUrl: ["git-baboo", "dummy-pr"]
             const slicedRepositoryUrl: string[] = splitRepositoryUrl.slice(-2);
-            const ownerName = slicedRepositoryUrl[0];
-            const repoName = slicedRepositoryUrl[1];
 
             const pull: TopPullRequestType = {
               pullNumber: item.number,
-              ownerName: ownerName,
-              repoName: repoName,
+              ownerName: slicedRepositoryUrl[0],
+              repoName: slicedRepositoryUrl[1],
               title: item.title,
             };
             newPulls.push(pull);
