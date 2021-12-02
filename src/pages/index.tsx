@@ -23,8 +23,7 @@ const TopPage = () => {
           const items = response.data.items;
           const newPulls: TopPullRequestType[] = [];
           items.map((item) => {
-            const repositoryUrl = item.repository_url;
-            const splitRepositoryUrl = repositoryUrl.split("/");
+            const splitRepositoryUrl = item.repository_url.split("/");
 
             // スラッシュで分割されたリポジトリ URL の末尾と末尾から2番目が slicedRepositoryUrl に入っている
             // 例: item.repository_url が https://api.github.com/repos/git-baboo/dummy-pr のとき
