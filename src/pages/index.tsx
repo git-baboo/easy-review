@@ -23,17 +23,25 @@ const TopPage = () => {
           const items = response.data.items;
           const newPulls: TopPullRequestType[] = [];
           items.map((item) => {
-            octokit.request(`GET ${item.repository_url}`).then((response) => {
-              const pullRequest: TopPullRequestType = {
-                pullNumber: item.number,
-                ownerName: response.data.organization.login,
-                repoName: response.data.name,
-                title: item.title,
-              };
-              newPulls.push(pullRequest);
-            });
-            setPulls(newPulls);
+            const repositoryUrl = item.repository_url;
+            const splitRepositoryUrl = repositoryUrl.split("/");
+
+            // スラッシュで分割されたリポジトリ URL の末尾と末尾から2番目が slicedRepositoryUrl に入っている
+            // 例: item.repository_url が https://api.github.com/repos/git-baboo/dummy-pr のとき
+            // slicedRepositoryUrl: ["git-baboo", "dummy-pr"]
+            const slicedRepositoryUrl: string[] = splitRepositoryUrl.slice(-2);
+            const ownerName = slicedRepositoryUrl[0];
+            const repoName = slicedRepositoryUrl[1];
+
+            const pull: TopPullRequestType = {
+              pullNumber: item.number,
+              ownerName: ownerName,
+              repoName: repoName,
+              title: item.title,
+            };
+            newPulls.push(pull);
           });
+          setPulls(newPulls);
         });
     }
   }, [username]);
