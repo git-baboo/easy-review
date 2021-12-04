@@ -29,7 +29,7 @@ const LoginPage = () => {
             boxSize="150px"
           />
           <Heading size="xl" mt={3}>
-            Easy Review
+            Easy Review Test
           </Heading>
           <Heading size="md" mt={2}>
             より気軽なコードレビュー体験を
