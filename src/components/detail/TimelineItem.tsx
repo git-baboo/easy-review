@@ -18,7 +18,7 @@ type CustomProps = {
 type Props = BoxProps & CustomProps;
 
 const TimelineItem: VFC<Props> = ({ comment, ...boxProps }) => {
-  const customTheme = {
+  const customTheme: any = {
     h1: HeadingTheme,
     h2: HeadingTheme,
     h3: HeadingTheme,
