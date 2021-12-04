@@ -1,48 +1,41 @@
-# Docker Template
+# Easy Review
 
-チームで React アプリを開発する際に使用するテンプレートです。
+Easy Review は初心者エンジニアのためのレビュー投稿サービスです。
 
-# アプリケーションの起動
+![demo.gif](https://github.com/git-baboo/easy-review/blob/images/demo.gif?raw=true)
 
-### VSCode を用いる場合
+## ✨ 特徴
 
-VSCode を用いる場合は Remote Container を使用して起動すると便利です。
+### 初心者エンジニアに寄り添った UI
 
-### VSCode を用いない場合
+日本語による表記や不要な情報の削除により、初心者エンジニアに寄り添った UI を実現しています。
 
-以下のコマンドを順に実行してください。
+### テンプレート機能によるレビューコメントの容易化
 
-```shell
-make i
-make up
+あらかじめ用意されたテンプレートに沿ってレビューコメントを記述することで、「どうコメントを書けば良いかわからない」「何に対してコメントすれば良いかわからない」といった悩みを解消できます。
 
-# make コマンドを使用しない場合は以下のコマンドを実行してください
-docker compose run --rm app yarn install
-docker compose up
-```
+### GitHub への自動投稿機能
 
-# 確認
+Easy Review 内で投稿したコメントはすべて GitHub のプルリクエストにレビューコメントとして投稿されます。この体験により、初心者エンジニアの GitHub に対する不安感や障壁を取り除くことに成功しています。
 
-コンテナが立ち上がったら以下のリンクにアクセスしてください。`App`の文字列が確認できれば問題なく起動しています。
+## 🧑‍💻 開発体制
 
-http://localhost:3000
+| メンバー | 役割 |
+| --- | --- |
+| [@watagit](https://github.com/watagit) | マネジメント, デザイン作成, API通信周り |
+| [@ltoppyl](https://github.com/ltoppyl) | UI, ロジック実装 |
+| [@kacha-122](https://github.com/kacha-122) | ドメインエキスパート, UI実装 |
+| [@mikiya1130](https://github.com/mikiya1130) | UI, ロジック実装 |
 
-# その他便利コマンド
+## 👀 備考
+- サポーターズ 技育CAMP 2021 ハッカソンvol.10 最優秀賞受賞 🎉
 
-### ESLint
-
-```shell
-make lint
-
-# make コマンドを使用しない場合
-docker compose exec app yarn lint
-```
-
-### Prettier
+<!--
+開発者向け情報
+## 🏃 セットアップ‍
 
 ```shell
-make format
-
-# make コマンドを使用しない場合
-docker compose exec app yarn format
+yarn
+yarn start
 ```
+-->
