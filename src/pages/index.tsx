@@ -4,6 +4,7 @@ import { BsCheckCircleFill } from "react-icons/bs";
 
 import Layout from "@/components/Layout";
 import PullRequestList from "@/components/top/PullRequestList";
+import withAuth from "@/hoc/withAuth";
 import { useApi } from "@/hooks/useApi";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { TopPullRequestType } from "@/types/PullRequestType";
@@ -52,4 +53,4 @@ const TopPage = () => {
   );
 };
 
-export default TopPage;
+export default withAuth(TopPage);
