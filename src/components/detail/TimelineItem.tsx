@@ -30,7 +30,7 @@ const TimelineItem: VFC<Props> = ({ comment, ...boxProps }) => {
     hr: DividerTheme,
     a: LinkTheme,
     input: CheckboxTheme,
-  }
+  };
 
   if (comment) {
     return (
