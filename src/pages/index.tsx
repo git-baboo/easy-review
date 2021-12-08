@@ -23,17 +23,15 @@ const TopPage = () => {
           const items = response.data.items;
           const newPulls: TopPullRequestType[] = [];
           items.map((item) => {
+            // item.repository_urlの例: https://api.github.com/repos/git-baboo/dummy-pr
             const splitRepositoryUrl = item.repository_url.split("/");
 
-            // スラッシュで分割されたリポジトリ URL の末尾と末尾から2番目が slicedRepositoryUrl に入っている
-            // 例: item.repository_url が https://api.github.com/repos/git-baboo/dummy-pr のとき
-            // slicedRepositoryUrl: ["git-baboo", "dummy-pr"]
-            const slicedRepositoryUrl: string[] = splitRepositoryUrl.slice(-2);
+            const [ ownerName, repoName ]: string[] = splitRepositoryUrl.slice(-2);
 
             const pull: TopPullRequestType = {
               pullNumber: item.number,
-              ownerName: slicedRepositoryUrl[0],
-              repoName: slicedRepositoryUrl[1],
+              ownerName: ownerName,
+              repoName: repoName,
               title: item.title,
             };
             newPulls.push(pull);
