@@ -2,7 +2,7 @@
   // 保存時に行末のホワイトスペースを削除(markdown は除く)
   "files.trimTrailingWhitespace": true,
   "[markdown]": {
-      "files.trimTrailingWhitespace": false,
+    "files.trimTrailingWhitespace": false,
   },
 
   // ファイルの最後に必ず1行だけ空行を残す
