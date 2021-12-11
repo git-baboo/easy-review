@@ -121,10 +121,11 @@ const ReviewPage = () => {
             review_id: response.data.id,
             event: "COMMENT",
           }
-        );
+        ).then(() => {
+          toast();
+        });
       });
 
-    toast();
 
     router.push("/");
   };
