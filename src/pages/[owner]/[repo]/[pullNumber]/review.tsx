@@ -35,7 +35,7 @@ const ReviewPage = () => {
   const { owner, repo, pullNumber } = router.query || "";
   const [widgets, { addWidget }]: any = useWidgets(reviewer);
   const { octokit } = useApi();
-  const toast = useToast({
+  const successToast = useToast({
     title: "コメントの追加が完了しました",
     position: "top",
     variant: "subtle",
@@ -130,7 +130,7 @@ const ReviewPage = () => {
               event: "COMMENT",
             }
           ).then(() => {
-            toast();
+            successToast();
             router.push("/");
           });
         });
