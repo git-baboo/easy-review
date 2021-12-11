@@ -7,6 +7,7 @@ import Layout from "@/components/Layout";
 import ReviewButton from "@/components/detail/ReviewButton";
 import Reviewee from "@/components/detail/Reviewee";
 import TimelineItem from "@/components/detail/TimelineItem";
+import withAuth from "@/hoc/withAuth";
 import { useApi } from "@/hooks/useApi";
 import { DetailPullRequestType } from "@/types/PullRequestType";
 
@@ -67,4 +68,4 @@ const DetailPage = () => {
   );
 };
 
-export default DetailPage;
+export default withAuth(DetailPage);

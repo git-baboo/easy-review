@@ -17,6 +17,7 @@ import PullRequestHeading from "@/components/review/PullRequestHeading";
 import TemplateList from "@/components/review/TemplateList";
 import useWidgets from "@/components/review/useWidgets";
 import { reviewer } from "@/data/dummyReviewer";
+import withAuth from "@/hoc/withAuth";
 import { useApi } from "@/hooks/useApi";
 import { Comment, PreviewComment } from "@/types/CommentType";
 import { ReviewPullRequestType } from "@/types/PullRequestType";
@@ -173,4 +174,4 @@ const ReviewPage = () => {
   );
 };
 
-export default ReviewPage;
+export default withAuth(ReviewPage);
