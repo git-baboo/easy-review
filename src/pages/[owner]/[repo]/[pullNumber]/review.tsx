@@ -162,7 +162,7 @@ const ReviewPage = () => {
                 完了
               </Button>
             </Box>
-            <Center h="lg">
+            <Center>
               <Divider color="black" orientation="vertical" />
             </Center>
             <TemplateList />
