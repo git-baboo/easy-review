@@ -42,6 +42,13 @@ const ReviewPage = () => {
     status: "success",
     duration: 2000,
   });
+  const errorToast = useToast({
+    title: "コメントを追加してください",
+    position: "top",
+    variant: "solid",
+    status: "error",
+    duration: 2000,
+  });
 
   useEffect(() => {
     if (owner && repo && pullNumber) {
@@ -104,30 +111,32 @@ const ReviewPage = () => {
       });
     });
 
-    octokit
-      .request("POST /repos/{owner}/{repo}/pulls/{pull_number}/reviews", {
-        owner: String(owner),
-        repo: String(repo),
-        pull_number: Number(pullNumber),
-        comments: comments,
-      })
-      .then((response) => {
-        octokit.request(
-          "POST /repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}/events",
-          {
-            owner: String(owner),
-            repo: String(repo),
-            pull_number: Number(pullNumber),
-            review_id: response.data.id,
-            event: "COMMENT",
-          }
-        ).then(() => {
-          toast();
+    if (comments.length > 0) {
+      octokit
+        .request("POST /repos/{owner}/{repo}/pulls/{pull_number}/reviews", {
+          owner: String(owner),
+          repo: String(repo),
+          pull_number: Number(pullNumber),
+          comments: comments,
+        })
+        .then((response) => {
+          octokit.request(
+            "POST /repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}/events",
+            {
+              owner: String(owner),
+              repo: String(repo),
+              pull_number: Number(pullNumber),
+              review_id: response.data.id,
+              event: "COMMENT",
+            }
+          ).then(() => {
+            toast();
+            router.push("/");
+          });
         });
-      });
-
-
-    router.push("/");
+    } else {
+      errorToast();
+    }
   };
 
   return (
