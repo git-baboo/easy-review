@@ -1,5 +1,4 @@
 import { VStack } from "@chakra-ui/react";
-import React, { useState, useEffect } from "react";
 
 import Template from "@/components/review/Template";
 
