@@ -23,17 +23,20 @@ const TopPage = () => {
           const items = response.data.items;
           const newPulls: TopPullRequestType[] = [];
           items.map((item) => {
-            octokit.request(`GET ${item.repository_url}`).then((response) => {
-              const pullRequest: TopPullRequestType = {
-                pullNumber: item.number,
-                ownerName: response.data.organization.login,
-                repoName: response.data.name,
-                title: item.title,
-              };
-              newPulls.push(pullRequest);
-            });
-            setPulls(newPulls);
+            // item.repository_urlの例: https://api.github.com/repos/git-baboo/dummy-pr
+            const splitRepositoryUrl = item.repository_url.split("/");
+
+            const [ ownerName, repoName ]: string[] = splitRepositoryUrl.slice(-2);
+
+            const pull: TopPullRequestType = {
+              pullNumber: item.number,
+              ownerName: ownerName,
+              repoName: repoName,
+              title: item.title,
+            };
+            newPulls.push(pull);
           });
+          setPulls(newPulls);
         });
     }
   }, [username]);

@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write src/**"
@@ -38,6 +38,7 @@
     "eslint-config-next": "^12.0.4",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-unused-imports": "^2.0.0",
     "prettier": "^2.4.1",
     "typescript": "4.5.2"
   }

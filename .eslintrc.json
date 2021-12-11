@@ -6,11 +6,13 @@
     "plugin:import/typescript",
     "plugin:import/warnings"
   ],
+  "plugins": ["unused-imports"],
   "rules": {
     "semi": "error",
     "quotes": ["error", "double"],
     "max-len": ["error", 100],
     "no-var": "error",
+    "unused-imports/no-unused-imports": "error",
     "import/order": [
       2,
       {

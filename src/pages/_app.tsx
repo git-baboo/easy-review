@@ -2,6 +2,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { onAuthStateChanged } from "firebase/auth";
 import { NextPage } from "next";
 import type { AppProps } from "next/app";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect, useReducer } from "react";
 import { RecoilRoot } from "recoil";
@@ -27,6 +28,9 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
     <AuthContext.Provider value={state}>
       <ChakraProvider>
         <RecoilRoot>
+          <Head>
+            <title>Easy Review</title>
+          </Head>
           <Component {...pageProps} />
         </RecoilRoot>
       </ChakraProvider>
