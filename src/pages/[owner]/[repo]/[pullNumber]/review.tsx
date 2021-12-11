@@ -163,7 +163,7 @@ const ReviewPage = () => {
               </Button>
             </Box>
             <Center>
-              <Divider color="black" orientation="vertical" />
+              <Divider orientation="vertical" />
             </Center>
             <TemplateList />
           </HStack>
