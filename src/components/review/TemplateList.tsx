@@ -1,5 +1,4 @@
 import { VStack } from "@chakra-ui/react";
-import React, { useState, useEffect } from "react";
 
 import Template from "@/components/review/Template";
 
@@ -22,72 +21,15 @@ const templates = [
 ];
 
 const TemplateList = () => {
-  const [scrollAmount, setScrollAmount] = useState<number>(0);
-  const [leftCoordinate, setLeftCoordinate] = useState<number>(1000);
-  const initialCoordinate = 170;
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  const handleScroll = () => {
-    const tmp =
-      document.documentElement.scrollTop || // IE、Firefox、Opera
-      document.body.scrollTop; // Chrome、Safari
-    setScrollAmount(tmp);
-
-    // 絶対座標の取得
-    const targetElement = document.getElementById("target");
-    if (targetElement) {
-      const targetElementCoordinate = targetElement.getBoundingClientRect();
-      setLeftCoordinate(targetElementCoordinate.left);
-    }
-  };
-
-  // onscroll = function () {
-  //   //スクロール量の測定
-  //   const tmp =
-  //     document.documentElement.scrollTop || // IE、Firefox、Opera
-  //     document.body.scrollTop; // Chrome、Safari
-  //   setScrollAmount(tmp);
-  //
-  //   // 絶対座標の取得
-  //   const targetElement = document.getElementById("target");
-  //   if (targetElement) {
-  //     const targetElementCoordinate = targetElement.getBoundingClientRect();
-  //     setLeftCoordinate(targetElementCoordinate.left);
-  //   }
-  // };
-
-  return scrollAmount < initialCoordinate ? (
+  return (
     <VStack
       id="target"
+      top={5} // 表示のどの位置で固定するかを決定(定数, ハイパーパラメータ！？)
       h={420}
       p={5}
       spacing={5}
       position="sticky"
       shadow="base"
-      onScroll={handleScroll}
-    >
-      {templates.map((template) => (
-        <Template
-          key={template.title}
-          title={template.title}
-          description={template.description}
-        />
-      ))}
-    </VStack>
-  ) : (
-    // XXX: leftCoordinate で取得した座標と画面上の座標との差を埋めるために-50 している。何が起因しているかはよくわかってない
-    <VStack
-      id="target"
-      top={180 - initialCoordinate + 5}
-      p={5}
-      left={leftCoordinate - 50}
-      spacing={5}
-      position="fixed"
-      shadow="base"
-      onScroll={handleScroll}
     >
       {templates.map((template) => (
         <Template
