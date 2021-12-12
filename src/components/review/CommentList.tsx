@@ -1,5 +1,5 @@
 import { Avatar } from "@chakra-ui/avatar";
-import { Flex, ListItem, Text } from "@chakra-ui/layout";
+import { Grid, GridItem, ListItem, Text } from "@chakra-ui/layout";
 import ChakraUIRenderer from "chakra-ui-markdown-renderer";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -23,19 +23,23 @@ const CommentList = ({ id, author, avatarUrl, body }: Props) => {
       borderRadius="md"
       borderColor="gray.300"
     >
-      <Flex alignItems="center">
-        <Avatar size="sm" name={author} src={avatarUrl} />
-        <Text ml={2} fontSize="md">
-          {author}
-        </Text>
-      </Flex>
-      <ReactMarkdown
-        skipHtml={true}
-        components={ChakraUIRenderer(customTheme)}
-        remarkPlugins={[remarkGfm]}
-      >
-        {body}
-      </ReactMarkdown>
+      <Grid templateColumns={"auto 1fr"} gap={2} alignItems={"center"}>
+        <GridItem>
+          <Avatar size="sm" name={author} src={avatarUrl} />
+        </GridItem>
+        <GridItem>
+          <Text fontSize="md">{author}</Text>
+        </GridItem>
+        <GridItem gridColumn={2} overflowX={"auto"}>
+          <ReactMarkdown
+            skipHtml={true}
+            components={ChakraUIRenderer(customTheme)}
+            remarkPlugins={[remarkGfm]}
+          >
+            {body}
+          </ReactMarkdown>
+        </GridItem>
+      </Grid>
     </ListItem>
   );
 };
