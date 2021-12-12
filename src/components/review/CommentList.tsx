@@ -30,7 +30,7 @@ const CommentList = ({ id, author, avatarUrl, body }: Props) => {
         <GridItem>
           <Text fontSize="md">{author}</Text>
         </GridItem>
-        <GridItem gridColumn={2} overflowX={"auto"}>
+        <GridItem gridColumn={2}>
           <ReactMarkdown
             skipHtml={true}
             components={ChakraUIRenderer(customTheme)}
