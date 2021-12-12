@@ -7,7 +7,7 @@ type Props = {
   body: string;
 };
 
-const CommentList = ({ author, avatarUrl, body }: Props) => {
+const CommentListItem = ({ author, avatarUrl, body }: Props) => {
   return (
     <ListItem m={2} p={4} border="1px" borderRadius="md" borderColor="gray.300">
       <Flex alignItems="center">
@@ -21,4 +21,4 @@ const CommentList = ({ author, avatarUrl, body }: Props) => {
   );
 };
 
-export default CommentList;
+export default CommentListItem;

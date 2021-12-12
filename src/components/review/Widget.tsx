@@ -1,7 +1,7 @@
 import { Box, Button, Flex, List, Spacer, Textarea } from "@chakra-ui/react";
 import React, { useCallback } from "react";
 
-import CommentList from "@/components/review/CommentList";
+import CommentListItem from "@/components/review/CommentListItem";
 import { PreviewCommentType } from "@/types/PreviewCommentType";
 
 type Props = {
@@ -44,7 +44,7 @@ const Widget = ({
         <List>
           {comments.map((comment, index) => {
             return (
-              <CommentList
+              <CommentListItem
                 key={index}
                 author={author}
                 avatarUrl={avatarUrl}
