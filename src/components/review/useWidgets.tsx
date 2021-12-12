@@ -1,4 +1,4 @@
-import { mapValues, uniqueId } from "lodash";
+import { mapValues } from "lodash";
 import { useCallback, useReducer } from "react";
 
 import Widget from "@/components/review/Widget";
@@ -11,99 +11,139 @@ type Props = {
 
 const useWidgets = ({ userName, avatarUrl }: Props) => {
   type StateType = {
-    id: string;
-    path: string;
-    draft: string;
-    comments: PreviewComment[];
+    [fileId: string]: {
+      [changeKey: string]: {
+        isWriting: boolean;
+        draft: PreviewComment;
+        comments: PreviewComment[];
+      };
+    };
   };
 
   type ActionType =
     | {
         type: "add";
-        payload: { key: number; path: string; body: string };
+        payload: {
+          fileId: string;
+          changeKey: string;
+          path: string;
+          body: string;
+        };
       }
     | {
         type: "input";
-        payload: { key: number; body: string };
+        payload: {
+          fileId: string;
+          changeKey: string;
+          body: string;
+        };
       }
     | {
         type: "submit";
-        payload: { key: number; body: string };
+        payload: {
+          fileId: string;
+          changeKey: string;
+        };
       };
 
   const [widgetsData, dispatch] = useReducer(
-    (state: StateType[], action: ActionType) => {
-      const previous = state[action.payload.key] ?? {};
+    (state: StateType, action: ActionType): StateType => {
+      const previousChangeKeys = state[action.payload.fileId] ?? {};
+      const previousComments =
+        previousChangeKeys[action.payload.changeKey] ?? {};
       switch (action.type) {
         case "add":
           return {
             ...state,
-            [action.payload.key]: {
-              id: uniqueId("widget-"),
-              path: action.payload.path,
-              draft: action.payload.body,
-              comments: [],
+            [action.payload.fileId]: {
+              ...previousChangeKeys,
+              [action.payload.changeKey]: {
+                isWriting: true,
+                draft: {
+                  path: action.payload.path,
+                  body: action.payload.body,
+                },
+                comments: previousComments.comments ?? [],
+              },
             },
           };
         case "input":
           return {
             ...state,
-            [action.payload.key]: {
-              ...previous,
-              draft: action.payload.body,
+            [action.payload.fileId]: {
+              ...previousChangeKeys,
+              [action.payload.changeKey]: {
+                isWriting: true,
+                draft: {
+                  path: previousComments.draft.path,
+                  body: action.payload.body,
+                },
+                comments: previousComments.comments,
+              },
             },
           };
         case "submit":
           return {
             ...state,
-            [action.payload.key]: {
-              ...previous,
-              draft: "",
-              comments: [
-                ...previous.comments,
-                {
-                  id: uniqueId("comment-"),
-                  author: userName,
-                  avatarUrl: avatarUrl,
-                  path: previous.path,
-                  body: previous.draft,
+            [action.payload.fileId]: {
+              ...previousChangeKeys,
+              [action.payload.changeKey]: {
+                isWriting: false,
+                draft: {
+                  path: "",
+                  body: "",
                 },
-              ],
+                comments: [
+                  ...previousComments.comments,
+                  previousComments.draft,
+                ],
+              },
             },
           };
         default:
           return state;
       }
     },
-    []
+    {}
   );
 
   const addWidget = useCallback(
-    (key, path, body) =>
-      dispatch({ type: "add", payload: { key, path, body } }),
+    (fileId, changeKey, path, body) =>
+      dispatch({ type: "add", payload: { fileId, changeKey, path, body } }),
     []
   );
 
   const writeComment = useCallback(
-    (key, body) => dispatch({ type: "input", payload: { key, body } }),
+    (fileId, changeKey, body) =>
+      dispatch({ type: "input", payload: { fileId, changeKey, body } }),
     []
   );
 
   const submitComment = useCallback(
-    (key, body) => dispatch({ type: "submit", payload: { key, body } }),
+    (fileId, changeKey) =>
+      dispatch({ type: "submit", payload: { fileId, changeKey } }),
     []
   );
 
-  const renderWidget = (data: any, key: any) => (
-    <Widget
-      changeKey={key}
-      {...data}
-      onDraftChange={writeComment}
-      onSubmit={submitComment}
-    />
-  );
+  const renderWidgetDict = (widgetsData: any) => {
+    return mapValues(widgetsData, (fileIdDict: any, fileId: string) => {
+      return mapValues(fileIdDict, (changeKeyDict: any, changeKey: string) => (
+        <Widget
+          fileId={fileId}
+          changeKey={changeKey}
+          author={userName}
+          avatarUrl={avatarUrl}
+          isWriting={changeKeyDict.isWriting}
+          comments={changeKeyDict.comments}
+          draft={changeKeyDict.draft}
+          onDraftChange={writeComment}
+          onSubmit={submitComment}
+        />
+      ));
+    });
+  };
 
-  return [mapValues(widgetsData, renderWidget), { addWidget, submitComment }];
+  return [renderWidgetDict(widgetsData), addWidget];
 };
 
 export default useWidgets;

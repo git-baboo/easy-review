@@ -23,6 +23,7 @@ const DiffFileList = ({ diff, widgets, addWidget, ...props }: Props) => {
         ({ oldPath, newPath, oldRevision, newRevision, type, hunks }: any) => (
           <DiffFile
             key={oldRevision + "-" + newRevision}
+            fileId={oldRevision + "-" + newRevision}
             oldPath={oldPath}
             newPath={newPath}
             type={type}

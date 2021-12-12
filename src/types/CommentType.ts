@@ -6,9 +6,6 @@ export type Comment = {
 };
 
 export type PreviewComment = {
-  id: string;
-  author: string;
-  avatarUrl: string;
   path: string;
   body: string;
 };

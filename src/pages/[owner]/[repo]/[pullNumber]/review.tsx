@@ -33,7 +33,7 @@ const ReviewPage = () => {
   const [pull, setPull] = useState<ReviewPullRequestType>(initialPull);
   const router = useRouter();
   const { owner, repo, pullNumber } = router.query || "";
-  const [widgets, { addWidget }]: any = useWidgets(reviewer);
+  const [widgets, addWidget]: any = useWidgets(reviewer);
   const { octokit } = useApi();
   const toast = useToast({
     title: "コメントの追加が完了しました",
@@ -91,16 +91,19 @@ const ReviewPage = () => {
 
   const handleSubmit = () => {
     const comments: Comment[] = [];
-    Object.keys(widgets).map((key) => {
-      const changeKey = widgets[key].props.changeKey;
-      const [side, line] = getSideAndLine(changeKey);
-      widgets[key].props.comments.map(({ path, body }: PreviewComment) => {
-        comments.push({
-          path: path,
-          line: Number(line),
-          side: side,
-          body: body,
-        });
+    Object.keys(widgets).map((fileId) => {
+      Object.keys(widgets[fileId]).map((changeKey) => {
+        const [side, line] = getSideAndLine(changeKey);
+        widgets[fileId][changeKey].props.comments.map(
+          ({ path, body }: PreviewComment) => {
+            comments.push({
+              path: path,
+              line: Number(line),
+              side: side,
+              body: body,
+            });
+          }
+        );
       });
     });
 

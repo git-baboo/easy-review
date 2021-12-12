@@ -11,6 +11,7 @@ const Decoration = reactDiffView.Decoration;
 const getChangeKey = reactDiffView.getChangeKey;
 
 type Props = {
+  fileId: string;
   oldPath: string;
   newPath: string;
   type: string;
@@ -20,6 +21,7 @@ type Props = {
 };
 
 const DiffFile = ({
+  fileId,
   oldPath,
   newPath,
   type,
@@ -66,7 +68,7 @@ const DiffFile = ({
 
   const handleClick = (initText: string) => {
     const changeKey = tmpChangeKey;
-    addWidget(changeKey, postPath, initText);
+    addWidget(fileId, changeKey, postPath, initText);
     setTmpChangeKey("");
   };
 
@@ -88,7 +90,7 @@ const DiffFile = ({
         viewType="unified"
         diffType={type}
         hunks={hunks}
-        widgets={widgets}
+        widgets={widgets[fileId]}
         renderGutter={renderGutter}
       >
         {(hunks: any) =>
