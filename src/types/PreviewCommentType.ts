@@ -1,4 +1,4 @@
-export type PreviewComment = {
+export type PreviewCommentType = {
   path: string;
   body: string;
 };
