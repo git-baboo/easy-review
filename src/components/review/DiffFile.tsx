@@ -77,7 +77,7 @@ const DiffFile = ({
         setTmpChangeKey(changeKey);
       },
     };
-  }, [addWidget]);
+  }, []);
 
   return (
     <Box w="full" boxShadow="base" align="start">
