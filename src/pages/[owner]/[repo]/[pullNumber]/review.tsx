@@ -28,7 +28,7 @@ const initialPull = {
   avatarUrl: "",
 };
 
-export type CommentType = {
+type CommentType = {
   path: string;
   line: number;
   side: string;
