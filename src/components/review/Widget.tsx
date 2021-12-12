@@ -2,6 +2,15 @@ import { Box, Button, Flex, List, Spacer, Textarea } from "@chakra-ui/react";
 import React, { useCallback } from "react";
 
 import CommentList from "@/components/review/CommentList";
+import { PreviewComment } from "@/types/CommentType";
+
+type Props = {
+  changeKey: string;
+  comments: PreviewComment[];
+  draft: PreviewComment;
+  onDraftChange: (key: any, body: any) => void;
+  onSubmit: (key: any, body: any) => void;
+};
 
 const Widget = ({
   changeKey,
@@ -9,7 +18,7 @@ const Widget = ({
   draft,
   onDraftChange,
   onSubmit,
-}: any) => {
+}: Props) => {
   const input = useCallback(
     (e) => {
       onDraftChange(changeKey, e.target.value);
