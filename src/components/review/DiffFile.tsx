@@ -65,7 +65,6 @@ const DiffFile = ({
     );
 
   const handleClick = (initText: string) => {
-    console.log(initText);
     const key = tmpKey;
     addWidget(key, postPath, initText);
     setTmpKey("");
@@ -76,7 +75,6 @@ const DiffFile = ({
       onClick({ change }: any) {
         const key = getChangeKey(change);
         setTmpKey(key);
-        // addWidget(key, postPath);
       },
     };
   }, [addWidget]);
