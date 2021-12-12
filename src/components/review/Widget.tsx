@@ -1,5 +1,5 @@
 import { Box, Button, Flex, List, Spacer, Textarea } from "@chakra-ui/react";
-import React, { useCallback } from "react";
+import React, { ChangeEvent, useCallback } from "react";
 
 import CommentListItem from "@/components/review/CommentListItem";
 import { PreviewCommentType } from "@/types/PreviewCommentType";
