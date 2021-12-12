@@ -2,7 +2,7 @@ import { Box, Button, Flex, List, Spacer, Textarea } from "@chakra-ui/react";
 import React, { useCallback } from "react";
 
 import CommentList from "@/components/review/CommentList";
-import { PreviewComment } from "@/types/CommentType";
+import { PreviewCommentType } from "@/types/PreviewCommentType";
 
 type Props = {
   fileId: string;
@@ -10,8 +10,8 @@ type Props = {
   author: string;
   avatarUrl: string;
   isWriting: boolean;
-  draft: PreviewComment;
-  comments: PreviewComment[];
+  draft: PreviewCommentType;
+  comments: PreviewCommentType[];
   onDraftChange: (fileId: any, changeKey: any, body: any) => void;
   onSubmit: (fileId: any, changeKey: any) => void;
 };

@@ -19,13 +19,20 @@ import useWidgets from "@/components/review/useWidgets";
 import { reviewer } from "@/data/dummyReviewer";
 import withAuth from "@/hoc/withAuth";
 import { useApi } from "@/hooks/useApi";
-import { Comment, PreviewComment } from "@/types/CommentType";
+import { PreviewCommentType } from "@/types/PreviewCommentType";
 import { ReviewPullRequestType } from "@/types/PullRequestType";
 
 const initialPull = {
   title: "",
   userName: "",
   avatarUrl: "",
+};
+
+export type CommentType = {
+  path: string;
+  line: number;
+  side: string;
+  body: string;
 };
 
 const ReviewPage = () => {
@@ -90,12 +97,12 @@ const ReviewPage = () => {
   };
 
   const handleSubmit = () => {
-    const comments: Comment[] = [];
+    const comments: CommentType[] = [];
     Object.keys(widgets).map((fileId) => {
       Object.keys(widgets[fileId]).map((changeKey) => {
         const [side, line] = getSideAndLine(changeKey);
         widgets[fileId][changeKey].props.comments.map(
-          ({ path, body }: PreviewComment) => {
+          ({ path, body }: PreviewCommentType) => {
             comments.push({
               path: path,
               line: Number(line),

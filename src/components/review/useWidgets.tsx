@@ -2,7 +2,7 @@ import { mapValues } from "lodash";
 import { useCallback, useReducer } from "react";
 
 import Widget from "@/components/review/Widget";
-import { PreviewComment } from "@/types/CommentType";
+import { PreviewCommentType } from "@/types/PreviewCommentType";
 
 type Props = {
   userName: string;
@@ -14,8 +14,8 @@ const useWidgets = ({ userName, avatarUrl }: Props) => {
     [fileId: string]: {
       [changeKey: string]: {
         isWriting: boolean;
-        draft: PreviewComment;
-        comments: PreviewComment[];
+        draft: PreviewCommentType;
+        comments: PreviewCommentType[];
       };
     };
   };
