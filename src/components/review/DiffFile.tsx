@@ -17,7 +17,12 @@ type Props = {
   type: string;
   hunks: any;
   widgets: any;
-  addWidget: any;
+  addWidget: (
+    fileId: string,
+    changeKey: string,
+    path: string,
+    body: string
+  ) => void;
 };
 
 const DiffFile = ({

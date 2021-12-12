@@ -9,7 +9,12 @@ const parseDiff = reactDiffView.parseDiff;
 type CustomProps = {
   diff: string;
   widgets: any;
-  addWidget: any;
+  addWidget: (
+    fileId: string,
+    changeKey: string,
+    path: string,
+    body: string
+  ) => void;
 };
 
 type Props = StackProps & CustomProps;
