@@ -1,5 +1,10 @@
 import { Avatar } from "@chakra-ui/avatar";
 import { Flex, ListItem, Text } from "@chakra-ui/layout";
+import ChakraUIRenderer from "chakra-ui-markdown-renderer";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+
+import customTheme from "@/markdown/customTheme";
 
 type Props = {
   id: string;
@@ -24,7 +29,13 @@ const CommentList = ({ id, author, avatarUrl, body }: Props) => {
           {author}
         </Text>
       </Flex>
-      <Text ml={10}>{body}</Text>
+      <ReactMarkdown
+        skipHtml={true}
+        components={ChakraUIRenderer(customTheme)}
+        remarkPlugins={[remarkGfm]}
+      >
+        {body}
+      </ReactMarkdown>
     </ListItem>
   );
 };
