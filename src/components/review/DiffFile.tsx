@@ -43,7 +43,7 @@ const DiffFile = ({
       break;
   }
   const postPath = type === "delete" ? oldPath : newPath;
-  const [tmpKey, setTmpKey] = useState<string>("");
+  const [tmpChangeKey, setTmpChangeKey] = useState<string>("");
 
   type RenderGutterProps = {
     side: string;
@@ -65,16 +65,16 @@ const DiffFile = ({
     );
 
   const handleClick = (initText: string) => {
-    const key = tmpKey;
-    addWidget(key, postPath, initText);
-    setTmpKey("");
+    const changeKey = tmpChangeKey;
+    addWidget(changeKey, postPath, initText);
+    setTmpChangeKey("");
   };
 
   const gutterEvents = useMemo(() => {
     return {
       onClick({ change }: any) {
-        const key = getChangeKey(change);
-        setTmpKey(key);
+        const changeKey = getChangeKey(change);
+        setTmpChangeKey(changeKey);
       },
     };
   }, [addWidget]);
