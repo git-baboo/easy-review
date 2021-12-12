@@ -12,8 +12,8 @@ type Props = {
   isWriting: boolean;
   draft: PreviewCommentType;
   comments: PreviewCommentType[];
-  onDraftChange: (fileId: any, changeKey: any, body: any) => void;
-  onSubmit: (fileId: any, changeKey: any) => void;
+  onDraftChange: (fileId: string, changeKey: string, body: string) => void;
+  onSubmit: (fileId: string, changeKey: string) => void;
 };
 
 const Widget = ({
@@ -28,7 +28,7 @@ const Widget = ({
   onSubmit,
 }: Props) => {
   const input = useCallback(
-    (e) => {
+    (e: ChangeEvent<HTMLTextAreaElement>) => {
       onDraftChange(fileId, changeKey, e.target.value);
     },
     [onDraftChange, changeKey]
