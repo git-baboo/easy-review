@@ -35,11 +35,18 @@ const ReviewPage = () => {
   const { owner, repo, pullNumber } = router.query || "";
   const [widgets, { addWidget }]: any = useWidgets(reviewer);
   const { octokit } = useApi();
-  const toast = useToast({
+  const successToast = useToast({
     title: "コメントの追加が完了しました",
     position: "top",
     variant: "subtle",
     status: "success",
+    duration: 2000,
+  });
+  const errorToast = useToast({
+    title: "コメントを追加してください",
+    position: "top",
+    variant: "solid",
+    status: "error",
     duration: 2000,
   });
 
@@ -104,29 +111,32 @@ const ReviewPage = () => {
       });
     });
 
-    octokit
-      .request("POST /repos/{owner}/{repo}/pulls/{pull_number}/reviews", {
-        owner: String(owner),
-        repo: String(repo),
-        pull_number: Number(pullNumber),
-        comments: comments,
-      })
-      .then((response) => {
-        octokit.request(
-          "POST /repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}/events",
-          {
-            owner: String(owner),
-            repo: String(repo),
-            pull_number: Number(pullNumber),
-            review_id: response.data.id,
-            event: "COMMENT",
-          }
-        );
-      });
-
-    toast();
-
-    router.push("/");
+    if (comments.length > 0) {
+      octokit
+        .request("POST /repos/{owner}/{repo}/pulls/{pull_number}/reviews", {
+          owner: String(owner),
+          repo: String(repo),
+          pull_number: Number(pullNumber),
+          comments: comments,
+        })
+        .then((response) => {
+          octokit.request(
+            "POST /repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}/events",
+            {
+              owner: String(owner),
+              repo: String(repo),
+              pull_number: Number(pullNumber),
+              review_id: response.data.id,
+              event: "COMMENT",
+            }
+          ).then(() => {
+            successToast();
+            router.push("/");
+          });
+        });
+    } else {
+      errorToast();
+    }
   };
 
   return (
