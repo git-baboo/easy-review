@@ -11,15 +11,22 @@ const Decoration = reactDiffView.Decoration;
 const getChangeKey = reactDiffView.getChangeKey;
 
 type Props = {
+  fileId: string;
   oldPath: string;
   newPath: string;
   type: string;
   hunks: any;
   widgets: any;
-  addWidget: any;
+  addWidget: (
+    fileId: string,
+    changeKey: string,
+    path: string,
+    body: string
+  ) => void;
 };
 
 const DiffFile = ({
+  fileId,
   oldPath,
   newPath,
   type,
@@ -43,7 +50,7 @@ const DiffFile = ({
       break;
   }
   const postPath = type === "delete" ? oldPath : newPath;
-  const [tmpKey, setTmpKey] = useState<string>("");
+  const [tmpChangeKey, setTmpChangeKey] = useState<string>("");
 
   type RenderGutterProps = {
     side: string;
@@ -65,21 +72,19 @@ const DiffFile = ({
     );
 
   const handleClick = (initText: string) => {
-    console.log(initText);
-    const key = tmpKey;
-    addWidget(key, postPath, initText);
-    setTmpKey("");
+    const changeKey = tmpChangeKey;
+    addWidget(fileId, changeKey, postPath, initText);
+    setTmpChangeKey("");
   };
 
   const gutterEvents = useMemo(() => {
     return {
       onClick({ change }: any) {
-        const key = getChangeKey(change);
-        setTmpKey(key);
-        // addWidget(key, postPath);
+        const changeKey = getChangeKey(change);
+        setTmpChangeKey(changeKey);
       },
     };
-  }, [addWidget]);
+  }, []);
 
   return (
     <Box w="full" boxShadow="base" align="start">
@@ -90,7 +95,7 @@ const DiffFile = ({
         viewType="unified"
         diffType={type}
         hunks={hunks}
-        widgets={widgets}
+        widgets={widgets[fileId]}
         renderGutter={renderGutter}
       >
         {(hunks: any) =>
