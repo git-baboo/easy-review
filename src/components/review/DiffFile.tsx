@@ -1,5 +1,5 @@
 import { PlusSquareIcon } from "@chakra-ui/icons";
-import { Box, Heading } from "@chakra-ui/layout";
+import { Box, Heading, Text } from "@chakra-ui/react";
 import { useMemo, useState } from "react";
 
 import ReviewPopover from "@/components/review/Popover";
@@ -91,27 +91,39 @@ const DiffFile = ({
       <Heading p={3} size="xs" bgColor="gray.200">
         {headerPath}
       </Heading>
-      <Diff
-        viewType="unified"
-        diffType={type}
-        hunks={hunks}
-        widgets={widgets[fileId]}
-        renderGutter={renderGutter}
-      >
-        {(hunks: any) =>
-          hunks.map((hunk: any) => [
-            <Decoration key={"deco-" + hunk.content}>
-              <Box bg="blue.300" p={2}>
-                {"　"}
-              </Box>
-              <Box bg="blue.100" p={2}>
-                {hunk.content}
-              </Box>
-            </Decoration>,
-            <Hunk key={hunk.content} hunk={hunk} gutterEvents={gutterEvents} />,
-          ])
-        }
-      </Diff>
+      {type === "rename" ? (
+        <Text p={2}>
+          ファイル名の変更もしくはファイルの移動が行われました。
+          <br />
+          内容に変更はありません。
+        </Text>
+      ) : (
+        <Diff
+          viewType="unified"
+          diffType={type}
+          hunks={hunks}
+          widgets={widgets[fileId]}
+          renderGutter={renderGutter}
+        >
+          {(hunks: any) =>
+            hunks.map((hunk: any) => [
+              <Decoration key={"deco-" + hunk.content}>
+                <Box bg="blue.300" p={2}>
+                  {"　"}
+                </Box>
+                <Box bg="blue.100" p={2}>
+                  {hunk.content}
+                </Box>
+              </Decoration>,
+              <Hunk
+                key={hunk.content}
+                hunk={hunk}
+                gutterEvents={gutterEvents}
+              />,
+            ])
+          }
+        </Diff>
+      )}
     </Box>
   );
 };
