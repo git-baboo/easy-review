@@ -52,6 +52,7 @@ const DiffFile = ({
   const postPath = type === "delete" ? oldPath : newPath;
   const [tmpChangeKey, setTmpChangeKey] = useState<string>("");
   const [visibleDeleteFile, setVisibleDeleteFile] = useState<boolean>(false);
+
   type RenderGutterProps = {
     side: string;
     renderDefault: () => number;
