@@ -1,5 +1,5 @@
 import { PlusSquareIcon } from "@chakra-ui/icons";
-import { Box, Heading } from "@chakra-ui/layout";
+import { Box, Heading, Link, Text } from "@chakra-ui/react";
 import { useMemo, useState } from "react";
 
 import ReviewPopover from "@/components/review/Popover";
@@ -49,13 +49,22 @@ const DiffFile = ({
       headerPath = newPath;
       break;
   }
+  let lines: number = 0;
+  for (const hunk of hunks) {
+    lines += hunk.changes.length;
+  }
   const postPath = type === "delete" ? oldPath : newPath;
   const [tmpChangeKey, setTmpChangeKey] = useState<string>("");
+  const [visibleLargeFile, setVisibleLargeFile] = useState<boolean>(false);
 
   type RenderGutterProps = {
     side: string;
     renderDefault: () => number;
     inHoverState: boolean;
+  };
+
+  const toggleVisibilityLargeFile = () => {
+    setVisibleLargeFile((prevState) => !prevState);
   };
 
   const renderGutter = ({
@@ -91,27 +100,40 @@ const DiffFile = ({
       <Heading p={3} size="xs" bgColor="gray.200">
         {headerPath}
       </Heading>
-      <Diff
-        viewType="unified"
-        diffType={type}
-        hunks={hunks}
-        widgets={widgets[fileId]}
-        renderGutter={renderGutter}
-      >
-        {(hunks: any) =>
-          hunks.map((hunk: any) => [
-            <Decoration key={"deco-" + hunk.content}>
-              <Box bg="blue.300" p={2}>
-                {"　"}
-              </Box>
-              <Box bg="blue.100" p={2}>
-                {hunk.content}
-              </Box>
-            </Decoration>,
-            <Hunk key={hunk.content} hunk={hunk} gutterEvents={gutterEvents} />,
-          ])
-        }
-      </Diff>
+      {lines >= 100 && visibleLargeFile === false ? (
+        <Text p={2}>
+          このファイルには100行以上の変更があります。
+          <Link color="blue.500" onClick={toggleVisibilityLargeFile}>
+            差分を表示
+          </Link>
+        </Text>
+      ) : (
+        <Diff
+          viewType="unified"
+          diffType={type}
+          hunks={hunks}
+          widgets={widgets[fileId]}
+          renderGutter={renderGutter}
+        >
+          {(hunks: any) =>
+            hunks.map((hunk: any) => [
+              <Decoration key={"deco-" + hunk.content}>
+                <Box bg="blue.300" p={2}>
+                  {"　"}
+                </Box>
+                <Box bg="blue.100" p={2}>
+                  {hunk.content}
+                </Box>
+              </Decoration>,
+              <Hunk
+                key={hunk.content}
+                hunk={hunk}
+                gutterEvents={gutterEvents}
+              />,
+            ])
+          }
+        </Diff>
+      )}
     </Box>
   );
 };
