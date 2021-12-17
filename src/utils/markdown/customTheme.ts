@@ -1,9 +1,9 @@
-import CheckboxTheme from "@/markdown/theme/CheckboxTheme";
-import CodeTheme from "@/markdown/theme/CodeTheme";
-import DividerTheme from "@/markdown/theme/DividerTheme";
-import HeadingTheme from "@/markdown/theme/HeadingTheme";
-import LinkTheme from "@/markdown/theme/LinkTheme";
-import QuoteTheme from "@/markdown/theme/QuoteTheme";
+import CheckboxTheme from "@/utils/markdown/theme/CheckboxTheme";
+import CodeTheme from "@/utils/markdown/theme/CodeTheme";
+import DividerTheme from "@/utils/markdown/theme/DividerTheme";
+import HeadingTheme from "@/utils/markdown/theme/HeadingTheme";
+import LinkTheme from "@/utils/markdown/theme/LinkTheme";
+import QuoteTheme from "@/utils/markdown/theme/QuoteTheme";
 
 const customTheme: any = {
   h1: HeadingTheme,

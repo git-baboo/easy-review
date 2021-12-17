@@ -4,7 +4,7 @@ import { VFC } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-import customTheme from "@/markdown/customTheme";
+import customTheme from "@/utils/markdown/customTheme";
 
 type CustomProps = {
   comment: string | null;
