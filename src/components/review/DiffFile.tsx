@@ -100,7 +100,7 @@ const DiffFile = ({
       <Heading p={3} size="xs" bgColor="gray.200">
         {headerPath}
       </Heading>
-      {lines >= 100 && visibleLargeFile === false ? (
+      {lines >= 100 && !visibleLargeFile ? (
         <Text p={2}>
           このファイルには100行以上の変更があります。
           <Link color="blue.500" onClick={toggleVisibilityLargeFile}>
