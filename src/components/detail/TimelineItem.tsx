@@ -1,6 +1,5 @@
 import { Box, BoxProps } from "@chakra-ui/react";
 import ChakraUIRenderer from "chakra-ui-markdown-renderer";
-import { VFC } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -17,7 +16,7 @@ type CustomProps = {
 
 type Props = BoxProps & CustomProps;
 
-const TimelineItem: VFC<Props> = ({ comment, ...boxProps }) => {
+const TimelineItem = ({ comment, ...boxProps }: Props) => {
   const customTheme: any = {
     h1: HeadingTheme,
     h2: HeadingTheme,
