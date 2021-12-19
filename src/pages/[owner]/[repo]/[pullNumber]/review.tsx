@@ -16,7 +16,6 @@ import DiffFileList from "@/components/review/DiffFileList";
 import PullRequestHeading from "@/components/review/PullRequestHeading";
 import TemplateList from "@/components/review/TemplateList";
 import useWidgets from "@/components/review/useWidgets";
-// import { reviewer } from "@/data/dummyReviewer";
 import withAuth from "@/hoc/withAuth";
 import { useApi } from "@/hooks/useApi";
 import { PreviewCommentType } from "@/types/PreviewCommentType";
@@ -98,7 +97,6 @@ const ReviewPage = () => {
     }
   }, [owner, repo, pullNumber]);
 
-  // TODO: Reviewrの情報を適切に取得できているかの確認
   useEffect(() => {
     octokit.request("GET /user").then((response) => {
       if (response.data.name) {
