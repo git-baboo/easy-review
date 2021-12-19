@@ -6,6 +6,7 @@ import {
   Divider,
   Center,
   useToast,
+  Avatar,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -99,6 +100,7 @@ const ReviewPage = () => {
 
   useEffect(() => {
     octokit.request("GET /user").then((response) => {
+      // XXX: なんで data.name は<string | null> で、avatar_url は <string>??
       if (response.data.name) {
         setReviewer({
           userName: response.data.name,
