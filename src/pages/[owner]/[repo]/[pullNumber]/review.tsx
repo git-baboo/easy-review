@@ -40,12 +40,17 @@ type ReviwerType = {
   avatarUrl: string;
 };
 
+const initialReviewerInfo = {
+  userName: "",
+  avatarUrl: "",
+};
+
 const ReviewPage = () => {
   const [diff, setDiff] = useState<string>("");
   const [pull, setPull] = useState<ReviewPullRequestType>(initialPull);
   const router = useRouter();
   const { owner, repo, pullNumber } = router.query || "";
-  const [reviewer, setReviewer] = useState<ReviwerType>();
+  const [reviewer, setReviewer] = useState<ReviwerType>(initialReviewerInfo);
   const [widgets, addWidget]: any = useWidgets(reviewer);
   const { octokit } = useApi();
   const successToast = useToast({
