@@ -16,7 +16,7 @@ import DiffFileList from "@/components/review/DiffFileList";
 import PullRequestHeading from "@/components/review/PullRequestHeading";
 import TemplateList from "@/components/review/TemplateList";
 import useWidgets from "@/components/review/useWidgets";
-import { reviewer } from "@/data/dummyReviewer";
+// import { reviewer } from "@/data/dummyReviewer";
 import withAuth from "@/hoc/withAuth";
 import { useApi } from "@/hooks/useApi";
 import { PreviewCommentType } from "@/types/PreviewCommentType";
@@ -35,14 +35,18 @@ type CommentType = {
   body: string;
 };
 
+type ReviwerType = {
+  userName: string;
+  avatarUrl: string;
+};
+
 const ReviewPage = () => {
   const [diff, setDiff] = useState<string>("");
   const [pull, setPull] = useState<ReviewPullRequestType>(initialPull);
   const router = useRouter();
   const { owner, repo, pullNumber } = router.query || "";
+  const [reviewer, setReviewer] = useState<ReviwerType>();
   const [widgets, addWidget]: any = useWidgets(reviewer);
-  const [reviwerAvatarUrl, setReviwerAvatarUrl] = useState<string>("");
-  const [reviewerUserName, setReviwerUserName] = useState<string>("");
   const { octokit } = useApi();
   const successToast = useToast({
     title: "コメントの追加が完了しました",
@@ -92,9 +96,11 @@ const ReviewPage = () => {
   // TODO: Reviewrの情報を適切に取得できているかの確認
   useEffect(() => {
     octokit.request("GET /user").then((response) => {
-      setReviwerAvatarUrl(response.data.avatar_url);
       if (response.data.name) {
-        setReviwerUserName(response.data.name);
+        setReviewer({
+          userName: response.data.name,
+          avatarUrl: response.data.avatar_url,
+        });
       }
     });
   }, []);
