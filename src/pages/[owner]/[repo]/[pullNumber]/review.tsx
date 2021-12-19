@@ -99,18 +99,10 @@ const ReviewPage = () => {
 
   useEffect(() => {
     octokit.request("GET /user").then((response) => {
-      // XXX: なんで data.name は<string | null> で、avatar_url は <string>??
-      if (response.data.name) {
-        setReviewer({
-          userName: response.data.name,
-          avatarUrl: response.data.avatar_url,
-        });
-      } else {
-        setReviewer({
-          userName: "",
-          avatarUrl: response.data.avatar_url,
-        });
-      }
+      setReviewer({
+        userName: response.data.login,
+        avatarUrl: response.data.avatar_url,
+      });
     });
   }, []);
 
