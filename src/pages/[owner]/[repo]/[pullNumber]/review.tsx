@@ -41,8 +41,8 @@ const ReviewPage = () => {
   const router = useRouter();
   const { owner, repo, pullNumber } = router.query || "";
   const [widgets, addWidget]: any = useWidgets(reviewer);
-  // const [reviewerUrl, setReviwerUrl] = useState();
-  // const [reviewerName, setReviwerName] = useState();
+  const [reviewerUrl, setReviwerUrl] = useState();
+  const [reviewerName, setReviwerName] = useState();
   const { octokit } = useApi();
   const successToast = useToast({
     title: "コメントの追加が完了しました",
