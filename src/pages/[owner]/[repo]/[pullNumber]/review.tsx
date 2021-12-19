@@ -41,7 +41,7 @@ const ReviewPage = () => {
   const router = useRouter();
   const { owner, repo, pullNumber } = router.query || "";
   const [widgets, addWidget]: any = useWidgets(reviewer);
-  const [reviewerUrl, setReviwerUrl] = useState();
+  const [reviwerAvatarUrl, setReviwerAvatarUrl] = useState();
   const [reviewerName, setReviwerName] = useState();
   const { octokit } = useApi();
   const successToast = useToast({
@@ -92,7 +92,8 @@ const ReviewPage = () => {
   // TODO: Reviewrの情報を適切に取得できているかの確認
   useEffect(() => {
     octokit.request("GET /user").then((response) => {
-      console.log(response);
+      console.log(response.data.name);
+      console.log(response.data.avatar_url);
     });
   }, []);
 
