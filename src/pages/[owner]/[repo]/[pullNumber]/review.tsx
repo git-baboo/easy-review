@@ -106,6 +106,11 @@ const ReviewPage = () => {
           userName: response.data.name,
           avatarUrl: response.data.avatar_url,
         });
+      } else {
+        setReviewer({
+          userName: "",
+          avatarUrl: response.data.avatar_url,
+        });
       }
     });
   }, []);
