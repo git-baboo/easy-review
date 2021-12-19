@@ -41,6 +41,8 @@ const ReviewPage = () => {
   const router = useRouter();
   const { owner, repo, pullNumber } = router.query || "";
   const [widgets, addWidget]: any = useWidgets(reviewer);
+  // const [reviewerUrl, setReviwerUrl] = useState();
+  // const [reviewerName, setReviwerName] = useState();
   const { octokit } = useApi();
   const successToast = useToast({
     title: "コメントの追加が完了しました",
@@ -87,6 +89,13 @@ const ReviewPage = () => {
     }
   }, [owner, repo, pullNumber]);
 
+  // TODO: Reviewrの情報を適切に取得できているかの確認
+  useEffect(() => {
+    octokit.request("GET /user").then((response) => {
+      console.log(response);
+    });
+  }, []);
+
   const getSideAndLine = (changeKey: string): [string, string] => {
     const changeType = changeKey.slice(0, 1);
     const line = changeKey.slice(1);
@@ -130,19 +139,21 @@ const ReviewPage = () => {
           comments: comments,
         })
         .then((response) => {
-          octokit.request(
-            "POST /repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}/events",
-            {
-              owner: String(owner),
-              repo: String(repo),
-              pull_number: Number(pullNumber),
-              review_id: response.data.id,
-              event: "COMMENT",
-            }
-          ).then(() => {
-            successToast();
-            router.push("/");
-          });
+          octokit
+            .request(
+              "POST /repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}/events",
+              {
+                owner: String(owner),
+                repo: String(repo),
+                pull_number: Number(pullNumber),
+                review_id: response.data.id,
+                event: "COMMENT",
+              }
+            )
+            .then(() => {
+              successToast();
+              router.push("/");
+            });
         });
     } else {
       errorToast();
