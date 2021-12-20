@@ -86,44 +86,48 @@ const DiffFile = ({
     };
   }, []);
 
+  const RenderDiff = () => {
+    return (
+      <Diff
+        viewType="unified"
+        diffType={type}
+        hunks={hunks}
+        widgets={widgets[fileId]}
+        renderGutter={renderGutter}
+      >
+        {(hunks: any) =>
+          hunks.map((hunk: any) => [
+            <Decoration key={"deco-" + hunk.content}>
+              <Box bg="blue.300" p={2}>
+                {"　"}
+              </Box>
+              <Box bg="blue.100" p={2}>
+                {hunk.content}
+              </Box>
+            </Decoration>,
+            <Hunk key={hunk.content} hunk={hunk} gutterEvents={gutterEvents} />,
+          ])
+        }
+      </Diff>
+    );
+  };
+
+  const RenameMessage = () => {
+    return (
+      <Text p={2}>
+        ファイル名の変更もしくはファイルの移動が行われました。
+        <br />
+        内容に変更はありません。
+      </Text>
+    );
+  };
+
   return (
     <Box w="full" boxShadow="base" align="start">
       <Heading p={3} size="xs" bgColor="gray.200">
         {headerPath}
       </Heading>
-      {type === "rename" ? (
-        <Text p={2}>
-          ファイル名の変更もしくはファイルの移動が行われました。
-          <br />
-          内容に変更はありません。
-        </Text>
-      ) : (
-        <Diff
-          viewType="unified"
-          diffType={type}
-          hunks={hunks}
-          widgets={widgets[fileId]}
-          renderGutter={renderGutter}
-        >
-          {(hunks: any) =>
-            hunks.map((hunk: any) => [
-              <Decoration key={"deco-" + hunk.content}>
-                <Box bg="blue.300" p={2}>
-                  {"　"}
-                </Box>
-                <Box bg="blue.100" p={2}>
-                  {hunk.content}
-                </Box>
-              </Decoration>,
-              <Hunk
-                key={hunk.content}
-                hunk={hunk}
-                gutterEvents={gutterEvents}
-              />,
-            ])
-          }
-        </Diff>
-      )}
+      {type === "rename" ? <RenameMessage /> : <RenderDiff />}
     </Box>
   );
 };
