@@ -9,7 +9,12 @@ const parseDiff = reactDiffView.parseDiff;
 type CustomProps = {
   diff: string;
   widgets: any;
-  addWidget: any;
+  addWidget: (
+    fileId: string,
+    changeKey: string,
+    path: string,
+    body: string
+  ) => void;
 };
 
 type Props = StackProps & CustomProps;
@@ -23,6 +28,7 @@ const DiffFileList = ({ diff, widgets, addWidget, ...props }: Props) => {
         ({ oldPath, newPath, oldRevision, newRevision, type, hunks }: any) => (
           <DiffFile
             key={oldRevision + "-" + newRevision}
+            fileId={oldRevision + "-" + newRevision}
             oldPath={oldPath}
             newPath={newPath}
             type={type}
