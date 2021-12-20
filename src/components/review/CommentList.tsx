@@ -23,7 +23,7 @@ const CommentList = ({ id, author, avatarUrl, body }: Props) => {
       borderRadius="md"
       borderColor="gray.300"
     >
-      <Grid templateColumns={"auto 1fr"} gap={2} alignItems={"center"}>
+      <Grid templateColumns="auto 1fr" gap={2} alignItems="center">
         <GridItem>
           <Avatar size="sm" name={author} src={avatarUrl} />
         </GridItem>
