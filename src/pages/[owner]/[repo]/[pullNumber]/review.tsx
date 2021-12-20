@@ -34,7 +34,7 @@ type CommentType = {
   body: string;
 };
 
-type ReviwerType = {
+type ReviewerType = {
   userName: string;
   avatarUrl: string;
 };
@@ -49,7 +49,7 @@ const ReviewPage = () => {
   const [pull, setPull] = useState<ReviewPullRequestType>(initialPull);
   const router = useRouter();
   const { owner, repo, pullNumber } = router.query || "";
-  const [reviewer, setReviewer] = useState<ReviwerType>(initialReviewerInfo);
+  const [reviewer, setReviewer] = useState<ReviewerType>(initialReviewerInfo);
   const [widgets, addWidget]: any = useWidgets(reviewer);
   const { octokit } = useApi();
   const successToast = useToast({
