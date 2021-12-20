@@ -86,7 +86,7 @@ const DiffFile = ({
     };
   }, []);
 
-  const renderDiff = () => {
+  const RenderDiff = () => {
     return (
       <Diff
         viewType="unified"
@@ -127,7 +127,7 @@ const DiffFile = ({
       <Heading p={3} size="xs" bgColor="gray.200">
         {headerPath}
       </Heading>
-      {type === "rename" ? <RenameMessage /> : renderDiff()}
+      {type === "rename" ? <RenameMessage /> : <RenderDiff />}
     </Box>
   );
 };
