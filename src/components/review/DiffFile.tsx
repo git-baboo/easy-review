@@ -1,5 +1,5 @@
 import { PlusSquareIcon } from "@chakra-ui/icons";
-import { Box, Heading } from "@chakra-ui/layout";
+import { Box, Heading, Text } from "@chakra-ui/react";
 import { useMemo, useState } from "react";
 
 import ReviewPopover from "@/components/review/Popover";
@@ -86,11 +86,8 @@ const DiffFile = ({
     };
   }, []);
 
-  return (
-    <Box w="full" boxShadow="base" align="start">
-      <Heading p={3} size="xs" bgColor="gray.200">
-        {headerPath}
-      </Heading>
+  const RenderDiff = () => {
+    return (
       <Diff
         viewType="unified"
         diffType={type}
@@ -112,6 +109,25 @@ const DiffFile = ({
           ])
         }
       </Diff>
+    );
+  };
+
+  const RenameMessage = () => {
+    return (
+      <Text p={2}>
+        ファイル名の変更もしくはファイルの移動が行われました。
+        <br />
+        内容に変更はありません。
+      </Text>
+    );
+  };
+
+  return (
+    <Box w="full" boxShadow="base" align="start">
+      <Heading p={3} size="xs" bgColor="gray.200">
+        {headerPath}
+      </Heading>
+      {type === "rename" ? <RenameMessage /> : <RenderDiff />}
     </Box>
   );
 };
