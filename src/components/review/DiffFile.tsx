@@ -95,44 +95,64 @@ const DiffFile = ({
     };
   }, []);
 
+  const RenderDiff = () => {
+    return (
+      <Diff
+        viewType="unified"
+        diffType={type}
+        hunks={hunks}
+        widgets={widgets[fileId]}
+        renderGutter={renderGutter}
+      >
+        {(hunks: any) =>
+          hunks.map((hunk: any) => [
+            <Decoration key={"deco-" + hunk.content}>
+              <Box bg="blue.300" p={2}>
+                {"　"}
+              </Box>
+              <Box bg="blue.100" p={2}>
+                {hunk.content}
+              </Box>
+            </Decoration>,
+            <Hunk key={hunk.content} hunk={hunk} gutterEvents={gutterEvents} />,
+          ])
+        }
+      </Diff>
+    );
+  };
+
+  const RenameMessage = () => {
+    return (
+      <Text p={2}>
+        ファイル名の変更もしくはファイルの移動が行われました。
+        <br />
+        内容に変更はありません。
+      </Text>
+    );
+  };
+
+  const LargeDiffMessage = () => {
+    return (
+      <Text p={2}>
+        このファイルには100行以上の変更があります。
+        <Link color="blue.500" onClick={toggleVisibilityLargeFile}>
+          差分を表示
+        </Link>
+      </Text>
+    );
+  };
+
   return (
     <Box w="full" boxShadow="base" align="start">
       <Heading p={3} size="xs" bgColor="gray.200">
         {headerPath}
       </Heading>
-      {lines >= 100 && !visibleLargeFile ? (
-        <Text p={2}>
-          このファイルには100行以上の変更があります。
-          <Link color="blue.500" onClick={toggleVisibilityLargeFile}>
-            差分を表示
-          </Link>
-        </Text>
+      {type === "rename" ? (
+        <RenameMessage />
+      ) : lines >= 100 && !visibleLargeFile ? (
+        <LargeDiffMessage />
       ) : (
-        <Diff
-          viewType="unified"
-          diffType={type}
-          hunks={hunks}
-          widgets={widgets[fileId]}
-          renderGutter={renderGutter}
-        >
-          {(hunks: any) =>
-            hunks.map((hunk: any) => [
-              <Decoration key={"deco-" + hunk.content}>
-                <Box bg="blue.300" p={2}>
-                  {"　"}
-                </Box>
-                <Box bg="blue.100" p={2}>
-                  {hunk.content}
-                </Box>
-              </Decoration>,
-              <Hunk
-                key={hunk.content}
-                hunk={hunk}
-                gutterEvents={gutterEvents}
-              />,
-            ])
-          }
-        </Diff>
+        <RenderDiff />
       )}
     </Box>
   );

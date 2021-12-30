@@ -16,7 +16,6 @@ import DiffFileList from "@/components/review/DiffFileList";
 import PullRequestHeading from "@/components/review/PullRequestHeading";
 import TemplateList from "@/components/review/TemplateList";
 import useWidgets from "@/components/review/useWidgets";
-import { reviewer } from "@/data/dummyReviewer";
 import withAuth from "@/hoc/withAuth";
 import { useApi } from "@/hooks/useApi";
 import { PreviewCommentType } from "@/types/PreviewCommentType";
@@ -35,11 +34,22 @@ type CommentType = {
   body: string;
 };
 
+type ReviewerType = {
+  userName: string;
+  avatarUrl: string;
+};
+
+const initialReviewerInfo = {
+  userName: "",
+  avatarUrl: "",
+};
+
 const ReviewPage = () => {
   const [diff, setDiff] = useState<string>("");
   const [pull, setPull] = useState<ReviewPullRequestType>(initialPull);
   const router = useRouter();
   const { owner, repo, pullNumber } = router.query || "";
+  const [reviewer, setReviewer] = useState<ReviewerType>(initialReviewerInfo);
   const [widgets, addWidget]: any = useWidgets(reviewer);
   const { octokit } = useApi();
   const successToast = useToast({
@@ -87,6 +97,15 @@ const ReviewPage = () => {
     }
   }, [owner, repo, pullNumber]);
 
+  useEffect(() => {
+    octokit.request("GET /user").then((response) => {
+      setReviewer({
+        userName: response.data.login,
+        avatarUrl: response.data.avatar_url,
+      });
+    });
+  }, []);
+
   const getSideAndLine = (changeKey: string): [string, string] => {
     const changeType = changeKey.slice(0, 1);
     const line = changeKey.slice(1);
@@ -130,19 +149,21 @@ const ReviewPage = () => {
           comments: comments,
         })
         .then((response) => {
-          octokit.request(
-            "POST /repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}/events",
-            {
-              owner: String(owner),
-              repo: String(repo),
-              pull_number: Number(pullNumber),
-              review_id: response.data.id,
-              event: "COMMENT",
-            }
-          ).then(() => {
-            successToast();
-            router.push("/");
-          });
+          octokit
+            .request(
+              "POST /repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}/events",
+              {
+                owner: String(owner),
+                repo: String(repo),
+                pull_number: Number(pullNumber),
+                review_id: response.data.id,
+                event: "COMMENT",
+              }
+            )
+            .then(() => {
+              successToast();
+              router.push("/");
+            });
         });
     } else {
       errorToast();
