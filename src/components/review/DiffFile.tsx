@@ -1,5 +1,5 @@
 import { PlusSquareIcon } from "@chakra-ui/icons";
-import { Box, Heading, Link, Text } from "@chakra-ui/react";
+import { Box, Heading, Link, Text, useBoolean } from "@chakra-ui/react";
 import { useMemo, useState } from "react";
 
 import ReviewPopover from "@/components/review/Popover";
@@ -34,7 +34,13 @@ const DiffFile = ({
   widgets,
   addWidget,
 }: Props) => {
-  let headerPath = "";
+  const [tmpChangeKey, setTmpChangeKey] = useState<string>("");
+  const [isVisibleLarge, setVisibleLarge] = useBoolean(false);
+  const [isVisibleDelete, setVisibleDelete] = useBoolean(false);
+  const postPath: string = type === "delete" ? oldPath : newPath;
+  let headerPath: string = "";
+  let lines: number = 0;
+
   switch (type) {
     case "delete":
       headerPath = oldPath;
@@ -49,18 +55,15 @@ const DiffFile = ({
       headerPath = newPath;
       break;
   }
-  const postPath = type === "delete" ? oldPath : newPath;
-  const [tmpChangeKey, setTmpChangeKey] = useState<string>("");
-  const [visibleDeleteFile, setVisibleDeleteFile] = useState<boolean>(false);
+
+  for (const hunk of hunks) {
+    lines += hunk.changes.length;
+  }
 
   type RenderGutterProps = {
     side: string;
     renderDefault: () => number;
     inHoverState: boolean;
-  };
-
-  const toggleVisibilityDeleteFile = () => {
-    setVisibleDeleteFile((prevState) => !prevState);
   };
 
   const renderGutter = ({
@@ -91,44 +94,77 @@ const DiffFile = ({
     };
   }, []);
 
+  const RenderDiff = () => {
+    return (
+      <Diff
+        viewType="unified"
+        diffType={type}
+        hunks={hunks}
+        widgets={widgets[fileId]}
+        renderGutter={renderGutter}
+      >
+        {(hunks: any) =>
+          hunks.map((hunk: any) => [
+            <Decoration key={"deco-" + hunk.content}>
+              <Box bg="blue.300" p={2}>
+                {"　"}
+              </Box>
+              <Box bg="blue.100" p={2}>
+                {hunk.content}
+              </Box>
+            </Decoration>,
+            <Hunk key={hunk.content} hunk={hunk} gutterEvents={gutterEvents} />,
+          ])
+        }
+      </Diff>
+    );
+  };
+
+  const RenameMessage = () => {
+    return (
+      <Text p={2}>
+        ファイル名の変更もしくはファイルの移動が行われました。
+        <br />
+        内容に変更はありません。
+      </Text>
+    );
+  };
+
+  const DeleteDiffMessage = () => {
+    return (
+      <Text p={2}>
+        このファイルは削除されました。
+        <Link color="blue.500" onClick={setVisibleDelete.on}>
+          差分を表示
+        </Link>
+      </Text>
+    );
+  };
+
+  const LargeDiffMessage = () => {
+    return (
+      <Text p={2}>
+        このファイルには100行以上の変更があります。
+        <Link color="blue.500" onClick={setVisibleLarge.on}>
+          差分を表示
+        </Link>
+      </Text>
+    );
+  };
+
   return (
     <Box w="full" boxShadow="base" align="start">
       <Heading p={3} size="xs" bgColor="gray.200">
         {headerPath}
       </Heading>
-      {type === "delete" && visibleDeleteFile === false ? (
-        <Text p={2}>
-          このファイルは削除されました。
-          <Link color="blue.500" onClick={toggleVisibilityDeleteFile}>
-            差分を表示
-          </Link>
-        </Text>
+      {type === "rename" ? (
+        <RenameMessage />
+      ) : type === "delete" && !isVisibleDelete ? (
+        <DeleteDiffMessage />
+      ) : lines >= 100 && !isVisibleLarge ? (
+        <LargeDiffMessage />
       ) : (
-        <Diff
-          viewType="unified"
-          diffType={type}
-          hunks={hunks}
-          widgets={widgets[fileId]}
-          renderGutter={renderGutter}
-        >
-          {(hunks: any) =>
-            hunks.map((hunk: any) => [
-              <Decoration key={"deco-" + hunk.content}>
-                <Box bg="blue.300" p={2}>
-                  {"　"}
-                </Box>
-                <Box bg="blue.100" p={2}>
-                  {hunk.content}
-                </Box>
-              </Decoration>,
-              <Hunk
-                key={hunk.content}
-                hunk={hunk}
-                gutterEvents={gutterEvents}
-              />,
-            ])
-          }
-        </Diff>
+        <RenderDiff />
       )}
     </Box>
   );
