@@ -35,8 +35,8 @@ const DiffFile = ({
   addWidget,
 }: Props) => {
   const [tmpChangeKey, setTmpChangeKey] = useState<string>("");
-  const [isVisibleLarge, setVisibleLarge] = useBoolean(false);
   const [isVisibleDelete, setVisibleDelete] = useBoolean(false);
+  const [isVisibleLarge, setVisibleLarge] = useBoolean(false);
   const postPath: string = type === "delete" ? oldPath : newPath;
   let headerPath: string = "";
   let lines: number = 0;
