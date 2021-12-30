@@ -1,5 +1,5 @@
 import { PlusSquareIcon } from "@chakra-ui/icons";
-import { Box, Heading, Link, Text } from "@chakra-ui/react";
+import { Box, Heading, Link, Text, useBoolean } from "@chakra-ui/react";
 import { useMemo, useState } from "react";
 
 import ReviewPopover from "@/components/review/Popover";
@@ -55,16 +55,12 @@ const DiffFile = ({
   }
   const postPath = type === "delete" ? oldPath : newPath;
   const [tmpChangeKey, setTmpChangeKey] = useState<string>("");
-  const [visibleLargeFile, setVisibleLargeFile] = useState<boolean>(false);
+  const [isVisibleLarge, setVisibleLarge] = useBoolean(false);
 
   type RenderGutterProps = {
     side: string;
     renderDefault: () => number;
     inHoverState: boolean;
-  };
-
-  const toggleVisibilityLargeFile = () => {
-    setVisibleLargeFile((prevState) => !prevState);
   };
 
   const renderGutter = ({
@@ -135,7 +131,7 @@ const DiffFile = ({
     return (
       <Text p={2}>
         このファイルには100行以上の変更があります。
-        <Link color="blue.500" onClick={toggleVisibilityLargeFile}>
+        <Link color="blue.500" onClick={setVisibleLarge.on}>
           差分を表示
         </Link>
       </Text>
@@ -149,7 +145,7 @@ const DiffFile = ({
       </Heading>
       {type === "rename" ? (
         <RenameMessage />
-      ) : lines >= 100 && !visibleLargeFile ? (
+      ) : lines >= 100 && !isVisibleLarge ? (
         <LargeDiffMessage />
       ) : (
         <RenderDiff />
