@@ -34,7 +34,12 @@ const DiffFile = ({
   widgets,
   addWidget,
 }: Props) => {
-  let headerPath = "";
+  const [tmpChangeKey, setTmpChangeKey] = useState<string>("");
+  const [isVisibleLarge, setVisibleLarge] = useBoolean(false);
+  const postPath: string = type === "delete" ? oldPath : newPath;
+  let headerPath: string = "";
+  let lines: number = 0;
+
   switch (type) {
     case "delete":
       headerPath = oldPath;
@@ -49,13 +54,10 @@ const DiffFile = ({
       headerPath = newPath;
       break;
   }
-  let lines: number = 0;
+
   for (const hunk of hunks) {
     lines += hunk.changes.length;
   }
-  const postPath = type === "delete" ? oldPath : newPath;
-  const [tmpChangeKey, setTmpChangeKey] = useState<string>("");
-  const [isVisibleLarge, setVisibleLarge] = useBoolean(false);
 
   type RenderGutterProps = {
     side: string;
