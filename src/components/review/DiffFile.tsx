@@ -130,7 +130,7 @@ const DiffFile = ({
     );
   };
 
-  const DeleteDiffMessage = () => {
+  const DeleteMessage = () => {
     return (
       <Text p={2}>
         このファイルは削除されました。
@@ -160,7 +160,7 @@ const DiffFile = ({
       {type === "rename" ? (
         <RenameMessage />
       ) : type === "delete" && !isVisibleDelete ? (
-        <DeleteDiffMessage />
+        <DeleteMessage />
       ) : lines >= 100 && !isVisibleLarge ? (
         <LargeDiffMessage />
       ) : (
