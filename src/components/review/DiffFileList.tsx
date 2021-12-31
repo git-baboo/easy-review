@@ -65,7 +65,15 @@ const DiffFileList = ({ diff, widgets, addWidget, ...props }: Props) => {
   const files = parseDiff(diff);
   const binaryFiles = parseBinary(diff);
   for (let i = 0; i < files.length; i++) {
-    files[i] = { ...files[i], ...binaryFiles[i] };
+    // 通常ファイルのとき、ライブラリ側の実装では isBinary プロパティは false ではなく未定義のため isBinary: false を記述
+    //
+    // バイナリファイルの解析問題が解消
+    //   → files[i] = { isBinary: false, ...files[i] };
+    // isBinary プロパティの未定義問題が解消
+    //   → files[i] = { ...files[i], ...binaryFiles[i] };
+    // 両方の問題が解消
+    //   → for 文不要
+    files[i] = { isBinary: false, ...files[i], ...binaryFiles[i] };
   }
 
   return (
