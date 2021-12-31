@@ -14,7 +14,7 @@ type Props = {
   fileId: string;
   oldPath: string;
   newPath: string;
-  type: string;
+  type: "add" | "delete" | "modify" | "rename";
   hunks: any;
   widgets: any;
   addWidget: (
@@ -44,14 +44,12 @@ const DiffFile = ({
     case "delete":
       headerPath = oldPath;
       break;
-    case "insert":
+    case "add":
+    case "modify":
       headerPath = newPath;
       break;
     case "rename":
       headerPath = `${oldPath} → ${newPath}`;
-      break;
-    default:
-      headerPath = newPath;
       break;
   }
 
