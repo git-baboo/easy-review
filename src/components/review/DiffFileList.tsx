@@ -79,13 +79,22 @@ const DiffFileList = ({ diff, widgets, addWidget, ...props }: Props) => {
   return (
     <VStack {...props}>
       {files.map(
-        ({ oldPath, newPath, oldRevision, newRevision, type, hunks }: any) => (
+        ({
+          oldPath,
+          newPath,
+          oldRevision,
+          newRevision,
+          type,
+          isBinary,
+          hunks,
+        }: any) => (
           <DiffFile
             key={oldRevision + "-" + newRevision}
             fileId={oldRevision + "-" + newRevision}
             oldPath={oldPath}
             newPath={newPath}
             type={type}
+            isBinary={isBinary}
             hunks={hunks}
             widgets={widgets}
             addWidget={addWidget}

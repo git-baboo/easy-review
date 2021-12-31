@@ -15,6 +15,7 @@ type Props = {
   oldPath: string;
   newPath: string;
   type: string;
+  isBinary: boolean;
   hunks: any;
   widgets: any;
   addWidget: (
@@ -30,6 +31,7 @@ const DiffFile = ({
   oldPath,
   newPath,
   type,
+  isBinary,
   hunks,
   widgets,
   addWidget,
@@ -130,6 +132,10 @@ const DiffFile = ({
     );
   };
 
+  const BinaryMessage = () => {
+    return <Text p={2}>バイナリファイルが更新されました。</Text>;
+  };
+
   const DeleteMessage = () => {
     return (
       <Text p={2}>
@@ -159,6 +165,8 @@ const DiffFile = ({
       </Heading>
       {type === "rename" ? (
         <RenameMessage />
+      ) : isBinary ? (
+        <BinaryMessage />
       ) : type === "delete" && !isVisibleDelete ? (
         <DeleteMessage />
       ) : lines >= 100 && !isVisibleLarge ? (
