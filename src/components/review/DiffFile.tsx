@@ -35,6 +35,7 @@ const DiffFile = ({
   addWidget,
 }: Props) => {
   const [tmpChangeKey, setTmpChangeKey] = useState<string>("");
+  const [isVisibleDelete, setVisibleDelete] = useBoolean(false);
   const [isVisibleLarge, setVisibleLarge] = useBoolean(false);
   const postPath: string = type === "delete" ? oldPath : newPath;
   let headerPath: string = "";
@@ -129,6 +130,17 @@ const DiffFile = ({
     );
   };
 
+  const DeleteMessage = () => {
+    return (
+      <Text p={2}>
+        このファイルは削除されました。
+        <Link color="blue.500" onClick={setVisibleDelete.on}>
+          差分を表示
+        </Link>
+      </Text>
+    );
+  };
+
   const LargeDiffMessage = () => {
     return (
       <Text p={2}>
@@ -147,6 +159,8 @@ const DiffFile = ({
       </Heading>
       {type === "rename" ? (
         <RenameMessage />
+      ) : type === "delete" && !isVisibleDelete ? (
+        <DeleteMessage />
       ) : lines >= 100 && !isVisibleLarge ? (
         <LargeDiffMessage />
       ) : (
