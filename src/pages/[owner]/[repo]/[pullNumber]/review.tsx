@@ -12,7 +12,7 @@ import React, { useEffect, useState } from "react";
 import { BsFillChatDotsFill } from "react-icons/bs";
 
 import Layout from "@/components/Layout";
-import PullRequestInformation from "@/components/PullRequestInformation";
+import PullRequestHeading from "@/components/PullRequestHeading";
 import DiffFileList from "@/components/review/DiffFileList";
 import TemplateList from "@/components/review/TemplateList";
 import useWidgets from "@/components/review/useWidgets";
@@ -179,7 +179,7 @@ const ReviewPage = () => {
         <Container py={9} maxW="container.lg">
           <HStack spacing="50px" align="top">
             <Box align="end">
-              <PullRequestInformation
+              <PullRequestHeading
                 owner={String(owner)}
                 repo={String(repo)}
                 pullRequest={pull}

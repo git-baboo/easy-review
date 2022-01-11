@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineThunderbolt } from "react-icons/ai";
 
 import Layout from "@/components/Layout";
-import PullRequestInformation from "@/components/PullRequestInformation";
+import PullRequestHeading from "@/components/PullRequestHeading";
 import ReviewButton from "@/components/detail/ReviewButton";
 import TimelineItem from "@/components/detail/TimelineItem";
 import withAuth from "@/hoc/withAuth";
@@ -50,7 +50,7 @@ const DetailPage = () => {
       icon={AiOutlineThunderbolt}
     >
       <Container py={9} maxW="container.sm">
-        <PullRequestInformation
+        <PullRequestHeading
           owner={owner}
           repo={repo}
           pullRequest={pullRequest}
