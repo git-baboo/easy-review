@@ -1,11 +1,28 @@
-import { Text } from "@chakra-ui/layout";
+import { Avatar, Box, Text } from "@chakra-ui/react";
 import React from "react";
 
-const PullRequestInformation = () => {
+import { ReviewPullRequestType } from "@/types/PullRequestType";
+
+type Props = {
+  owner: string;
+  repo: string;
+  pull: ReviewPullRequestType;
+};
+
+const PullRequestInformation = ({ owner, repo, pull }: Props) => {
   return (
-    <Text fontSize="xs" color="gray.600">
-      a
-    </Text>
+    <Box width={700} align="start">
+      <Text color="gray" fontSize="xs">
+        {owner}/{repo}
+      </Text>
+      <Text color="black" fontSize="md">
+        {pull.title}
+      </Text>
+      <Text color="black" fontSize="xs" lineHeight={4}>
+        <Avatar name={pull.userName} src={pull.avatarUrl} size="2xs" />
+        {pull.userName}
+      </Text>
+    </Box>
   );
 };
 
