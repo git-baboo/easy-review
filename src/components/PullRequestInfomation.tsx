@@ -4,23 +4,27 @@ import React from "react";
 import { ReviewPullRequestType } from "@/types/PullRequestType";
 
 type Props = {
-  owner: string;
-  repo: string;
-  pull: ReviewPullRequestType;
+  owner: string | string[] | undefined;
+  repo: string | string[] | undefined;
+  pullRequest: ReviewPullRequestType;
 };
 
-const PullRequestInformation = ({ owner, repo, pull }: Props) => {
+const PullRequestInformation = ({ owner, repo, pullRequest }: Props) => {
   return (
     <Box width={700} align="start">
       <Text color="gray" fontSize="xs">
         {owner}/{repo}
       </Text>
       <Text color="black" fontSize="md">
-        {pull.title}
+        {pullRequest.title}
       </Text>
       <Text color="black" fontSize="xs" lineHeight={4}>
-        <Avatar name={pull.userName} src={pull.avatarUrl} size="2xs" />
-        {pull.userName}
+        <Avatar
+          name={pullRequest.userName}
+          src={pullRequest.avatarUrl}
+          size="2xs"
+        />
+        {pullRequest.userName}
       </Text>
     </Box>
   );
