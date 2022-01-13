@@ -4,12 +4,12 @@ import React from "react";
 import { ReviewPullRequestType } from "@/types/PullRequestType";
 
 type Props = {
-  owner: string | string[] | undefined;
-  repo: string | string[] | undefined;
+  owner: string;
+  repo: string;
   pullRequest: ReviewPullRequestType;
 };
 
-const PullRequestInformation = ({ owner, repo, pullRequest }: Props) => {
+const PullRequestHeading = ({ owner, repo, pullRequest }: Props) => {
   return (
     <Box width={700} align="start">
       <Text color="gray.600" fontSize="xs">
@@ -30,4 +30,4 @@ const PullRequestInformation = ({ owner, repo, pullRequest }: Props) => {
   );
 };
 
-export default PullRequestInformation;
+export default PullRequestHeading;
