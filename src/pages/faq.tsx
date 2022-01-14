@@ -17,7 +17,10 @@ export const Faq = () => {
           {
             "A. 以下の手順 を参考に、GitHub の設定を確認してください。アプリケーションのアクセスが許可されていない可能性があります。 \n\n 1. GitHub の"
           }
-          <Link href="https://github.com/settings/connections/applications/f36da358d46af3fd2862">
+          <Link
+            href="https://github.com/settings/connections/applications/f36da358d46af3fd2862"
+            color="teal.500"
+          >
             設定画面
           </Link>
           {
