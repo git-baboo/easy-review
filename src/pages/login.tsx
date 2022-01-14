@@ -44,7 +44,7 @@ const LoginPage = () => {
           <ModalContent>
             <ModalBody py={6}>
               <Text whiteSpace="pre-line">
-                {"Easy Reviewをご利用いただきありがとうございます。\n" +
+                {"Easy Review をご利用いただきありがとうございます。\n" +
                   "現在弊サービスはPC版ブラウザからのみご利用いただけます。\n" +
                   "モバイル版ブラウザへの対応も順次行っていく予定です。"}
               </Text>
