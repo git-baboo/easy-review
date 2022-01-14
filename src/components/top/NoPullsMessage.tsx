@@ -5,7 +5,7 @@ const NoPullsMessage = () => {
   return (
     <Box mt={12}>
       <Center>
-        <HStack px="36px" py="26px" spacing="16px">
+        <HStack px={9} py="26px" spacing={4}>
           <WarningIcon w="32px" h="32px" color="gray.300" />
           <Text fontSize="sm" lineHeight={5} fontWeight="bold">
             あなたがレビュワーに指定されている
