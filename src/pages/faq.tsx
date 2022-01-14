@@ -10,7 +10,9 @@ export const Faq = () => {
   return (
     <Layout text={"よくある質問"} icon={AiFillQuestionCircle}>
       <Container py={9} maxW="container.sm">
-        <Heading fontSize="md">{"Q. プルリクエストが表示されません"}</Heading>
+        <Heading pb={"9px"} fontSize="md">
+          {"Q. プルリクエストが表示されません"}
+        </Heading>
         <Text fontSize="sm" lineHeight={5} whiteSpace="pre-line">
           {
             "A. 以下の手順 を参考に、GitHub の設定を確認してください。アプリケーションのアクセスが許可されていない可能性があります。 \n\n 1. GitHub の"
@@ -19,7 +21,7 @@ export const Faq = () => {
             設定画面
           </Link>
           {
-            "へアクセス \n 2. Easy Review を使いたい Organization を選び Request（あなたが Organization の管理者の場合はGrant）を押す \n 3. 完了 "
+            "へアクセス \n 2. Easy Review を使いたい Organization を選び Request（あなたが Organization の管理者の場合は Grant）を押す \n 3. 完了 "
           }
         </Text>
       </Container>
