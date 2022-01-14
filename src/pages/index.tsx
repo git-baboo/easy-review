@@ -1,4 +1,4 @@
-import { Container } from "@chakra-ui/react";
+import { Container, Link } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
 
@@ -27,7 +27,8 @@ const TopPage = () => {
             // item.repository_urlの例: https://api.github.com/repos/git-baboo/dummy-pr
             const splitRepositoryUrl = item.repository_url.split("/");
 
-            const [ ownerName, repoName ]: string[] = splitRepositoryUrl.slice(-2);
+            const [ownerName, repoName]: string[] =
+              splitRepositoryUrl.slice(-2);
 
             const pull: TopPullRequestType = {
               pullNumber: item.number,
@@ -50,6 +51,7 @@ const TopPage = () => {
       icon={BsCheckCircleFill}
     >
       <Container maxW="container.sm">
+        <Link href="/faq">Chakra Design system</Link>
         <PullRequestList pulls={pulls} />
       </Container>
     </Layout>
