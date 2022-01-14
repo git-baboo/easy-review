@@ -1,4 +1,4 @@
-import { Container, Link } from "@chakra-ui/react";
+import { Container } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
 
@@ -51,8 +51,6 @@ const TopPage = () => {
       icon={BsCheckCircleFill}
     >
       <Container maxW="container.sm">
-        {/* TODO: 遷移先のｐ画面確認用のため、後に削除*/}
-        <Link href="/faq">FAQ へ Go !</Link>
         <PullRequestList pulls={pulls} />
       </Container>
     </Layout>
