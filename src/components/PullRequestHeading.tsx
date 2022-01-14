@@ -4,8 +4,8 @@ import React from "react";
 import { ReviewPullRequestType } from "@/types/PullRequestType";
 
 type Props = {
-  owner: string | string[] | undefined;
-  repo: string | string[] | undefined;
+  owner: string;
+  repo: string;
   pullRequest: ReviewPullRequestType;
 };
 

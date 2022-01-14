@@ -51,8 +51,8 @@ const DetailPage = () => {
     >
       <Container py={9} maxW="container.sm">
         <PullRequestHeading
-          owner={owner}
-          repo={repo}
+          owner={String(owner)}
+          repo={String(repo)}
           pullRequest={pullRequest}
         />
         <TimelineItem
