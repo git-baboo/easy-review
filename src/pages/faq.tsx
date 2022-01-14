@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { Container, Heading, Text, Link } from "@chakra-ui/layout";
+import { Container, Link, Heading, Text } from "@chakra-ui/layout";
 import React from "react";
 import { AiFillQuestionCircle } from "react-icons/ai";
 
@@ -11,7 +11,7 @@ export const Faq = () => {
     <Layout text={"よくある質問"} icon={AiFillQuestionCircle}>
       <Container py={9} maxW="container.sm">
         <Heading fontSize="md">{"Q. プルリクエストが表示されません"}</Heading>
-        <Text font="Inter" fontSize="sm" lineHeight={5} whiteSpace="pre-line">
+        <Text fontSize="sm" lineHeight={5} whiteSpace="pre-line">
           {
             "A. 以下の手順 を参考に、GitHub の設定を確認してください。アプリケーションのアクセスが許可されていない可能性があります。 \n\n 1. GitHub の"
           }
