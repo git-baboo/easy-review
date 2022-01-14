@@ -9,8 +9,8 @@ import withAuth from "@/hoc/withAuth";
 export const Faq = () => {
   return (
     <Layout text={"よくある質問"} icon={AiFillQuestionCircle}>
-      <Container py={9} maxW="container.sm">
-        <Heading pb={"9px"} fontSize="md">
+      <Container py={12} maxW="container.sm">
+        <Heading pb={2} fontSize="md">
           {"Q. プルリクエストが表示されません"}
         </Heading>
         <Text fontSize="sm" lineHeight={5} whiteSpace="pre-line">
