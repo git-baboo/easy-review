@@ -51,7 +51,8 @@ const TopPage = () => {
       icon={BsCheckCircleFill}
     >
       <Container maxW="container.sm">
-        <Link href="/faq">Chakra Design system</Link>
+        {/* TODO: 遷移先のｐ画面確認用のため、後に削除*/}
+        <Link href="/faq">FAQ へ Go !</Link>
         <PullRequestList pulls={pulls} />
       </Container>
     </Layout>
