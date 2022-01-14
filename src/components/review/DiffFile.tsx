@@ -1,5 +1,5 @@
 import { PlusSquareIcon } from "@chakra-ui/icons";
-import { Box, Heading } from "@chakra-ui/layout";
+import { Box, Heading, Link, Text, useBoolean } from "@chakra-ui/react";
 import { useMemo, useState } from "react";
 
 import ReviewPopover from "@/components/review/Popover";
@@ -11,15 +11,22 @@ const Decoration = reactDiffView.Decoration;
 const getChangeKey = reactDiffView.getChangeKey;
 
 type Props = {
+  fileId: string;
   oldPath: string;
   newPath: string;
-  type: string;
+  type: "add" | "delete" | "modify" | "rename";
   hunks: any;
   widgets: any;
-  addWidget: any;
+  addWidget: (
+    fileId: string,
+    changeKey: string,
+    path: string,
+    body: string
+  ) => void;
 };
 
 const DiffFile = ({
+  fileId,
   oldPath,
   newPath,
   type,
@@ -27,23 +34,29 @@ const DiffFile = ({
   widgets,
   addWidget,
 }: Props) => {
-  let headerPath = "";
+  const [tmpChangeKey, setTmpChangeKey] = useState<string>("");
+  const [isVisibleDelete, setVisibleDelete] = useBoolean(false);
+  const [isVisibleLarge, setVisibleLarge] = useBoolean(false);
+  const postPath: string = type === "delete" ? oldPath : newPath;
+  let headerPath: string = "";
+  let lines: number = 0;
+
   switch (type) {
     case "delete":
       headerPath = oldPath;
       break;
-    case "insert":
+    case "add":
+    case "modify":
       headerPath = newPath;
       break;
     case "rename":
       headerPath = `${oldPath} → ${newPath}`;
       break;
-    default:
-      headerPath = newPath;
-      break;
   }
-  const postPath = type === "delete" ? oldPath : newPath;
-  const [tmpKey, setTmpKey] = useState<string>("");
+
+  for (const hunk of hunks) {
+    lines += hunk.changes.length;
+  }
 
   type RenderGutterProps = {
     side: string;
@@ -65,32 +78,27 @@ const DiffFile = ({
     );
 
   const handleClick = (initText: string) => {
-    console.log(initText);
-    const key = tmpKey;
-    addWidget(key, postPath, initText);
-    setTmpKey("");
+    const changeKey = tmpChangeKey;
+    addWidget(fileId, changeKey, postPath, initText);
+    setTmpChangeKey("");
   };
 
   const gutterEvents = useMemo(() => {
     return {
       onClick({ change }: any) {
-        const key = getChangeKey(change);
-        setTmpKey(key);
-        // addWidget(key, postPath);
+        const changeKey = getChangeKey(change);
+        setTmpChangeKey(changeKey);
       },
     };
-  }, [addWidget]);
+  }, []);
 
-  return (
-    <Box w="full" boxShadow="base" align="start">
-      <Heading p={3} size="xs" bgColor="gray.200">
-        {headerPath}
-      </Heading>
+  const RenderDiff = () => {
+    return (
       <Diff
         viewType="unified"
         diffType={type}
         hunks={hunks}
-        widgets={widgets}
+        widgets={widgets[fileId]}
         renderGutter={renderGutter}
       >
         {(hunks: any) =>
@@ -107,6 +115,55 @@ const DiffFile = ({
           ])
         }
       </Diff>
+    );
+  };
+
+  const RenameMessage = () => {
+    return (
+      <Text p={2}>
+        ファイル名の変更もしくはファイルの移動が行われました。
+        <br />
+        内容に変更はありません。
+      </Text>
+    );
+  };
+
+  const DeleteMessage = () => {
+    return (
+      <Text p={2}>
+        このファイルは削除されました。
+        <Link color="blue.500" onClick={setVisibleDelete.on}>
+          差分を表示
+        </Link>
+      </Text>
+    );
+  };
+
+  const LargeDiffMessage = () => {
+    return (
+      <Text p={2}>
+        このファイルには100行以上の変更があります。
+        <Link color="blue.500" onClick={setVisibleLarge.on}>
+          差分を表示
+        </Link>
+      </Text>
+    );
+  };
+
+  return (
+    <Box w="full" boxShadow="base" align="start">
+      <Heading p={3} size="xs" bgColor="gray.200">
+        {headerPath}
+      </Heading>
+      {type === "rename" ? (
+        <RenameMessage />
+      ) : type === "delete" && !isVisibleDelete ? (
+        <DeleteMessage />
+      ) : lines >= 100 && !isVisibleLarge ? (
+        <LargeDiffMessage />
+      ) : (
+        <RenderDiff />
+      )}
     </Box>
   );
 };

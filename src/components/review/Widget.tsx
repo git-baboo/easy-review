@@ -1,36 +1,70 @@
 import { Box, Button, Flex, List, Spacer, Textarea } from "@chakra-ui/react";
-import React, { useCallback } from "react";
+import React, { ChangeEvent, useCallback } from "react";
 
-import CommentList from "@/components/review/CommentList";
+import CommentListItem from "@/components/review/CommentListItem";
+import { PreviewCommentType } from "@/types/PreviewCommentType";
+
+type Props = {
+  fileId: string;
+  changeKey: string;
+  author: string;
+  avatarUrl: string;
+  isWriting: boolean;
+  draft: PreviewCommentType;
+  comments: PreviewCommentType[];
+  onDraftChange: (fileId: string, changeKey: string, body: string) => void;
+  onSubmit: (fileId: string, changeKey: string) => void;
+};
 
 const Widget = ({
+  fileId,
   changeKey,
-  comments,
+  author,
+  avatarUrl,
+  isWriting,
   draft,
+  comments,
   onDraftChange,
   onSubmit,
-}: any) => {
+}: Props) => {
   const input = useCallback(
-    (e) => {
-      onDraftChange(changeKey, e.target.value);
+    (e: ChangeEvent<HTMLTextAreaElement>) => {
+      onDraftChange(fileId, changeKey, e.target.value);
     },
     [onDraftChange, changeKey]
   );
 
   const submit = useCallback(() => {
-    onSubmit(changeKey);
+    onSubmit(fileId, changeKey);
   }, [onSubmit, changeKey]);
 
   return (
     <Box m={4}>
-      <List>{comments.map(CommentList)}</List>
-      <Textarea h={150} value={draft} onChange={input} />
-      <Flex>
-        <Spacer />
-        <Button m={2} colorScheme="teal" onClick={submit}>
-          コメントを追加
-        </Button>
-      </Flex>
+      {comments && (
+        <List>
+          {comments.map((comment, index) => {
+            return (
+              <CommentListItem
+                key={index}
+                author={author}
+                avatarUrl={avatarUrl}
+                body={comment.body}
+              />
+            );
+          })}
+        </List>
+      )}
+      {isWriting && (
+        <>
+          <Textarea h={150} value={draft.body} onChange={input} />
+          <Flex>
+            <Spacer />
+            <Button m={2} colorScheme="teal" onClick={submit}>
+              コメントを追加
+            </Button>
+          </Flex>
+        </>
+      )}
     </Box>
   );
 };

@@ -14,6 +14,7 @@ import {
 import React from "react";
 
 import LoginButton from "@/components/login/LoginButton";
+import withoutAuth from "@/hoc/withoutAuth";
 
 const LoginPage = () => {
   const mediaType = useBreakpointValue({ base: "phone", md: "pc" });
@@ -55,4 +56,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default withoutAuth(LoginPage);
