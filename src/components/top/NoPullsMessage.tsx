@@ -4,7 +4,7 @@ import { Box, Center, HStack, Link, Text } from "@chakra-ui/react";
 const NoPullsMessage = () => {
   return (
     <Box mt={12}>
-      <Center>
+      <Center boxShadow="xs">
         <HStack px={9} py="26px" spacing={4}>
           <WarningIcon w="32px" h="32px" color="gray.300" />
           <Text fontSize="sm" lineHeight={5} fontWeight="bold">
