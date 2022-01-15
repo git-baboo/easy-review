@@ -1,4 +1,4 @@
-import { ArrowForwardIcon, WarningIcon } from "@chakra-ui/icons";
+import { WarningIcon } from "@chakra-ui/icons";
 import { Box, Center, HStack, Link, Text } from "@chakra-ui/react";
 
 const NoPullsMessage = () => {
@@ -16,12 +16,9 @@ const NoPullsMessage = () => {
       </Center>
       <HStack mt={2} justify="end">
         <Link href="#" color="gray.600">
-          <HStack spacing={1}>
-            <Text fontSize="xs" lineHeight={4}>
-              正しく表示されないときは
-            </Text>
-            <ArrowForwardIcon w="11px" h="11px" />
-          </HStack>
+          <Text fontSize="xs" lineHeight={4}>
+            正しく表示されないときは →
+          </Text>
         </Link>
       </HStack>
     </Box>
