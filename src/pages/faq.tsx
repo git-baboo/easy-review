@@ -20,7 +20,7 @@ export const Faq = () => {
             アプリを使用するにはグループの管理者の許可が必要です
           </Text>
         </Alert>
-        <Text fontSize="sm" lineHeight={5} whiteSpace="pre-line">
+        <Text pt={2} fontSize="sm" lineHeight={5} whiteSpace="pre-line">
           {
             "A. 以下の手順 を参考に、GitHub の設定を確認してください。アプリケーションのアクセスが許可されていない可能性があります。 \n\n 1. GitHub の"
           }
