@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import { Container, Link, Heading, Text } from "@chakra-ui/layout";
+import { Alert, AlertIcon } from "@chakra-ui/react";
 import React from "react";
 import { AiFillQuestionCircle } from "react-icons/ai";
 
@@ -13,6 +14,12 @@ export const Faq = () => {
         <Heading pb={2} fontSize="md">
           {"Q. プルリクエストが表示されません"}
         </Heading>
+        <Alert status="warning" colorScheme="blue">
+          <AlertIcon />
+          <Text lineHeight={6}>
+            アプリを使用するにはグループの管理者の許可が必要です
+          </Text>
+        </Alert>
         <Text fontSize="sm" lineHeight={5} whiteSpace="pre-line">
           {
             "A. 以下の手順 を参考に、GitHub の設定を確認してください。アプリケーションのアクセスが許可されていない可能性があります。 \n\n 1. GitHub の"
