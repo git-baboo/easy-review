@@ -178,7 +178,7 @@ const ReviewPage = () => {
       >
         <Container py={9} maxW="container.lg">
           <HStack spacing="50px" align="top">
-            <Box align="end">
+            <Box>
               <PullRequestHeading
                 owner={String(owner)}
                 repo={String(repo)}
@@ -187,8 +187,6 @@ const ReviewPage = () => {
               <DiffFileList
                 spacing={6}
                 mt={3}
-                w={700}
-                align="start"
                 diff={diff}
                 widgets={widgets}
                 addWidget={addWidget}

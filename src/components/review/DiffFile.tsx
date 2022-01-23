@@ -157,7 +157,7 @@ const DiffFile = ({
   };
 
   return (
-    <Box w="full" boxShadow="base" align="start">
+    <Box w="full" boxShadow="base">
       <Heading p={3} size="xs" bgColor="gray.200">
         {headerPath}
       </Heading>
