@@ -1,4 +1,4 @@
-import { Avatar, Box, Heading, Text } from "@chakra-ui/react";
+import { Avatar, Heading, Text } from "@chakra-ui/react";
 import React from "react";
 
 import { ReviewPullRequestType } from "@/types/PullRequestType";
@@ -11,7 +11,7 @@ type Props = {
 
 const PullRequestHeading = ({ owner, repo, pullRequest }: Props) => {
   return (
-    <Box width={700} align="start">
+    <>
       <Text color="gray.600" fontSize="xs">
         {owner}/{repo}
       </Text>
@@ -26,7 +26,7 @@ const PullRequestHeading = ({ owner, repo, pullRequest }: Props) => {
         />
         {pullRequest.userName}
       </Text>
-    </Box>
+    </>
   );
 };
 
