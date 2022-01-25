@@ -4,10 +4,10 @@ import React from "react";
 type Props = {
   horizontal: boolean;
   heightSize: number;
-  widthSize: number;
+  widthSize?: number;
 };
 
-export const Spacer = ({ horizontal, heightSize, widthSize }: Props) => {
+const Spacer = ({ horizontal, heightSize, widthSize }: Props) => {
   return horizontal ? (
     <Box bg="black" w={"100%"} p={heightSize}></Box>
   ) : (
