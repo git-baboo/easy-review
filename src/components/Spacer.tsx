@@ -9,9 +9,9 @@ type Props = {
 
 const Spacer = ({ horizontal, heightSize, widthSize }: Props) => {
   return horizontal ? (
-    <Box bg="black" w={"100%"} p={heightSize}></Box>
+    <Box w={"100%"} p={heightSize}></Box>
   ) : (
-    <Box bg="tomato" w={widthSize} p={heightSize}></Box>
+    <Box w={widthSize} p={heightSize}></Box>
   );
 };
 
