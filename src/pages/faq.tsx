@@ -21,18 +21,23 @@ export const Faq = () => {
           </Text>
         </Alert>
         <Text pt={2} fontSize="sm" lineHeight={5} whiteSpace="pre-line">
-          {
-            "A. 以下の手順 を参考に、GitHub の設定を確認してください。アプリケーションのアクセスが許可されていない可能性があります。 \n\n 1. GitHub の"
-          }
+          A. 以下の手順 を参考に、GitHub
+          の設定を確認してください。アプリケーションのアクセスが許可されていない可能性があります。
+          <br />
+          <br />
+          1. GitHub の
           <Link
             href="https://github.com/settings/connections/applications/f36da358d46af3fd2862"
             color="teal.500"
           >
             設定画面
           </Link>
-          {
-            "へアクセス \n 2. Easy Review を使いたい Organization を選び Request（あなたが Organization の管理者の場合は Grant）を押す \n 3. 完了 "
-          }
+          へアクセス
+          <br />
+          2. Easy Review を使いたい Organization を選び Request（あなたが
+          Organization の管理者の場合は Grant）を押す
+          <br />
+          3. 完了
         </Text>
       </Container>
     </Layout>
