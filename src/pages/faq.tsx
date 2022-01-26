@@ -12,7 +12,7 @@ export const Faq = () => {
     <Layout text={"よくある質問"} icon={AiFillQuestionCircle}>
       <Container py={12} maxW="container.sm">
         <Heading pb={3} fontSize="md">
-          {"Q. プルリクエストが表示されません"}
+          Q. プルリクエストが表示されません
         </Heading>
         <Alert status="warning" colorScheme="blue">
           <AlertIcon />
