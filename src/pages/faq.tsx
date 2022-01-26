@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import { Container, Link, Heading, Text } from "@chakra-ui/layout";
 import { Alert, AlertIcon } from "@chakra-ui/react";
 import React from "react";
