@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
 
 import Layout from "@/components/Layout";
+import NoPullsMessage from "@/components/top/NoPullsMessage";
 import PullRequestList from "@/components/top/PullRequestList";
 import withAuth from "@/hoc/withAuth";
 import { useApi } from "@/hooks/useApi";
@@ -51,7 +52,7 @@ const TopPage = () => {
       icon={BsCheckCircleFill}
     >
       <Container maxW="container.sm">
-        <PullRequestList pulls={pulls} />
+        {pulls.length ? <PullRequestList pulls={pulls} /> : <NoPullsMessage />}
       </Container>
     </Layout>
   );

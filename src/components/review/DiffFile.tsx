@@ -14,7 +14,8 @@ type Props = {
   fileId: string;
   oldPath: string;
   newPath: string;
-  type: string;
+  type: "add" | "delete" | "modify" | "rename";
+  isBinary: boolean;
   hunks: any;
   widgets: any;
   addWidget: (
@@ -30,6 +31,7 @@ const DiffFile = ({
   oldPath,
   newPath,
   type,
+  isBinary,
   hunks,
   widgets,
   addWidget,
@@ -45,14 +47,12 @@ const DiffFile = ({
     case "delete":
       headerPath = oldPath;
       break;
-    case "insert":
+    case "add":
+    case "modify":
       headerPath = newPath;
       break;
     case "rename":
       headerPath = `${oldPath} → ${newPath}`;
-      break;
-    default:
-      headerPath = newPath;
       break;
   }
 
@@ -130,6 +130,10 @@ const DiffFile = ({
     );
   };
 
+  const BinaryMessage = () => {
+    return <Text p={2}>バイナリファイルが更新されました。</Text>;
+  };
+
   const DeleteMessage = () => {
     return (
       <Text p={2}>
@@ -153,12 +157,14 @@ const DiffFile = ({
   };
 
   return (
-    <Box w="full" boxShadow="base" align="start">
+    <Box w="full" boxShadow="base">
       <Heading p={3} size="xs" bgColor="gray.200">
         {headerPath}
       </Heading>
       {type === "rename" ? (
         <RenameMessage />
+      ) : isBinary ? (
+        <BinaryMessage />
       ) : type === "delete" && !isVisibleDelete ? (
         <DeleteMessage />
       ) : lines >= 100 && !isVisibleLarge ? (

@@ -12,8 +12,8 @@ import React, { useEffect, useState } from "react";
 import { BsFillChatDotsFill } from "react-icons/bs";
 
 import Layout from "@/components/Layout";
+import PullRequestHeading from "@/components/PullRequestHeading";
 import DiffFileList from "@/components/review/DiffFileList";
-import PullRequestHeading from "@/components/review/PullRequestHeading";
 import TemplateList from "@/components/review/TemplateList";
 import useWidgets from "@/components/review/useWidgets";
 import withAuth from "@/hoc/withAuth";
@@ -178,17 +178,15 @@ const ReviewPage = () => {
       >
         <Container py={9} maxW="container.lg">
           <HStack spacing="50px" align="top">
-            <Box align="end">
+            <Box>
               <PullRequestHeading
                 owner={String(owner)}
                 repo={String(repo)}
-                pull={pull}
+                pullRequest={pull}
               />
               <DiffFileList
                 spacing={6}
                 mt={3}
-                w={700}
-                align="start"
                 diff={diff}
                 widgets={widgets}
                 addWidget={addWidget}
