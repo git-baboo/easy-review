@@ -19,12 +19,12 @@ const FaqPage = () => {
             アプリを使用するにはグループの管理者の許可が必要です
           </Text>
         </Alert>
-        <Text pt={3} fontSize="sm" lineHeight={5} whiteSpace="pre-line">
-          A. 以下の手順 を参考に、GitHub
-          の設定を確認してください。アプリケーションのアクセスが許可されていない可能性があります。
+        <Text pt={3} fontSize="sm" lineHeight={5}>
+          A. 以下の手順
+          を参考に、GitHubの設定を確認してください。アプリケーションのアクセスが許可されていない可能性があります。
           <br />
           <br />
-          1. GitHub の
+          1. GitHubの
           <Link
             href="https://github.com/settings/connections/applications/f36da358d46af3fd2862"
             color="teal.500"
@@ -33,8 +33,8 @@ const FaqPage = () => {
           </Link>
           へアクセス
           <br />
-          2. Easy Review を使いたい Organization を選び Request（あなたが
-          Organization の管理者の場合は Grant）を押す
+          2. Easy
+          Reviewを使いたいグループを選びGrant（あなたがグループの管理者でない場合はRequest）を押す
           <br />
           3. 完了
         </Text>
