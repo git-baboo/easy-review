@@ -3,15 +3,14 @@ import React from "react";
 
 type Props = {
   horizontal: boolean;
-  heightSize: number;
-  widthSize?: number;
+  size: number;
 };
 
-const Spacer = ({ horizontal, heightSize, widthSize }: Props) => {
+const Spacer = ({ horizontal, size }: Props) => {
   return horizontal ? (
-    <Box w={"100%"} p={heightSize}></Box>
+    <Box w={size} h={"auto"} display={"inline-block"} flexShrink={0}></Box>
   ) : (
-    <Box w={widthSize} p={heightSize}></Box>
+    <Box w={"auto"} h={size} flexShrink={0}></Box>
   );
 };
 
