@@ -20,9 +20,8 @@ const FaqPage = () => {
           </Text>
         </Alert>
         <Text pt={3} fontSize="sm" lineHeight={5}>
-          A. 以下の手順
-          を参考に、GitHubの設定を確認してください。アプリケーションのアクセスが許可されていない可能性があります。
-          <br />
+          A.
+          以下の手順を参考に、GitHubの設定を確認してください。アプリケーションのアクセスが許可されていない可能性があります。
           <br />
           1. GitHubの
           <Link
