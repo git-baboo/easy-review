@@ -23,9 +23,14 @@ const FaqPage = () => {
           A.
           以下の手順を参考に、GitHubの設定を確認してください。アプリケーションのアクセスが許可されていない可能性があります。
           <br />
+          <br />
           1. GitHubの
           <Link
-            href="https://github.com/settings/connections/applications/f36da358d46af3fd2862"
+            onClick={() => {
+              window.open(
+                "https://github.com/settings/connections/applications/f36da358d46af3fd2862"
+              );
+            }}
             color="teal.500"
           >
             設定画面
