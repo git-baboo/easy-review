@@ -47,7 +47,7 @@ const FaqPage = () => {
               Easy
               Reviewを使いたいグループを選びGrant（あなたがグループの管理者でない場合はRequest）を押す
             </ListItem>
-            <ListItem>3. 完了</ListItem>
+            <ListItem>完了</ListItem>
           </OrderedList>
         </Text>
       </Container>
