@@ -1,4 +1,11 @@
-import { Container, Link, Heading, Text } from "@chakra-ui/layout";
+import {
+  Container,
+  Link,
+  Heading,
+  Text,
+  ListItem,
+  OrderedList,
+} from "@chakra-ui/layout";
 import { Alert, AlertIcon } from "@chakra-ui/react";
 import React from "react";
 import { AiFillQuestionCircle } from "react-icons/ai";
@@ -24,20 +31,24 @@ const FaqPage = () => {
           以下の手順を参考に、GitHubの設定を確認してください。アプリケーションのアクセスが許可されていない可能性があります。
           <br />
           <br />
-          1. GitHubの
-          <Link
-            href="https://github.com/settings/connections/applications/f36da358d46af3fd2862"
-            isExternal
-            color="teal.500"
-          >
-            設定画面
-          </Link>
-          へアクセス
-          <br />
-          2. Easy
-          Reviewを使いたいグループを選びGrant（あなたがグループの管理者でない場合はRequest）を押す
-          <br />
-          3. 完了
+          <OrderedList>
+            <ListItem>
+              GitHubの
+              <Link
+                href="https://github.com/settings/connections/applications/f36da358d46af3fd2862"
+                isExternal
+                color="teal.500"
+              >
+                設定画面
+              </Link>
+              へアクセス
+            </ListItem>
+            <ListItem>
+              Easy
+              Reviewを使いたいグループを選びGrant（あなたがグループの管理者でない場合はRequest）を押す
+            </ListItem>
+            <ListItem>3. 完了</ListItem>
+          </OrderedList>
         </Text>
       </Container>
     </Layout>
