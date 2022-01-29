@@ -26,11 +26,8 @@ const FaqPage = () => {
           <br />
           1. GitHubの
           <Link
-            onClick={() => {
-              window.open(
-                "https://github.com/settings/connections/applications/f36da358d46af3fd2862"
-              );
-            }}
+            href="https://github.com/settings/connections/applications/f36da358d46af3fd2862"
+            isExternal
             color="teal.500"
           >
             設定画面
