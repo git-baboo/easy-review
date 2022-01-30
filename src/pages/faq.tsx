@@ -15,7 +15,7 @@ import withAuth from "@/hoc/withAuth";
 
 const FaqPage = () => {
   return (
-    <Layout text={"よくある質問"} icon={AiFillQuestionCircle}>
+    <Layout text="よくある質問" icon={AiFillQuestionCircle}>
       <Container py={12} maxW="container.sm">
         <Heading pb={3} fontSize="md">
           Q. プルリクエストが表示されません
