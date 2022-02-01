@@ -28,7 +28,8 @@ const TopPage = () => {
             // item.repository_urlの例: https://api.github.com/repos/git-baboo/dummy-pr
             const splitRepositoryUrl = item.repository_url.split("/");
 
-            const [ ownerName, repoName ]: string[] = splitRepositoryUrl.slice(-2);
+            const [ownerName, repoName]: string[] =
+              splitRepositoryUrl.slice(-2);
 
             const pull: TopPullRequestType = {
               pullNumber: item.number,
