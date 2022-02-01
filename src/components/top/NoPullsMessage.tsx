@@ -14,7 +14,7 @@ const NoPullsMessage = () => {
           </Text>
         </HStack>
         <HStack mt={2} justify="end">
-          <Link href="#" color="gray.600">
+          <Link href="faq" color="gray.600">
             <Text fontSize="xs" lineHeight={4}>
               正しく表示されないときは →
             </Text>
