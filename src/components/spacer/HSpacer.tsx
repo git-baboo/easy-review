@@ -6,7 +6,7 @@ type Props = {
 };
 
 const HSpacer = ({ size }: Props) => {
-  return <Box w="auto" h={size} flexShrink={0} />;
+  return <Box w={size} h="auto" display="inline-block" flexShrink={0} />;
 };
 
 export default HSpacer;
