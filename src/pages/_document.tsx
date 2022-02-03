@@ -1,5 +1,7 @@
 import NextDocument, { Html, Head, Main, NextScript } from "next/document";
 
+import Seo from "@/components/Seo";
+
 export default class Document extends NextDocument {
   render () {
     return (
@@ -12,6 +14,7 @@ export default class Document extends NextDocument {
           <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#5bbad5" />
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff" />
+          <Seo />
         </Head>
         <body>
           <Main />
