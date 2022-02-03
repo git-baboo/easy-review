@@ -1,8 +1,6 @@
-import { Head } from "next/document";
-
 const Seo = () => {
   return (
-    <Head>
+    <>
       <meta name="viewport" content="width=device-width,initial-scale=1.0" />
       <meta
         name="description"
@@ -26,7 +24,7 @@ const Seo = () => {
 
       {/* Twitter 用の設定 */}
       <meta name="twitter:card" content="summary_large_image" />
-    </Head>
+    </>
   );
 };
 
