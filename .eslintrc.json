@@ -20,6 +20,7 @@
         "newlines-between": "always"
       }
     ],
-    "react-hooks/exhaustive-deps": "off"
+    "react-hooks/exhaustive-deps": "off",
+    "@next/next/no-document-import-in-page": "off"
   }
 }
