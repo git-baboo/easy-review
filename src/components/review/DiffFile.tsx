@@ -3,12 +3,7 @@ import { Box, Heading, Link, Text, useBoolean } from "@chakra-ui/react";
 import DiffRenderer from "@/components/review/DiffRenderer";
 
 type Props = {
-  fileId: string;
-  oldPath: string;
-  newPath: string;
-  type: "add" | "delete" | "modify" | "rename";
-  isBinary: boolean;
-  hunks: any;
+  file: any;
   widgets: any;
   addWidget: (
     fileId: string,
@@ -18,35 +13,26 @@ type Props = {
   ) => void;
 };
 
-const DiffFile = ({
-  fileId,
-  oldPath,
-  newPath,
-  type,
-  isBinary,
-  hunks,
-  widgets,
-  addWidget,
-}: Props) => {
+const DiffFile = ({ file, widgets, addWidget }: Props) => {
   const [isVisibleDelete, setVisibleDelete] = useBoolean(false);
   const [isVisibleLarge, setVisibleLarge] = useBoolean(false);
   let headerPath: string = "";
   let lines: number = 0;
 
-  switch (type) {
+  switch (file.type) {
     case "delete":
-      headerPath = oldPath;
+      headerPath = file.oldPath;
       break;
     case "add":
     case "modify":
-      headerPath = newPath;
+      headerPath = file.newPath;
       break;
     case "rename":
-      headerPath = `${oldPath} → ${newPath}`;
+      headerPath = `${file.oldPath} → ${file.newPath}`;
       break;
   }
 
-  for (const hunk of hunks) {
+  for (const hunk of file.hunks) {
     lines += hunk.changes.length;
   }
 
@@ -91,24 +77,16 @@ const DiffFile = ({
       <Heading p={3} size="xs" bgColor="gray.200">
         {headerPath}
       </Heading>
-      {type === "rename" ? (
+      {file.type === "rename" ? (
         <RenameMessage />
-      ) : isBinary ? (
+      ) : file.isBinary ? (
         <BinaryMessage />
-      ) : type === "delete" && !isVisibleDelete ? (
+      ) : file.type === "delete" && !isVisibleDelete ? (
         <DeleteMessage />
       ) : lines >= 100 && !isVisibleLarge ? (
         <LargeDiffMessage />
       ) : (
-        <DiffRenderer
-          fileId={fileId}
-          oldPath={oldPath}
-          newPath={newPath}
-          type={type}
-          hunks={hunks}
-          widgets={widgets}
-          addWidget={addWidget}
-        />
+        <DiffRenderer file={file} widgets={widgets} addWidget={addWidget} />
       )}
     </Box>
   );

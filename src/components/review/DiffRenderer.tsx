@@ -11,11 +11,7 @@ const Decoration = reactDiffView.Decoration;
 const getChangeKey = reactDiffView.getChangeKey;
 
 type Props = {
-  fileId: string;
-  oldPath: string;
-  newPath: string;
-  type: string;
-  hunks: any;
+  file: any;
   widgets: any;
   addWidget: (
     fieldId: string,
@@ -31,17 +27,9 @@ type RenderGutterProps = {
   inHoverState: boolean;
 };
 
-const DiffRenderer = ({
-  fileId,
-  oldPath,
-  newPath,
-  type,
-  hunks,
-  widgets,
-  addWidget,
-}: Props) => {
+const DiffRenderer = ({ file, widgets, addWidget }: Props) => {
   const [tmpChangeKey, setTmpChangeKey] = useState<string>("");
-  const postPath: string = type === "delete" ? oldPath : newPath;
+  const postPath: string = file.type === "delete" ? file.oldPath : file.newPath;
 
   const renderGutter = ({
     side,
@@ -67,16 +55,16 @@ const DiffRenderer = ({
 
   const handleClick = (initText: string) => {
     const changeKey = tmpChangeKey;
-    addWidget(fileId, changeKey, postPath, initText);
+    addWidget(file.fileId, changeKey, postPath, initText);
     setTmpChangeKey("");
   };
 
   return (
     <Diff
       viewType="unified"
-      diffType={type}
-      hunks={hunks}
-      widgets={widgets[fileId]}
+      diffType={file.type}
+      hunks={file.hunks}
+      widgets={widgets[file.fileId]}
       renderGutter={renderGutter}
     >
       {(hunks: any) =>
