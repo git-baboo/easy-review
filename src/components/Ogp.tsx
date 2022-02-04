@@ -1,4 +1,4 @@
-const Seo = () => {
+const Ogp = () => {
   return (
     <>
       <meta property="og:url" content="https://easy-review.app" />
@@ -23,4 +23,4 @@ const Seo = () => {
   );
 };
 
-export default Seo;
+export default Ogp;

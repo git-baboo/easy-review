@@ -1,6 +1,6 @@
 import NextDocument, { Html, Head, Main, NextScript } from "next/document";
 
-import Seo from "@/components/Seo";
+import Ogp from "@/components/Ogp";
 
 export default class Document extends NextDocument {
   render() {
@@ -37,7 +37,7 @@ export default class Document extends NextDocument {
           />
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff" />
-          <Seo />
+          <Ogp />
         </Head>
         <body>
           <Main />
