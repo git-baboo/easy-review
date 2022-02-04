@@ -1,11 +1,6 @@
 const Seo = () => {
   return (
     <>
-      <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-      <meta
-        name="description"
-        content="Easy Reviewは初心者エンジニアのコードレビューに対する不安感や障壁を払拭します。"
-      />
       <meta property="og:url" content="https://easy-review.app" />
       <meta
         property="og:title"

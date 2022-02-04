@@ -7,6 +7,11 @@ export default class Document extends NextDocument {
     return (
       <Html>
         <Head>
+          <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+          <meta
+            name="description"
+            content="Easy Reviewは初心者エンジニアのコードレビューに対する不安感や障壁を払拭します。"
+          />
           <link
             rel="apple-touch-icon"
             sizes="180x180"
