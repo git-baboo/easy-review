@@ -1,14 +1,6 @@
-import { PlusSquareIcon } from "@chakra-ui/icons";
 import { Box, Heading, Link, Text, useBoolean } from "@chakra-ui/react";
-import { useMemo, useState } from "react";
 
-import ReviewPopover from "@/components/review/Popover";
-
-const reactDiffView = require("react-diff-view");
-const Diff = reactDiffView.Diff;
-const Hunk = reactDiffView.Hunk;
-const Decoration = reactDiffView.Decoration;
-const getChangeKey = reactDiffView.getChangeKey;
+import DiffRenderer from "@/components/review/DiffRenderer";
 
 type Props = {
   fileId: string;
@@ -36,10 +28,8 @@ const DiffFile = ({
   widgets,
   addWidget,
 }: Props) => {
-  const [tmpChangeKey, setTmpChangeKey] = useState<string>("");
   const [isVisibleDelete, setVisibleDelete] = useBoolean(false);
   const [isVisibleLarge, setVisibleLarge] = useBoolean(false);
-  const postPath: string = type === "delete" ? oldPath : newPath;
   let headerPath: string = "";
   let lines: number = 0;
 
@@ -59,66 +49,6 @@ const DiffFile = ({
   for (const hunk of hunks) {
     lines += hunk.changes.length;
   }
-
-  type RenderGutterProps = {
-    side: string;
-    renderDefault: () => number;
-    inHoverState: boolean;
-  };
-
-  const renderGutter = ({
-    side,
-    renderDefault,
-    inHoverState,
-  }: RenderGutterProps) =>
-    inHoverState && side === "new" ? (
-      <ReviewPopover handleClick={handleClick}>
-        <PlusSquareIcon boxSize={5} color="white" bgColor="blue.500" />
-      </ReviewPopover>
-    ) : (
-      renderDefault()
-    );
-
-  const handleClick = (initText: string) => {
-    const changeKey = tmpChangeKey;
-    addWidget(fileId, changeKey, postPath, initText);
-    setTmpChangeKey("");
-  };
-
-  const gutterEvents = useMemo(() => {
-    return {
-      onClick({ change }: any) {
-        const changeKey = getChangeKey(change);
-        setTmpChangeKey(changeKey);
-      },
-    };
-  }, []);
-
-  const RenderDiff = () => {
-    return (
-      <Diff
-        viewType="unified"
-        diffType={type}
-        hunks={hunks}
-        widgets={widgets[fileId]}
-        renderGutter={renderGutter}
-      >
-        {(hunks: any) =>
-          hunks.map((hunk: any) => [
-            <Decoration key={"deco-" + hunk.content}>
-              <Box bg="blue.300" p={2}>
-                {"　"}
-              </Box>
-              <Box bg="blue.100" p={2}>
-                {hunk.content}
-              </Box>
-            </Decoration>,
-            <Hunk key={hunk.content} hunk={hunk} gutterEvents={gutterEvents} />,
-          ])
-        }
-      </Diff>
-    );
-  };
 
   const RenameMessage = () => {
     return (
@@ -170,7 +100,16 @@ const DiffFile = ({
       ) : lines >= 100 && !isVisibleLarge ? (
         <LargeDiffMessage />
       ) : (
-        <RenderDiff />
+        // HACK: バケツリレーになっているためいい感じにリファクタリングしたい
+        <DiffRenderer
+          fileId={fileId}
+          oldPath={oldPath}
+          newPath={newPath}
+          type={type}
+          hunks={hunks}
+          widgets={widgets}
+          addWidget={addWidget}
+        />
       )}
     </Box>
   );
