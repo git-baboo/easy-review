@@ -100,6 +100,7 @@ const DiffFile = ({
       ) : lines >= 100 && !isVisibleLarge ? (
         <LargeDiffMessage />
       ) : (
+        // HACK: バケツリレーになっているためいい感じにリファクタリングしたい
         <DiffRenderer
           fileId={fileId}
           oldPath={oldPath}
