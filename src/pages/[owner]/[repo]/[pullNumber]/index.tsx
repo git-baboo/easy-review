@@ -1,11 +1,11 @@
-import { Container, Heading, Text } from "@chakra-ui/layout";
+import { Container } from "@chakra-ui/layout";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { AiOutlineThunderbolt } from "react-icons/ai";
 
 import Layout from "@/components/Layout";
+import PullRequestHeading from "@/components/PullRequestHeading";
 import ReviewButton from "@/components/detail/ReviewButton";
-import Reviewee from "@/components/detail/Reviewee";
 import TimelineItem from "@/components/detail/TimelineItem";
 import withAuth from "@/hoc/withAuth";
 import { useApi } from "@/hooks/useApi";
@@ -50,11 +50,11 @@ const DetailPage = () => {
       icon={AiOutlineThunderbolt}
     >
       <Container py={9} maxW="container.sm">
-        <Text fontSize="xs" color="gray.600">
-          {owner}/{repo}
-        </Text>
-        <Heading size="md">{pullRequest.title}</Heading>
-        <Reviewee pullRequest={pullRequest} />
+        <PullRequestHeading
+          owner={String(owner)}
+          repo={String(repo)}
+          pullRequest={pullRequest}
+        />
         <TimelineItem
           my={3}
           px={8}

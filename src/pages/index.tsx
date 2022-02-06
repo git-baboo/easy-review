@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
 
 import Layout from "@/components/Layout";
+import NoPullsMessage from "@/components/top/NoPullsMessage";
 import PullRequestList from "@/components/top/PullRequestList";
 import withAuth from "@/hoc/withAuth";
 import { useApi } from "@/hooks/useApi";
@@ -27,7 +28,8 @@ const TopPage = () => {
             // item.repository_urlの例: https://api.github.com/repos/git-baboo/dummy-pr
             const splitRepositoryUrl = item.repository_url.split("/");
 
-            const [ ownerName, repoName ]: string[] = splitRepositoryUrl.slice(-2);
+            const [ownerName, repoName]: string[] =
+              splitRepositoryUrl.slice(-2);
 
             const pull: TopPullRequestType = {
               pullNumber: item.number,
@@ -50,7 +52,7 @@ const TopPage = () => {
       icon={BsCheckCircleFill}
     >
       <Container maxW="container.sm">
-        <PullRequestList pulls={pulls} />
+        {pulls.length ? <PullRequestList pulls={pulls} /> : <NoPullsMessage />}
       </Container>
     </Layout>
   );
