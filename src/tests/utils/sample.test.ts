@@ -1,4 +1,4 @@
-import { sample } from "@/tests/utils/sample/sample";
+import { sample } from "@/utils/sample";
 
 describe("sample", () => {
   test("1が返ってくる", () => {
