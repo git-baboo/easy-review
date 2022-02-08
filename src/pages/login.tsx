@@ -8,10 +8,10 @@ import {
   Modal,
   ModalContent,
   ModalBody,
-  useBreakpointValue,
   ModalOverlay,
   Spacer,
   Link,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import React from "react";
 
