@@ -14,31 +14,6 @@ export const useAuth = () => {
 
   const login = () => {
     signInWithRedirect(auth, provider);
-    // signInWithPopup(auth, provider).then((result) => {
-    //   const credential = GithubAuthProvider.credentialFromResult(result);
-    //   if (credential) {
-    //     const token = credential.accessToken;
-
-    //     const octokit = new Octokit({
-    //       auth: token,
-    //     });
-
-    //     octokit.request("GET /user").then((res) => {
-    //       setCurrentUser((prevState) => ({
-    //         ...prevState,
-    //         username: res.data.login,
-    //       }));
-    //     });
-
-    //     setCurrentUser((prevState) => ({
-    //       ...prevState,
-    //       isSignedIn: true,
-    //       accessToken: String(token),
-    //     }));
-
-    //     router.push("/");
-    //   }
-    // });
   };
 
   const logout = () => {
