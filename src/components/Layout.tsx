@@ -3,6 +3,7 @@ import React, { ReactNode } from "react";
 import { IconType } from "react-icons";
 
 import Menu from "@/components/Menu";
+import { VSpacer } from "@/components/Spacer";
 
 type Props = {
   text: string;
@@ -16,7 +17,8 @@ const Layout = ({ text, icon, children }: Props) => {
       <Flex alignItems="center" pl={20} pr={3} h={36} bg="teal.500">
         <HStack w="100%" h="100%">
           <HStack w="90%" alignItems="start">
-            <Icon mt={1} as={icon} boxSize={6} color="teal.600" />
+            <VSpacer size={1} />
+            <Icon as={icon} boxSize={6} color="teal.600" />
             <Text
               fontSize="lg"
               lineHeight={7}
