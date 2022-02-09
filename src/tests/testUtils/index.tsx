@@ -1,4 +1,4 @@
-// NOTE: Chakra UI を採用しているため、ラップした render を使用する必要がある
+// NOTE: Chakra UI を採用しているため、render をラップする必要がある
 
 import { ChakraProvider } from "@chakra-ui/react";
 import { render, RenderOptions } from "@testing-library/react";
