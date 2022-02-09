@@ -8,8 +8,8 @@ export const middleware = (req: NextRequest) => {
     const [user, password] = Buffer.from(auth, "base64").toString().split(":");
 
     if (
-      user === process.env.BASIC_AUTH_USER &&
-      password === process.env.BASIC_AUTH_PASSWORD
+      user === process.env.NEXT_PUBLIC_BASIC_AUTH_USERNAME &&
+      password === process.env.NEXT_PUBLIC_BASIC_AUTH_PASSWORD
     ) {
       return NextResponse.next();
     }
