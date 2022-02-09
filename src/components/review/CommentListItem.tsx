@@ -1,6 +1,5 @@
 import { Avatar } from "@chakra-ui/avatar";
-import { Grid, GridItem, Text } from "@chakra-ui/layout";
-import { Box } from "@chakra-ui/react";
+import { Grid, GridItem, Text , Box } from "@chakra-ui/layout";
 import ChakraUIRenderer from "chakra-ui-markdown-renderer";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
