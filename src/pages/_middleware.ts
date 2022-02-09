@@ -7,7 +7,10 @@ export const middleware = (req: NextRequest) => {
     const auth = basicAuth.split(" ")[1];
     const [user, password] = Buffer.from(auth, "base64").toString().split(":");
 
-    if (user === process.env.BASIC_AUTH_USER && password === process.env.BASIC_AUTH_PASSWORD) {
+    if (
+      user === process.env.BASIC_AUTH_USER &&
+      password === process.env.BASIC_AUTH_PASSWORD
+    ) {
       return NextResponse.next();
     }
   }
@@ -16,6 +19,6 @@ export const middleware = (req: NextRequest) => {
     status: 401,
     headers: {
       "WWW-Authenticate": "Basic realm='Secure Area'",
-    }
+    },
   });
 };
