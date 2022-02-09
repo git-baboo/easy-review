@@ -1,5 +1,6 @@
 import { Avatar } from "@chakra-ui/avatar";
-import { Grid, GridItem, ListItem, Text } from "@chakra-ui/layout";
+import { Grid, GridItem, Text } from "@chakra-ui/layout";
+import { Box } from "@chakra-ui/react";
 import ChakraUIRenderer from "chakra-ui-markdown-renderer";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -14,7 +15,7 @@ type Props = {
 
 const CommentListItem = ({ author, avatarUrl, body }: Props) => {
   return (
-    <ListItem m={2} p={4} border="1px" borderRadius="md" borderColor="gray.300">
+    <Box p={4} border="1px" borderRadius="md" borderColor="gray.300">
       <Grid templateColumns="auto 1fr" gap={2} alignItems="center">
         <GridItem>
           <Avatar size="sm" name={author} src={avatarUrl} />
@@ -32,7 +33,7 @@ const CommentListItem = ({ author, avatarUrl, body }: Props) => {
           </ReactMarkdown>
         </GridItem>
       </Grid>
-    </ListItem>
+    </Box>
   );
 };
 

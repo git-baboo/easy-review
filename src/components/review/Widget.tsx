@@ -1,4 +1,4 @@
-import { Box, Button, Flex, List, Spacer, Textarea } from "@chakra-ui/react";
+import { Box, Button, Flex, Spacer, Textarea, Stack } from "@chakra-ui/react";
 import React, { ChangeEvent, useCallback } from "react";
 
 import CommentListItem from "@/components/review/CommentListItem";
@@ -41,7 +41,7 @@ const Widget = ({
   return (
     <Box m={4}>
       {comments && (
-        <List>
+        <Stack>
           {comments.map((comment, index) => {
             return (
               <CommentListItem
@@ -52,7 +52,7 @@ const Widget = ({
               />
             );
           })}
-        </List>
+        </Stack>
       )}
       {isWriting && (
         <>
