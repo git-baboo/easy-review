@@ -12,7 +12,6 @@ const LoginButton = () => {
       leftIcon={<DiGithubBadge color="black" size={25} />}
       bgColor="white"
       color="black"
-      mt={8}
       onClick={login}
     >
       ログイン
