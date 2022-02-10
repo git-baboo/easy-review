@@ -20,7 +20,7 @@ const PullRequestList = ({ pulls }: Props) => {
   return (
     <VStack align="stretch" my={6} spacing={6} divider={<StackDivider />}>
       {pulls.map((pullRequest, index) => (
-        <Box key={index} mx={8}>
+        <Box role="listitem" key={index} mx={8}>
           <Box
             display="inline-block"
             _hover={{ cursor: "pointer" }}
