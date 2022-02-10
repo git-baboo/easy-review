@@ -173,7 +173,7 @@ const ReviewPage = () => {
   return (
     <>
       <Layout
-        text={"テンプレートを使ってレビューをしてみよう！"}
+        text="テンプレートを使ってレビューをしてみよう！"
         icon={BsFillChatDotsFill}
       >
         <Container py={9} maxW="container.lg">
