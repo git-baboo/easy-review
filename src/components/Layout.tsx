@@ -3,7 +3,7 @@ import React, { ReactNode } from "react";
 import { IconType } from "react-icons";
 
 import Menu from "@/components/Menu";
-import { VSpacer } from "@/components/Spacer";
+import { HSpacer, VSpacer } from "@/components/Spacer";
 
 type Props = {
   text: string;
@@ -14,7 +14,8 @@ type Props = {
 const Layout = ({ text, icon, children }: Props) => {
   return (
     <>
-      <Flex alignItems="center" pl={20} pr={3} h={36} bg="teal.500">
+      <Flex alignItems="center" h={36} bg="teal.500">
+        <HSpacer size={16} />
         <HStack w="100%" h="100%">
           <HStack w="90%" alignItems="start">
             <VSpacer size={1} />
@@ -33,6 +34,7 @@ const Layout = ({ text, icon, children }: Props) => {
             <Menu />
           </Box>
         </HStack>
+        <HSpacer size={3} />
       </Flex>
       {children}
     </>
