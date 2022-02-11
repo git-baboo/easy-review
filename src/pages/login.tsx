@@ -64,7 +64,6 @@ const LoginPage = () => {
               より気軽なコードレビュー体験を
             </Heading>
           </Box>
-          <VSpacer size={8} />
           {mediaType === "pc" && <LoginButton />}
         </Container>
         {mediaType === "phone" && (
