@@ -1,9 +1,6 @@
 import { Container } from "@chakra-ui/react";
-import { Octokit } from "@octokit/rest";
-import { getRedirectResult, GithubAuthProvider } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
-import { useSetRecoilState } from "recoil";
 
 import Layout from "@/components/Layout";
 import NoPullsMessage from "@/components/top/NoPullsMessage";
@@ -11,45 +8,12 @@ import PullRequestList from "@/components/top/PullRequestList";
 import withAuth from "@/hoc/withAuth";
 import { useApi } from "@/hooks/useApi";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
-import { currentUserState } from "@/store/currentUserState";
-import { CurrentUserType } from "@/types/CurrentUserType";
 import { TopPullRequestType } from "@/types/PullRequestType";
-import { auth } from "@/utils/firebase";
 
 const TopPage = () => {
   const [pulls, setPulls] = useState<TopPullRequestType[]>([]);
   const { octokit } = useApi();
   const { username } = useCurrentUser();
-  const setCurrentUser = useSetRecoilState<CurrentUserType>(currentUserState);
-  const provider = new GithubAuthProvider();
-
-  useEffect(() => {
-    getRedirectResult(auth).then((result) => {
-      if (result) {
-        const credential = GithubAuthProvider.credentialFromResult(result);
-        if (credential) {
-          const token = credential.accessToken;
-
-          const octokit = new Octokit({
-            auth: token,
-          });
-
-          octokit.request("GET /user").then((res) => {
-            setCurrentUser((prevState) => ({
-              ...prevState,
-              username: res.data.login,
-            }));
-          });
-
-          setCurrentUser((prevState) => ({
-            ...prevState,
-            isSignedIn: true,
-            accessToken: String(token),
-          }));
-        }
-      }
-    });
-  }, []);
 
   useEffect(() => {
     if (username) {
