@@ -41,7 +41,7 @@ const Widget = ({
   return (
     <Box m={4}>
       {comments && (
-        <Stack>
+        <Stack direction="column">
           {comments.map((comment, index) => {
             return (
               <CommentListItem
