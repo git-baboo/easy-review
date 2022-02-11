@@ -30,6 +30,7 @@ const Layout = ({ text, icon, children }: Props) => {
               {text}
             </Text>
           </HStack>
+
           <Box h="100%" w="10%" align="right">
             <Menu />
           </Box>
