@@ -21,6 +21,7 @@ const TopPage = () => {
   const { octokit } = useApi();
   const { username } = useCurrentUser();
   const setCurrentUser = useSetRecoilState<CurrentUserType>(currentUserState);
+  const provider = new GithubAuthProvider();
 
   useEffect(() => {
     getRedirectResult(auth).then((result) => {
