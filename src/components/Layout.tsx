@@ -31,7 +31,7 @@ const Layout = ({ text, icon, children }: Props) => {
 
         <Spacer />
 
-        <Box h={10} w={10} alignSelf="flex-start">
+        <Box alignSelf="flex-start">
           <Menu />
         </Box>
       </Flex>
