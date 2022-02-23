@@ -14,9 +14,9 @@ type Props = {
 const Layout = ({ text, icon, children }: Props) => {
   return (
     <>
-      <Flex bgColor="teal.500" h={36} align="center">
+      <Flex bgColor="teal.500" h={36}>
         <HSpacer size={16} />
-        <Flex>
+        <Flex alignSelf="center">
           <Icon as={icon} boxSize={6} color="teal.600" />
           <HSpacer size={1} />
           <Text
@@ -31,7 +31,7 @@ const Layout = ({ text, icon, children }: Props) => {
 
         <Spacer />
 
-        <Box alignSelf="flex-start">
+        <Box>
           <Menu />
         </Box>
       </Flex>
