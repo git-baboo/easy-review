@@ -4,15 +4,15 @@ import { DiGithubBadge } from "react-icons/di";
 import { useRecoilState } from "recoil";
 
 import { useAuth } from "@/hooks/useAuth";
-import { loginButtonState } from "@/store/loginButtonState";
+import { isLoginButtonLoadingState } from "@/store/isLoginButtonLoadingState";
 
 const LoginButton = () => {
-  const [loginButton, setLoginButton] =
-    useRecoilState<boolean>(loginButtonState);
+  const [isLoginButtonLoading, setIsLoginButtonLoading] =
+    useRecoilState<boolean>(isLoginButtonLoadingState);
   const { login } = useAuth();
 
   const handleLogin = () => {
-    setLoginButton(true);
+    setIsLoginButtonLoading(true);
     login();
   };
 
@@ -21,7 +21,7 @@ const LoginButton = () => {
       leftIcon={<DiGithubBadge color="black" size={25} />}
       bgColor="white"
       color="black"
-      isLoading={loginButton}
+      isLoading={isLoginButtonLoading}
       onClick={handleLogin}
     >
       ログイン
