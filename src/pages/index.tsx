@@ -3,7 +3,6 @@ import { Octokit } from "@octokit/rest";
 import { getRedirectResult, GithubAuthProvider } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
-import { useSetRecoilState } from "recoil";
 
 import Layout from "@/components/Layout";
 import NoPullsMessage from "@/components/top/NoPullsMessage";
@@ -14,15 +13,14 @@ import {
   currentUserActions,
   currentUserSelectors,
 } from "@/store/currentUserState";
-import { isLoginButtonLoadingState } from "@/store/isLoginButtonLoadingState";
+import { loginButtonLoadingActions } from "@/store/loginButtonLoadingState";
 import { TopPullRequestType } from "@/types/PullRequestType";
 import { auth } from "@/utils/firebase";
 
 const TopPage = () => {
   const [pulls, setPulls] = useState<TopPullRequestType[]>([]);
-  const setIsLoginButtonLoading = useSetRecoilState<boolean>(
-    isLoginButtonLoadingState
-  );
+  const setIsLoginButtonLoading =
+    loginButtonLoadingActions.useUpdateLoginButtonLoading();
   const { octokit } = useApi();
   const currentUser = currentUserSelectors.useCurrentUser();
   const updateCurrentUser = currentUserActions.useUpdateCurrentUser();

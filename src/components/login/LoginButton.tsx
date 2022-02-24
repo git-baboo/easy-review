@@ -1,14 +1,18 @@
 import { Button } from "@chakra-ui/react";
 import React from "react";
 import { DiGithubBadge } from "react-icons/di";
-import { useRecoilState } from "recoil";
 
 import { useAuth } from "@/hooks/useAuth";
-import { isLoginButtonLoadingState } from "@/store/isLoginButtonLoadingState";
+import {
+  loginButtonLoadingActions,
+  loginButtonLoadingSelectors,
+} from "@/store/loginButtonLoadingState";
 
 const LoginButton = () => {
-  const [isLoginButtonLoading, setIsLoginButtonLoading] =
-    useRecoilState<boolean>(isLoginButtonLoadingState);
+  const isLoginButtonLoading =
+    loginButtonLoadingSelectors.useLoginButtonLoading();
+  const setIsLoginButtonLoading =
+    loginButtonLoadingActions.useUpdateLoginButtonLoading();
   const { login } = useAuth();
 
   const handleLogin = () => {
