@@ -1,12 +1,12 @@
 import { Octokit } from "@octokit/rest";
 
-import { useCurrentUser } from "@/hooks/useCurrentUser";
+import { currentUserSelectors } from "@/store/currentUserState";
 
 export const useApi = () => {
-  const { accessToken } = useCurrentUser();
+  const currentUser = currentUserSelectors.useCurrentUser();
 
   const octokit = new Octokit({
-    auth: accessToken,
+    auth: currentUser.accessToken,
   });
 
   return { octokit };

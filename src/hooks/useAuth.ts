@@ -1,14 +1,12 @@
 import { GithubAuthProvider, signInWithRedirect, signOut } from "firebase/auth";
 import { useRouter } from "next/router";
-import { useSetRecoilState } from "recoil";
 
-import { currentUserState } from "@/store/currentUserState";
-import { CurrentUserType } from "@/types/CurrentUserType";
+import { currentUserActions } from "@/store/currentUserState";
 import { auth } from "@/utils/firebase";
 
 export const useAuth = () => {
   const router = useRouter();
-  const setCurrentUser = useSetRecoilState<CurrentUserType>(currentUserState);
+  const updateCurrentUser = currentUserActions.useUpdateCurrentUser();
   const provider = new GithubAuthProvider();
   provider.addScope("repo");
 
@@ -18,7 +16,7 @@ export const useAuth = () => {
 
   const logout = () => {
     signOut(auth);
-    setCurrentUser({
+    updateCurrentUser({
       isSignedIn: false,
       username: "",
       accessToken: "",
