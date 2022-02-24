@@ -12,12 +12,14 @@ import withAuth from "@/hoc/withAuth";
 import { useApi } from "@/hooks/useApi";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { currentUserState } from "@/store/currentUserState";
+import { loginButtonState } from "@/store/loginButtonState";
 import { CurrentUserType } from "@/types/CurrentUserType";
 import { TopPullRequestType } from "@/types/PullRequestType";
 import { auth } from "@/utils/firebase";
 
 const TopPage = () => {
   const [pulls, setPulls] = useState<TopPullRequestType[]>([]);
+  const setLoginButton = useSetRecoilState<boolean>(loginButtonState);
   const { octokit } = useApi();
   const { username } = useCurrentUser();
   const setCurrentUser = useSetRecoilState<CurrentUserType>(currentUserState);
@@ -45,6 +47,8 @@ const TopPage = () => {
             isSignedIn: true,
             accessToken: String(token),
           }));
+
+          setLoginButton(false);
         }
       }
     });
