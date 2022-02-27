@@ -14,6 +14,7 @@
   --diff-omit-gutter-line-color: #cb2a1d;
 }
 .diff {
+  font-size: 14px;
   background-color: initial;
   background-color: var(--diff-background-color);
   color: initial;
