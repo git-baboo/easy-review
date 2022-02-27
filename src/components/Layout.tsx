@@ -8,13 +8,16 @@ import {
   MenuButton,
   IconButton,
   MenuList,
-  MenuItem,
   MenuGroup,
   MenuDivider,
 } from "@chakra-ui/react";
 import React, { ReactNode } from "react";
 import { IconType } from "react-icons";
+import { BiCommentDetail } from "react-icons/bi";
+import { MdOutlinePrivacyTip, MdOutlineLogout } from "react-icons/md";
+import { RiServiceLine } from "react-icons/ri";
 
+import MenuItemWithIcon from "@/components/MenuItemWithIcon";
 import { HSpacer } from "@/components/Spacer";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -56,7 +59,8 @@ const Layout = ({ text, icon, children }: Props) => {
           />
           <MenuList>
             <MenuGroup>
-              <MenuItem
+              <MenuItemWithIcon
+                icon={<RiServiceLine />}
                 onClick={() => {
                   window.open(
                     "https://www.kiyac.app/termsOfService/uJBSYhgVE6HYcxs7gklF"
@@ -64,8 +68,9 @@ const Layout = ({ text, icon, children }: Props) => {
                 }}
               >
                 利用規約
-              </MenuItem>
-              <MenuItem
+              </MenuItemWithIcon>
+              <MenuItemWithIcon
+                icon={<MdOutlinePrivacyTip />}
                 onClick={() => {
                   window.open(
                     "https://www.kiyac.app/privacypolicy/pPYhCNHmkxjkZewFkatd"
@@ -73,21 +78,24 @@ const Layout = ({ text, icon, children }: Props) => {
                 }}
               >
                 プライバシーポリシー
-              </MenuItem>
+              </MenuItemWithIcon>
             </MenuGroup>
             <MenuDivider />
             <MenuGroup>
-              <MenuItem
+              <MenuItemWithIcon
+                icon={<BiCommentDetail />}
                 onClick={() => {
                   window.open("https://forms.gle/W4s7xqEiAeskEof38");
                 }}
               >
                 フィードバック
-              </MenuItem>
+              </MenuItemWithIcon>
             </MenuGroup>
             <MenuDivider />
             <MenuGroup>
-              <MenuItem onClick={logout}>ログアウト</MenuItem>
+              <MenuItemWithIcon icon={<MdOutlineLogout />} onClick={logout}>
+                ログアウト
+              </MenuItemWithIcon>
             </MenuGroup>
           </MenuList>
         </Menu>
