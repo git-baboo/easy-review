@@ -1,4 +1,4 @@
-import { ArrowBackIcon, EmailIcon, HamburgerIcon } from "@chakra-ui/icons";
+import { HamburgerIcon } from "@chakra-ui/icons";
 import {
   Text,
   Icon,
@@ -9,6 +9,8 @@ import {
   IconButton,
   MenuList,
   MenuItem,
+  MenuGroup,
+  MenuDivider,
 } from "@chakra-ui/react";
 import React, { ReactNode } from "react";
 import { IconType } from "react-icons";
@@ -53,17 +55,40 @@ const Layout = ({ text, icon, children }: Props) => {
             _focus={{ boxShadow: "none" }}
           />
           <MenuList>
-            <MenuItem icon={<ArrowBackIcon />} onClick={logout}>
-              ログアウト
-            </MenuItem>
-            <MenuItem
-              icon={<EmailIcon />}
-              onClick={() => {
-                window.open("https://forms.gle/W4s7xqEiAeskEof38");
-              }}
-            >
-              フィードバック
-            </MenuItem>
+            <MenuGroup>
+              <MenuItem
+                onClick={() => {
+                  window.open(
+                    "https://www.kiyac.app/termsOfService/uJBSYhgVE6HYcxs7gklF"
+                  );
+                }}
+              >
+                利用規約
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  window.open(
+                    "https://www.kiyac.app/privacypolicy/pPYhCNHmkxjkZewFkatd"
+                  );
+                }}
+              >
+                プライバシーポリシー
+              </MenuItem>
+            </MenuGroup>
+            <MenuDivider />
+            <MenuGroup>
+              <MenuItem
+                onClick={() => {
+                  window.open("https://forms.gle/W4s7xqEiAeskEof38");
+                }}
+              >
+                フィードバック
+              </MenuItem>
+            </MenuGroup>
+            <MenuDivider />
+            <MenuGroup>
+              <MenuItem onClick={logout}>ログアウト</MenuItem>
+            </MenuGroup>
           </MenuList>
         </Menu>
       </Flex>
