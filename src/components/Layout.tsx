@@ -1,4 +1,4 @@
-import { HamburgerIcon } from "@chakra-ui/icons";
+import { ExternalLinkIcon, HamburgerIcon } from "@chakra-ui/icons";
 import {
   Text,
   Icon,
@@ -67,7 +67,7 @@ const Layout = ({ text, icon, children }: Props) => {
                   );
                 }}
               >
-                利用規約
+                利用規約 <ExternalLinkIcon />
               </MenuItemWithIcon>
               <MenuItemWithIcon
                 icon={<MdOutlinePrivacyTip />}
@@ -77,7 +77,7 @@ const Layout = ({ text, icon, children }: Props) => {
                   );
                 }}
               >
-                プライバシーポリシー
+                プライバシーポリシー <ExternalLinkIcon />
               </MenuItemWithIcon>
             </MenuGroup>
             <MenuDivider />
@@ -88,7 +88,7 @@ const Layout = ({ text, icon, children }: Props) => {
                   window.open("https://forms.gle/W4s7xqEiAeskEof38");
                 }}
               >
-                フィードバック
+                フィードバック <ExternalLinkIcon />
               </MenuItemWithIcon>
             </MenuGroup>
             <MenuDivider />
