@@ -15,7 +15,7 @@ import {
 import React, { ReactNode } from "react";
 import { IconType } from "react-icons";
 import { BiCommentDetail } from "react-icons/bi";
-import { MdOutlineLogout } from "react-icons/md";
+import { MdOutlineLogout, MdOutlinePrivacyTip } from "react-icons/md";
 import { RiServiceLine } from "react-icons/ri";
 
 import MenuItemWithExternalIcon from "@/components/MenuItemWithExternalIcon";
@@ -73,7 +73,7 @@ const Layout = ({ text, icon, children }: Props) => {
               />
               <MenuItemWithExternalIcon
                 label="プライバシーポリシー"
-                icon={<RiServiceLine size="1.2rem" />}
+                icon={<MdOutlinePrivacyTip size="1.2rem" />}
                 onClick={() => {
                   window.open(
                     "https://www.kiyac.app/privacypolicy/pPYhCNHmkxjkZewFkatd"
