@@ -1,5 +1,7 @@
-import { getAuth, User } from "firebase/auth";
+import { User } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
+
+import { auth } from "@/utils/firebase";
 
 type AuthContextProps = {
   currentUser: User | null | undefined;
@@ -16,8 +18,6 @@ const AuthProvider = ({ children }: { children: JSX.Element }) => {
     undefined
   );
   const [signInCheck, setSignInCheck] = useState<boolean>(false);
-
-  const auth = getAuth();
 
   useEffect(() => {
     auth.onAuthStateChanged(async (user) => {
