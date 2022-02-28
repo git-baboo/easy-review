@@ -1,7 +1,7 @@
 :root {
   --diff-background-color: initial;
   --diff-text-color: initial;
-  --diff-font-family: Consolas, Courier, monospace;
+  --diff-font-family: Ricty;
   --diff-selection-background-color: #b3d7ff;
   --diff-gutter-insert-background-color: #d6fedb;
   --diff-gutter-delete-background-color: #fadde0;
