@@ -15,6 +15,7 @@ const MenuItemWithExternalLinkIcon = ({ label, ...menuItemProps }: Props) => {
     <MenuItem {...menuItemProps}>
       <Flex justify="space-between" align="center">
         <Text>{label}</Text>
+        {/* プライバシーポリシーの部分でテキストとアイコンの距離が近すぎるのでスペース入れてます */}
         <HSpacer size={2} />
         <ExternalLinkIcon color="gray.500" />
       </Flex>
