@@ -1,4 +1,4 @@
-import { ExternalLinkIcon, HamburgerIcon } from "@chakra-ui/icons";
+import { HamburgerIcon } from "@chakra-ui/icons";
 import {
   Text,
   Icon,
@@ -15,9 +15,10 @@ import {
 import React, { ReactNode } from "react";
 import { IconType } from "react-icons";
 import { BiCommentDetail } from "react-icons/bi";
-import { MdOutlinePrivacyTip, MdOutlineLogout } from "react-icons/md";
+import { MdOutlineLogout } from "react-icons/md";
 import { RiServiceLine } from "react-icons/ri";
 
+import MenuItemWithExternalIcon from "@/components/MenuItemWithExternalIcon";
 import { HSpacer } from "@/components/Spacer";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -59,7 +60,8 @@ const Layout = ({ text, icon, children }: Props) => {
           />
           <MenuList>
             <MenuGroup>
-              <MenuItem
+              <MenuItemWithExternalIcon
+                label="利用規約"
                 // HACK: remで指定したくない
                 // Chakra UIと同じ指定方法で統一できないか
                 icon={<RiServiceLine size="1.2rem" />}
@@ -68,30 +70,26 @@ const Layout = ({ text, icon, children }: Props) => {
                     "https://www.kiyac.app/termsOfService/uJBSYhgVE6HYcxs7gklF"
                   );
                 }}
-              >
-                利用規約 <ExternalLinkIcon />
-              </MenuItem>
-              <MenuItem
-                icon={<MdOutlinePrivacyTip size="1.2rem" />}
+              />
+              <MenuItemWithExternalIcon
+                label="プライバシーポリシー"
+                icon={<RiServiceLine size="1.2rem" />}
                 onClick={() => {
                   window.open(
                     "https://www.kiyac.app/privacypolicy/pPYhCNHmkxjkZewFkatd"
                   );
                 }}
-              >
-                プライバシーポリシー <ExternalLinkIcon />
-              </MenuItem>
+              />
             </MenuGroup>
             <MenuDivider />
             <MenuGroup>
-              <MenuItem
+              <MenuItemWithExternalIcon
+                label="フィードバック"
                 icon={<BiCommentDetail size="1.2rem" />}
                 onClick={() => {
                   window.open("https://forms.gle/W4s7xqEiAeskEof38");
                 }}
-              >
-                フィードバック <ExternalLinkIcon />
-              </MenuItem>
+              />
             </MenuGroup>
             <MenuDivider />
             <MenuGroup>
