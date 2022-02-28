@@ -18,7 +18,7 @@ import { BiCommentDetail } from "react-icons/bi";
 import { MdOutlineLogout, MdOutlinePrivacyTip } from "react-icons/md";
 import { RiServiceLine } from "react-icons/ri";
 
-import MenuItemWithExternalIcon from "@/components/MenuItemWithExternalIcon";
+import MenuItemWithExternalLinkIcon from "@/components/MenuItemWithExternalLinkIcon";
 import { HSpacer } from "@/components/Spacer";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -60,7 +60,7 @@ const Layout = ({ text, icon, children }: Props) => {
           />
           <MenuList>
             <MenuGroup>
-              <MenuItemWithExternalIcon
+              <MenuItemWithExternalLinkIcon
                 label="利用規約"
                 // HACK: remで指定したくない
                 // Chakra UIと同じ指定方法で統一できないか
@@ -71,7 +71,7 @@ const Layout = ({ text, icon, children }: Props) => {
                   );
                 }}
               />
-              <MenuItemWithExternalIcon
+              <MenuItemWithExternalLinkIcon
                 label="プライバシーポリシー"
                 icon={<MdOutlinePrivacyTip size="1.2rem" />}
                 onClick={() => {
@@ -83,7 +83,7 @@ const Layout = ({ text, icon, children }: Props) => {
             </MenuGroup>
             <MenuDivider />
             <MenuGroup>
-              <MenuItemWithExternalIcon
+              <MenuItemWithExternalLinkIcon
                 label="フィードバック"
                 icon={<BiCommentDetail size="1.2rem" />}
                 onClick={() => {

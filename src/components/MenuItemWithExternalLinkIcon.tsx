@@ -10,7 +10,7 @@ type CustomProps = {
 
 type Props = CustomProps & MenuItemProps;
 
-const MenuItemWithExternalIcon = ({ label, ...menuItemProps }: Props) => {
+const MenuItemWithExternalLinkIcon = ({ label, ...menuItemProps }: Props) => {
   return (
     <MenuItem {...menuItemProps}>
       <Flex justify="space-between" align="center">
@@ -22,4 +22,4 @@ const MenuItemWithExternalIcon = ({ label, ...menuItemProps }: Props) => {
   );
 };
 
-export default MenuItemWithExternalIcon;
+export default MenuItemWithExternalLinkIcon;
