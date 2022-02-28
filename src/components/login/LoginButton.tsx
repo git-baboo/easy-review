@@ -1,32 +1,21 @@
 import { Button } from "@chakra-ui/react";
-import React from "react";
+import React, { useContext } from "react";
 import { DiGithubBadge } from "react-icons/di";
 
+import { AuthContext } from "@/components/AuthProvider";
 import { useAuth } from "@/hooks/useAuth";
-import {
-  loginButtonLoadingActions,
-  loginButtonLoadingSelectors,
-} from "@/store/loginButtonLoadingState";
 
 const LoginButton = () => {
-  const isLoginButtonLoading =
-    loginButtonLoadingSelectors.useLoginButtonLoading();
-  const setIsLoginButtonLoading =
-    loginButtonLoadingActions.useUpdateLoginButtonLoading();
+  const { signInCheck } = useContext(AuthContext);
   const { login } = useAuth();
-
-  const handleLogin = () => {
-    setIsLoginButtonLoading(true);
-    login();
-  };
 
   return (
     <Button
       leftIcon={<DiGithubBadge color="black" size={25} />}
       bgColor="white"
       color="black"
-      isLoading={isLoginButtonLoading}
-      onClick={handleLogin}
+      isLoading={!signInCheck}
+      onClick={login}
     >
       ログイン
     </Button>

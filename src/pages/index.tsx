@@ -13,14 +13,11 @@ import {
   currentUserActions,
   currentUserSelectors,
 } from "@/store/currentUserState";
-import { loginButtonLoadingActions } from "@/store/loginButtonLoadingState";
 import { TopPullRequestType } from "@/types/PullRequestType";
 import { auth } from "@/utils/firebase";
 
 const TopPage = () => {
   const [pulls, setPulls] = useState<TopPullRequestType[]>([]);
-  const setIsLoginButtonLoading =
-    loginButtonLoadingActions.useUpdateLoginButtonLoading();
   const { octokit } = useApi();
   const currentUser = currentUserSelectors.useCurrentUser();
   const updateCurrentUser = currentUserActions.useUpdateCurrentUser();
@@ -43,8 +40,6 @@ const TopPage = () => {
               accessToken: String(token),
             });
           });
-
-          setIsLoginButtonLoading(false);
         }
       }
     });
