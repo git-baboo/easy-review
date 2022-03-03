@@ -7,6 +7,8 @@ import { RecoilRoot } from "recoil";
 
 import AuthContext from "@/components/AuthContext";
 import authReducer from "@/utils/authReducer";
+
+import "prismjs/themes/prism.css";
 import "@/style/difffile.css";
 
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
