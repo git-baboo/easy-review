@@ -6397,11 +6397,6 @@ pretty-format@^27.0.0, pretty-format@^27.0.2, pretty-format@^27.5.0:
     ansi-styles "^5.0.0"
     react-is "^17.0.1"
 
-prism-color-variables@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/prism-color-variables/-/prism-color-variables-1.0.1.tgz#ab2f9603e4014ff6b10bc99b9b71369233326004"
-  integrity sha512-ooWpzManQwobU5DNxWyFeffSABAQGWVVcon8E5AGUU4fgKqwdPw14M3gbS0c1YzDtf7Tv3G6PWsvELe16YWUYg==
-
 prismjs@^1.25.0, prismjs@~1.25.0:
   version "1.25.0"
   resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.25.0.tgz#6f822df1bdad965734b310b315a23315cf999756"
