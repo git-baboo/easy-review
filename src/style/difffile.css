@@ -1,7 +1,12 @@
+@font-face {
+  font-family: Myfont;
+  src: url("@/fonts/RictyDiminished-Regular.ttf");
+}
+
 :root {
   --diff-background-color: initial;
   --diff-text-color: initial;
-  --diff-font-family: Ricty Diminished, monospace;
+  --diff-font-family: Myfont, monospace;
   --diff-selection-background-color: #b3d7ff;
   --diff-gutter-insert-background-color: #d6fedb;
   --diff-gutter-delete-background-color: #fadde0;
@@ -13,6 +18,7 @@
   --diff-code-selected-background-color: #fffce0;
   --diff-omit-gutter-line-color: #cb2a1d;
 }
+
 .diff {
   background-color: initial;
   background-color: var(--diff-background-color);
