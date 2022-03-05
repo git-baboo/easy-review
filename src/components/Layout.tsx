@@ -13,9 +13,9 @@ import {
 } from "@chakra-ui/react";
 import React, { ReactNode } from "react";
 import { IconType } from "react-icons";
-import { RiServiceLine } from "react-icons/all";
 import { BiCommentDetail } from "react-icons/bi";
 import { MdOutlineLogout, MdOutlinePrivacyTip } from "react-icons/md";
+import { RiServiceLine } from "react-icons/ri";
 
 import CustomMenuItem from "@/components/CustomMenuItem";
 import { HSpacer } from "@/components/Spacer";
