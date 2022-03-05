@@ -10,15 +10,14 @@ import {
   MenuList,
   MenuGroup,
   MenuDivider,
-  MenuItem,
 } from "@chakra-ui/react";
 import React, { ReactNode } from "react";
 import { IconType } from "react-icons";
+import { RiServiceLine } from "react-icons/all";
 import { BiCommentDetail } from "react-icons/bi";
 import { MdOutlineLogout, MdOutlinePrivacyTip } from "react-icons/md";
-import { RiServiceLine } from "react-icons/ri";
 
-import MenuItemWithExternalLinkIcon from "@/components/MenuItemWithExternalLinkIcon";
+import CustomMenuItem from "@/components/CustomMenuItem";
 import { HSpacer } from "@/components/Spacer";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -60,45 +59,49 @@ const Layout = ({ text, icon, children }: Props) => {
           />
           <MenuList>
             <MenuGroup>
-              <MenuItemWithExternalLinkIcon
-                label="利用規約"
-                // HACK: remで指定したくない
-                // Chakra UIと同じ指定方法で統一できないか
+              <CustomMenuItem
                 icon={<RiServiceLine size="1.2rem" />}
-                onClick={() => {
+                isExternal
+                onClick={() =>
                   window.open(
                     "https://www.kiyac.app/termsOfService/uJBSYhgVE6HYcxs7gklF"
-                  );
-                }}
-              />
-              <MenuItemWithExternalLinkIcon
-                label="プライバシーポリシー"
+                  )
+                }
+              >
+                利用規約
+              </CustomMenuItem>
+              <CustomMenuItem
                 icon={<MdOutlinePrivacyTip size="1.2rem" />}
+                isExternal
                 onClick={() => {
                   window.open(
                     "https://www.kiyac.app/privacypolicy/pPYhCNHmkxjkZewFkatd"
                   );
                 }}
-              />
+              >
+                プライバシーポリシー
+              </CustomMenuItem>
             </MenuGroup>
             <MenuDivider />
             <MenuGroup>
-              <MenuItemWithExternalLinkIcon
-                label="フィードバック"
+              <CustomMenuItem
                 icon={<BiCommentDetail size="1.2rem" />}
+                isExternal
                 onClick={() => {
                   window.open("https://forms.gle/W4s7xqEiAeskEof38");
                 }}
-              />
+              >
+                フィードバック
+              </CustomMenuItem>
             </MenuGroup>
             <MenuDivider />
             <MenuGroup>
-              <MenuItem
+              <CustomMenuItem
                 icon={<MdOutlineLogout size="1.2rem" />}
                 onClick={logout}
               >
                 ログアウト
-              </MenuItem>
+              </CustomMenuItem>
             </MenuGroup>
           </MenuList>
         </Menu>
