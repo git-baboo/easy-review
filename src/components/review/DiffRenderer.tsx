@@ -1,6 +1,9 @@
+import path from "path";
+
 import { PlusSquareIcon } from "@chakra-ui/icons";
 import { Box } from "@chakra-ui/react";
 import { useMemo, useState } from "react";
+import refractor from "refractor";
 
 import ReviewPopover from "@/components/review/Popover";
 
@@ -9,6 +12,7 @@ const Diff = reactDiffView.Diff;
 const Hunk = reactDiffView.Hunk;
 const Decoration = reactDiffView.Decoration;
 const getChangeKey = reactDiffView.getChangeKey;
+const tokenize = reactDiffView.tokenize;
 
 type Props = {
   fileId: string;
@@ -43,6 +47,22 @@ const DiffRenderer = ({
   const [tmpChangeKey, setTmpChangeKey] = useState<string>("");
   const postPath: string = type === "delete" ? oldPath : newPath;
 
+  const tokens = useMemo(() => {
+    try {
+      return tokenize(hunks, {
+        highlight: true,
+        refractor: refractor,
+        language: path.extname(postPath).slice(1),
+      });
+    } catch (e) {
+      // ・ファイル名の文字列 (postPath) が空文字の可能性のある初回ロード
+      // ・ライブラリ非対応の拡張子
+      // の場合、refractor ライブラリがエラーを送出するので
+      // シンタックスハイライトを無効にする
+      return tokenize(hunks, { highlight: false });
+    }
+  }, [hunks]);
+
   const renderGutter = ({
     side,
     renderDefault,
@@ -76,6 +96,7 @@ const DiffRenderer = ({
       viewType="unified"
       diffType={type}
       hunks={hunks}
+      tokens={tokens}
       widgets={widgets[fileId]}
       renderGutter={renderGutter}
     >

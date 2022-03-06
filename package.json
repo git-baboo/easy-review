@@ -28,6 +28,7 @@
     "react-syntax-highlighter": "^15.4.5",
     "recoil": "^0.5.2",
     "recoil-persist": "^4.0.0",
+    "refractor": "3",
     "remark-gfm": "^3.0.1"
   },
   "devDependencies": {
@@ -37,6 +38,7 @@
     "@types/react": "17.0.37",
     "@types/react-syntax-highlighter": "^13.5.2",
     "@types/recoil": "^0.0.9",
+    "@types/refractor": "^3.0.2",
     "eslint": "7",
     "eslint-config-next": "^12.0.4",
     "eslint-config-prettier": "^8.3.0",

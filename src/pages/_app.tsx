@@ -5,6 +5,8 @@ import Head from "next/head";
 import { RecoilRoot } from "recoil";
 
 import { AuthProvider } from "@/components/AuthProvider";
+
+import "prismjs/themes/prism.css";
 import "@/style/difffile.css";
 
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
