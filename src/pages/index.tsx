@@ -1,4 +1,6 @@
 import { Container } from "@chakra-ui/react";
+import { Octokit } from "@octokit/rest";
+import { getRedirectResult, GithubAuthProvider } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
 
@@ -7,19 +9,47 @@ import NoPullsMessage from "@/components/top/NoPullsMessage";
 import PullRequestList from "@/components/top/PullRequestList";
 import withAuth from "@/hoc/withAuth";
 import { useApi } from "@/hooks/useApi";
-import { useCurrentUser } from "@/hooks/useCurrentUser";
+import {
+  currentUserActions,
+  currentUserSelectors,
+} from "@/store/currentUserState";
 import { TopPullRequestType } from "@/types/PullRequestType";
+import { auth } from "@/utils/firebase";
 
 const TopPage = () => {
   const [pulls, setPulls] = useState<TopPullRequestType[]>([]);
   const { octokit } = useApi();
-  const { username } = useCurrentUser();
+  const currentUser = currentUserSelectors.useCurrentUser();
+  const updateCurrentUser = currentUserActions.useUpdateCurrentUser();
 
   useEffect(() => {
-    if (username) {
+    getRedirectResult(auth).then((result) => {
+      if (result) {
+        const credential = GithubAuthProvider.credentialFromResult(result);
+        if (credential) {
+          const token = credential.accessToken;
+
+          const octokit = new Octokit({
+            auth: token,
+          });
+
+          octokit.request("GET /user").then((res) => {
+            updateCurrentUser({
+              username: res.data.login,
+              isSignedIn: true,
+              accessToken: String(token),
+            });
+          });
+        }
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    if (currentUser.username) {
       octokit
         .request("GET /search/issues", {
-          q: `is:pr+user-review-requested:${username}+state:open`,
+          q: `is:pr+user-review-requested:${currentUser.username}+state:open`,
         })
         .then((response) => {
           const items = response.data.items;
@@ -42,7 +72,7 @@ const TopPage = () => {
           setPulls(newPulls);
         });
     }
-  }, [username]);
+  }, [currentUser.username]);
 
   return (
     <Layout

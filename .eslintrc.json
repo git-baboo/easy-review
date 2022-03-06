@@ -20,6 +20,7 @@
         "newlines-between": "always"
       }
     ],
+    "react/jsx-curly-brace-presence": "error",
     "react-hooks/exhaustive-deps": "off",
     "@next/next/no-document-import-in-page": "off"
   }

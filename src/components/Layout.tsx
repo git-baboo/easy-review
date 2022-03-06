@@ -1,8 +1,25 @@
-import { Text, Icon, Flex, HStack, Box } from "@chakra-ui/react";
+import { HamburgerIcon } from "@chakra-ui/icons";
+import {
+  Text,
+  Icon,
+  Flex,
+  Spacer,
+  Menu,
+  MenuButton,
+  IconButton,
+  MenuList,
+  MenuGroup,
+  MenuDivider,
+} from "@chakra-ui/react";
 import React, { ReactNode } from "react";
 import { IconType } from "react-icons";
+import { BiCommentDetail } from "react-icons/bi";
+import { MdOutlineLogout, MdOutlinePrivacyTip } from "react-icons/md";
+import { RiServiceLine } from "react-icons/ri";
 
-import Menu from "@/components/Menu";
+import CustomMenuItem from "@/components/CustomMenuItem";
+import { HSpacer } from "@/components/Spacer";
+import { useAuth } from "@/hooks/useAuth";
 
 type Props = {
   text: string;
@@ -11,26 +28,83 @@ type Props = {
 };
 
 const Layout = ({ text, icon, children }: Props) => {
+  const { logout } = useAuth();
+
   return (
     <>
-      <Flex alignItems="center" pl={20} pr={3} h={36} bg="teal.500">
-        <HStack w="100%" h="100%">
-          <HStack w="90%" alignItems="start">
-            <Icon mt={1} as={icon} boxSize={6} color="teal.600" />
-            <Text
-              fontSize="lg"
-              lineHeight={7}
-              fontWeight="semibold"
-              color="white"
-              whiteSpace="pre-line"
-            >
-              {text}
-            </Text>
-          </HStack>
-          <Box h="100%" w="10%" align="right">
-            <Menu />
-          </Box>
-        </HStack>
+      <Flex bgColor="teal.500" h={36}>
+        <HSpacer size={16} />
+        <Flex alignSelf="center">
+          <Icon as={icon} boxSize={6} color="teal.600" />
+          <HSpacer size={1} />
+          <Text
+            fontSize="lg"
+            fontWeight="semibold"
+            color="white"
+            whiteSpace="pre-line"
+          >
+            {text}
+          </Text>
+        </Flex>
+
+        <Spacer />
+
+        <Menu>
+          <MenuButton
+            as={IconButton}
+            icon={<HamburgerIcon w={6} h={6} />}
+            color="white"
+            colorScheme="ghost"
+            _focus={{ boxShadow: "none" }}
+          />
+          <MenuList>
+            <MenuGroup>
+              <CustomMenuItem
+                icon={<RiServiceLine size="1.2rem" />}
+                isExternal
+                onClick={() =>
+                  window.open(
+                    "https://www.kiyac.app/termsOfService/uJBSYhgVE6HYcxs7gklF"
+                  )
+                }
+              >
+                利用規約
+              </CustomMenuItem>
+              <CustomMenuItem
+                icon={<MdOutlinePrivacyTip size="1.2rem" />}
+                isExternal
+                onClick={() => {
+                  window.open(
+                    "https://www.kiyac.app/privacypolicy/pPYhCNHmkxjkZewFkatd"
+                  );
+                }}
+              >
+                プライバシーポリシー
+              </CustomMenuItem>
+            </MenuGroup>
+            <MenuDivider />
+            <MenuGroup>
+              <CustomMenuItem
+                icon={<BiCommentDetail size="1.2rem" />}
+                isExternal
+                onClick={() => {
+                  window.open("https://forms.gle/W4s7xqEiAeskEof38");
+                }}
+              >
+                フィードバック
+              </CustomMenuItem>
+            </MenuGroup>
+            <MenuDivider />
+            <MenuGroup>
+              <CustomMenuItem
+                icon={<MdOutlineLogout size="1.2rem" />}
+                onClick={logout}
+              >
+                ログアウト
+              </CustomMenuItem>
+            </MenuGroup>
+          </MenuList>
+        </Menu>
       </Flex>
       {children}
     </>
