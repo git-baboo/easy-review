@@ -20,6 +20,7 @@
 }
 
 .diff {
+  font-size: 14.5px;
   background-color: initial;
   background-color: var(--diff-background-color);
   color: initial;
