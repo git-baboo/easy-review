@@ -3,24 +3,24 @@ import { Octokit } from "@octokit/rest";
 import { getRedirectResult, GithubAuthProvider } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
-import { useSetRecoilState } from "recoil";
 
 import Layout from "@/components/Layout";
 import NoPullsMessage from "@/components/top/NoPullsMessage";
 import PullRequestList from "@/components/top/PullRequestList";
 import withAuth from "@/hoc/withAuth";
 import { useApi } from "@/hooks/useApi";
-import { useCurrentUser } from "@/hooks/useCurrentUser";
-import { currentUserState } from "@/store/currentUserState";
-import { CurrentUserType } from "@/types/CurrentUserType";
+import {
+  currentUserActions,
+  currentUserSelectors,
+} from "@/store/currentUserState";
 import { TopPullRequestType } from "@/types/PullRequestType";
 import { auth } from "@/utils/firebase";
 
 const TopPage = () => {
   const [pulls, setPulls] = useState<TopPullRequestType[]>([]);
   const { octokit } = useApi();
-  const { username } = useCurrentUser();
-  const setCurrentUser = useSetRecoilState<CurrentUserType>(currentUserState);
+  const currentUser = currentUserSelectors.useCurrentUser();
+  const updateCurrentUser = currentUserActions.useUpdateCurrentUser();
 
   useEffect(() => {
     getRedirectResult(auth).then((result) => {
@@ -34,27 +34,22 @@ const TopPage = () => {
           });
 
           octokit.request("GET /user").then((res) => {
-            setCurrentUser((prevState) => ({
-              ...prevState,
+            updateCurrentUser({
               username: res.data.login,
-            }));
+              isSignedIn: true,
+              accessToken: String(token),
+            });
           });
-
-          setCurrentUser((prevState) => ({
-            ...prevState,
-            isSignedIn: true,
-            accessToken: String(token),
-          }));
         }
       }
     });
   }, []);
 
   useEffect(() => {
-    if (username) {
+    if (currentUser.username) {
       octokit
         .request("GET /search/issues", {
-          q: `is:pr+user-review-requested:${username}+state:open`,
+          q: `is:pr+user-review-requested:${currentUser.username}+state:open`,
         })
         .then((response) => {
           const items = response.data.items;
@@ -77,7 +72,7 @@ const TopPage = () => {
           setPulls(newPulls);
         });
     }
-  }, [username]);
+  }, [currentUser.username]);
 
   return (
     <Layout
